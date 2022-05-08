@@ -1,0 +1,279 @@
+[
+  {
+    "code": "AFR",
+    "name": "Adventures in the Forgotten Realms"
+  },{
+    "code": "AER",
+    "name": "Aether Revolt"
+  },{
+    "code": "ARB",
+    "name": "Alara Reborn"
+  },{
+    "code": "ALL",
+    "name": "Alliances"
+  },{
+    "code": "AKH",
+    "name": "Amonkhet"
+  },{
+    "code": "ATQ",
+    "name": "Antiquities"
+  },{
+    "code": "APC",
+    "name": "Apocalypse"
+  },{
+    "code": "ARN",
+    "name": "Arabian Nights"
+  },{
+    "code": "AVR",
+    "name": "Avacyn Restored"
+  },{
+    "code": "BFZ",
+    "name": "Battle for Zendikar"
+  },{
+    "code": "BOK",
+    "name": "Betrayers of Kamigawa"
+  },{
+    "code": "BNG",
+    "name": "Born of the Gods"
+  },{
+    "code": "CHK",
+    "name": "Champions of Kamigawa"
+  },{
+    "code": "CSP",
+    "name": "Coldsnap"
+  },{
+    "code": "CON",
+    "name": "Conflux"
+  },{
+    "code": "DKA",
+    "name": "Dark Ascension"
+  },{
+    "code": "DST",
+    "name": "Darksteel"
+  },{
+    "code": "DIS",
+    "name": "Dissension"
+  },{
+    "code": "DOM",
+    "name": "Dominaria"
+  },{
+    "code": "DGM",
+    "name": "Dragon's Maze"
+  },{
+    "code": "DTK",
+    "name": "Dragons of Tarkir"
+  },{
+    "code": "EMN",
+    "name": "Eldritch Moon"
+  },{
+    "code": "EVE",
+    "name": "Eventide"
+  },{
+    "code": "EXO",
+    "name": "Exodus"
+  },{
+    "code": "FEM",
+    "name": "Fallen Empires"
+  },{
+    "code": "FRF",
+    "name": "Fate Reforged"
+  },{
+    "code": "5DN",
+    "name": "Fifth Dawn"
+  },{
+    "code": "FUT",
+    "name": "Future Sight"
+  },{
+    "code": "GTC",
+    "name": "Gatecrash"
+  },{
+    "code": "GPT",
+    "name": "Guildpact"
+  },{
+    "code": "GRN",
+    "name": "Guilds of Ravnica"
+  },{
+    "code": "HML",
+    "name": "Homelands"
+  },{
+    "code": "HOU",
+    "name": "Hour of Devastation"
+  },{
+    "code": "ICE",
+    "name": "Ice Age"
+  },{
+    "code": "IKO",
+    "name": "Ikoria: Lair of Behemoths"
+  },{
+    "code": "ISD",
+    "name": "Innistrad"
+  },{
+    "code": "VOW",
+    "name": "Innistrad: Crimson Vow"
+  },{
+    "code": "MID",
+    "name": "Innistrad: Midnight Hunt"
+  },{
+    "code": "INV",
+    "name": "Invasion"
+  },{
+    "code": "XLN",
+    "name": "Ixalan"
+  },{
+    "code": "JOU",
+    "name": "Journey into Nyx"
+  },{
+    "code": "JUD",
+    "name": "Judgment"
+  },{
+    "code": "KLD",
+    "name": "Kaladesh"
+  },{
+    "code": "KHM",
+    "name": "Kaldheim"
+  },{
+    "code": "NEO",
+    "name": "Kamigawa: Neon Dynasty"
+  },{
+    "code": "KTK",
+    "name": "Khans of Tarkir"
+  },{
+    "code": "LEG",
+    "name": "Legends"
+  },{
+    "code": "LGN",
+    "name": "Legions"
+  },{
+    "code": "LRW",
+    "name": "Lorwyn"
+  },{
+    "code": "MMQ",
+    "name": "Mercadian Masques"
+  },{
+    "code": "MIR",
+    "name": "Mirage"
+  },{
+    "code": "MRD",
+    "name": "Mirrodin"
+  },{
+    "code": "MBS",
+    "name": "Mirrodin Besieged"
+  },{
+    "code": "MOR",
+    "name": "Morningtide"
+  },{
+    "code": "NEM",
+    "name": "Nemesis"
+  },{
+    "code": "NPH",
+    "name": "New Phyrexia"
+  },{
+    "code": "OGW",
+    "name": "Oath of the Gatewatch"
+  },{
+    "code": "ODY",
+    "name": "Odyssey"
+  },{
+    "code": "ONS",
+    "name": "Onslaught"
+  },{
+    "code": "PLC",
+    "name": "Planar Chaos"
+  },{
+    "code": "PLS",
+    "name": "Planeshift"
+  },{
+    "code": "PCY",
+    "name": "Prophecy"
+  },{
+    "code": "RNA",
+    "name": "Ravnica Allegiance"
+  },{
+    "code": "RAV",
+    "name": "Ravnica: City of Guilds"
+  },{
+    "code": "RTR",
+    "name": "Return to Ravnica"
+  },{
+    "code": "ROE",
+    "name": "Rise of the Eldrazi"
+  },{
+    "code": "RIX",
+    "name": "Rivals of Ixalan"
+  },{
+    "code": "SOK",
+    "name": "Saviors of Kamigawa"
+  },{
+    "code": "SOM",
+    "name": "Scars of Mirrodin"
+  },{
+    "code": "SCG",
+    "name": "Scourge"
+  },{
+    "code": "SHM",
+    "name": "Shadowmoor"
+  },{
+    "code": "SOI",
+    "name": "Shadows over Innistrad"
+  },{
+    "code": "ALA",
+    "name": "Shards of Alara"
+  },{
+    "code": "STX",
+    "name": "Strixhaven: School of Mages"
+  },{
+    "code": "STH",
+    "name": "Stronghold"
+  },{
+    "code": "TMP",
+    "name": "Tempest"
+  },{
+    "code": "DRK",
+    "name": "The Dark"
+  },{
+    "code": "THS",
+    "name": "Theros"
+  },{
+    "code": "THB",
+    "name": "Theros Beyond Death"
+  },{
+    "code": "ELD",
+    "name": "Throne of Eldraine"
+  },{
+    "code": "TSP",
+    "name": "Time Spiral"
+  },{
+    "code": "TSB",
+    "name": "Time Spiral Timeshifted"
+  },{
+    "code": "TOR",
+    "name": "Torment"
+  },{
+    "code": "UDS",
+    "name": "Urza's Destiny"
+  },{
+    "code": "ULG",
+    "name": "Urza's Legacy"
+  },{
+    "code": "USG",
+    "name": "Urza's Saga"
+  },{
+    "code": "VIS",
+    "name": "Visions"
+  },{
+    "code": "WAR",
+    "name": "War of the Spark"
+  },{
+    "code": "WTH",
+    "name": "Weatherlight"
+  },{
+    "code": "WWK",
+    "name": "Worldwake"
+  },{
+    "code": "ZEN",
+    "name": "Zendikar"
+  },{
+    "code": "ZNR",
+    "name": "Zendikar Rising"
+  }
+]
