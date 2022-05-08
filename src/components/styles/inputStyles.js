@@ -5,11 +5,4 @@ export const FormStyle = ({ children }) => (
   </div>
 )
 
-export const TextBoxStyle = (props) => (
-  <input
-    {...props} type="text"
-    className="input input-secondary text-secondary-content bg-secondary focus:bg-secondary-focus flex-grow"
-  />
-)
-
 export const ButtonStyle = (props) => <input {...props} type="button" className="btn btn-primary w-32" />
