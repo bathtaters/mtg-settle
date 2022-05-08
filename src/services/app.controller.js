@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { maxGuessCount } from "../assets/constants"
-
+import usePickSet from "./pickSet.controller"
 
 // Blank array, used for iterating
 export const blankArray = [...Array(maxGuessCount)]
 
+
 export default function useAppController() {
-  // Pick random set
-  const setName = 'CORRECT'
+  const setInfo = usePickSet()
 
   // Setup state
   const [guesses, setGuesses] = useState([])
@@ -15,18 +15,18 @@ export default function useAppController() {
 
   // Button controller
   const click = () => {
-    if (text === setName) setCorrect(guesses.length)
+    if (text === setInfo.name || text === setInfo.code) setCorrect(guesses.length)
+    if (guesses.length + 1 === maxGuessCount) setCorrect(-2)
     setGuesses((state) => state.concat(text.trim()))
     setText('')
   }
-  const keys = (ev) => { if (ev.charCode === 13) click() }
 
   // Simple controlled text box
   const [text, setText] = useState('')
-  const change = (ev) => setText(ev.target.value)
+  const change = (val) => setText(val)
 
   return {
-    setName, blankArray, guesses, correctGuess, text,
-    handlers: { click, keys, change }
+    setInfo, blankArray, guesses, correctGuess, text,
+    handlers: { click, change }
   }
 }
