@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy&display=swap');
+
 /* Load Tailwind */
 @tailwind base;
 @tailwind components;
@@ -5,20 +7,20 @@
 
 /* Base Styles */
 @layer base {
+    
+
     html { @apply h-full w-full; }
     body {
-        @apply relative  leading-none  font-sans;
+        @apply relative  leading-none  font-sans ;
         @apply text-xs   sm:text-base  print:text-xs;
     }
     
-    h1, h2, h3, h4, h5, h6 { @apply    font-sans pt-1; }
+    h1, h2, h3, h4, h5, h6 {
+        @apply    pt-1;
+        font-family: 'Sorts Mill Goudy', serif;
+    }
     h1 { @apply font-light   text-6xl  sm:text-8xl  print:text-6xl; }
     h2 { @apply font-medium  text-4xl  sm:text-6xl  print:text-4xl; }
     h3 { @apply font-bold    text-2xl  sm:text-4xl  print:text-2xl; }
     h4 { @apply font-medium  text-base sm:text-xl   print:text-base; }
-
-    code {
-      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
-    }
 }
