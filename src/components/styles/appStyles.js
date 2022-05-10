@@ -5,8 +5,8 @@ export const AppWraperStyle = ({ children }) => (
   </div>
 )
 
-export const AppNavbarStyle = ({ children }) => (<>
-  <div className="navbar justify-center">{children}</div>
-</>)
-
-export const AppTitleStyle = ({ children }) => <h1 className="navbar-center">{children}</h1>
+export const LinkStyle = ({ href, children }) => (
+  <a href={href} target="_blank" className="link link-hover link-secondary">
+    {children}
+  </a>
+)

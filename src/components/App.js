@@ -1,8 +1,9 @@
-import { AppWraperStyle, AppTitleStyle, AppNavbarStyle } from "./styles/appStyles"
+import { AppWraperStyle } from "./styles/appStyles"
 import ArtContainer from "./ArtContainer"
 import GuessContainer from "./GuessContainer"
 import useAppController from "../services/app.controller"
 import EntryContainer from "./EntryContainer"
+import HeaderContainer from "./HeaderContainer"
 
 
 function App() {
@@ -10,9 +11,7 @@ function App() {
 
   return (
     <AppWraperStyle>
-      <AppNavbarStyle>
-        <AppTitleStyle>MtG Set-le</AppTitleStyle>
-      </AppNavbarStyle>
+      <HeaderContainer />
 
       <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} setCode={setInfo.code} />
       
