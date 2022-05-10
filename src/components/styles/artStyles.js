@@ -5,13 +5,23 @@ export const CarouselStyle = ({ children }) => <div className="carousel carousel
 
 export const CarouselSpacer = () => <div className="carousel-item w-1/4" />
 
-export const ArtStyle = ({ id, children }) => (
-  <div id={id} className="carousel-item relative items-end h-full mx-auto px-2">
+export const ArtStyle = ({ id, divRef, children }) => (
+  <div ref={divRef} id={id} className="carousel-item relative items-end h-full mx-auto px-2">
       {children}
   </div>
 )
 
 export const ImageStyle = (props) => <img {...props} className="h-full w-auto max-h-[70vw] border border-primary rounded-lg overflow-hidden" />
+
+export const ArrowWrapperStyle = ({ children }) => <div className="relative">{children}</div>
+
+export const ArrowButtonStyle = (props) => (
+  <input
+    type="button"
+    className={`btn btn-sm btn-ghost hover:bg-base-300/30 rounded-none text-2xl h-auto absolute ${props.isLeft ? '-left-2' : '-right-2'} bottom-2 top-0 z-10`}
+    {...props}
+  />
+)
 
 export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
   <div className="absolute top-0 bottom-0 left-2 right-2 rounded-lg overflow-hidden flex justify-start items-end">
@@ -21,6 +31,11 @@ export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
   </div>
 )
 
-export const ButtonStyle = (props) => <a {...props} className="btn btn-sm sm:btn-md sm:text-lg" /> 
+export const ButtonStyle = (props) => (
+  <input
+    type="button" {...props}
+    className={`btn btn-sm btn-primary sm:btn-md sm:text-lg${props.selected ? ' outline outline-4 outline-primary' : ''}`}
+  /> 
+)
 
 export const ButtonContainerStyle = ({ children }) => <div className="flex justify-center w-full py-2 gap-2">{children}</div>
