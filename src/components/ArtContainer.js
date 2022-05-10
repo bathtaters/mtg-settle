@@ -1,21 +1,7 @@
-import { ArtWrapperStyle, CarouselStyle, CarouselSpacer, ArtStyle, ArtCaptionStyle, ImageStyle, ButtonContainerStyle, ButtonStyle } from "./styles/artStyles"
-import LoadingSpinner from "./subcomponents/LoadingSpinner"
+import ArtBox from "./subcomponents/ArtBox"
+import { ArtWrapperStyle, CarouselStyle, CarouselSpacer, ButtonContainerStyle, ButtonStyle } from "./styles/artStyles"
 import { blankArray } from "../services/app.controller"
 import useRandomImages from "../services/images.controller"
-
-
-function ArtBox({ src, id, info, hidden }) {
-  if (hidden) return false
-
-  if (!src) return (<ArtStyle id={id}><LoadingSpinner /></ArtStyle>)
-
-  return (
-    <ArtStyle id={id}>
-      <ImageStyle src={src} alt="Card Art" />
-      <ArtCaptionStyle hidden={!info}><i>{info.name}</i> by {info.artist}</ArtCaptionStyle>
-    </ArtStyle>
-  )
-}
 
 
 export default function ArtContainer({ currentGuess, correctGuess, setCode }) {
