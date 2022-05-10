@@ -7,6 +7,7 @@ const _DEBUG = {
   //* ENABLE */ enable: true, cardData: debugData,
   /* DISABLE */ enable: false, cardData: [],
   setData:  { code: "JUD", name: "Judgment" },
+  imgSrc: 'https://picsum.photos/571/460'
 }
 export const getDebug = () => _DEBUG
 // END DEBUG

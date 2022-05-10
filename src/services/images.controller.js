@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react"
 import { useGetCards } from "./dbQuery.services"
-import { ignoreCards, imageURL } from "../assets/constants"
+import { ignoreCards, imageURL, getDebug } from "../assets/constants"
+const { imgSrc, enable: debugging } = getDebug()
 
-const imageDelay = 500
-
+const imageDelay = 510 // as per ScryFall regulations
 
 // Load images
 const getImages = (ids, setImage, idx = 0) => {
@@ -55,7 +55,8 @@ export default function useRandomImages(setCode, imageCount) {
   const cards = useMemo(() => {
     if (data) {
       const cards = pickCards(data, imageCount)
-      getImages(cards.map(({ id }) => id), setImage)
+      if (debugging) setArtImages((state) => state.map(() => imgSrc))
+      else getImages(cards.map(({ id }) => id), setImage)
       return cards
     }
     return []
