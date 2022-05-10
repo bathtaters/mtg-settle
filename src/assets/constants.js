@@ -22,6 +22,9 @@ export const order = ['order-1','order-2','order-3','order-4','order-5','order-6
 // Image options
 export const imageURL = (uuid) => `https://api.scryfall.com/cards/${uuid}?format=image&version=art_crop`
 
+// About modal
+export const aboutModalId = "about-modal"
+
 // Guess list options
 export const guessColumns = 2
 export const guessOptions = [
@@ -33,6 +36,9 @@ export const skippedMessage = 'Skipped'
 
 // Alert messages
 export const illegalGuessMsg = (guess) => `"${guess}" isn't a remaining set.`
+
+// Hide alert after (milliseconds)
+export const alertHideDelay = 5000
 
 // Images Controller options
 export const ignoreCards = {
