@@ -1,21 +1,21 @@
 import InfoText from "../assets/InfoText"
-import InfoI from "./subcomponents/InfoI"
+import { InfoIcon } from "./subcomponents/Icons"
 import { ModalStyle, ModalOpenButton } from "./subcomponents/ModalStyles"
 import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, InfoTitleStyle, InfoBodyStyle } from "./styles/headerStyles"
+import { aboutModalId } from "../assets/constants"
 
-const modalId = "info-modal"
 
 export default function HeaderContainer() {
 
   return (<>
-    <ModalStyle modalId={modalId}>
+    <ModalStyle modalId={aboutModalId}>
       <InfoTitleStyle>About</InfoTitleStyle>
       <InfoBodyStyle><InfoText /></InfoBodyStyle>
     </ModalStyle>
 
     <HeaderWrapperStyle>
       <HeaderPartStyle isLeft={true}>
-        <ModalOpenButton modalId={modalId}><InfoI /></ModalOpenButton>
+        <ModalOpenButton modalId={aboutModalId}><InfoIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
       <TitleStyle>Settle</TitleStyle>
