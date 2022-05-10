@@ -1,16 +1,15 @@
-import { useMemo } from "react"
 import { GuessWrapperStyle, GuessStyle, SkippedGuessStyle } from "./styles/guessStyles"
 import { guessOptions, skippedMessage } from "../assets/constants"
 import { blankArray } from "../services/app.controller"
 
 
-function GuessEntry({ guess, isCorrect }) {
-  const optionIdx = useMemo(() => guess == null ? 0 : isCorrect ? 1 : 2, [guess, isCorrect])
+function GuessEntry({ guess, isCorrect, idx }) {
+  const optionIdx = guess == null ? 0 : isCorrect ? 1 : 2
 
-  if (guess == null) return <GuessStyle mark={guessOptions.marks[optionIdx]} color={guessOptions.colors[optionIdx]} />
+  if (guess == null) return <GuessStyle {...guessOptions[optionIdx]} idx={idx} />
 
   return (
-    <GuessStyle mark={guessOptions.marks[optionIdx]} color={guessOptions.colors[optionIdx]}>
+    <GuessStyle {...guessOptions[optionIdx]} idx={idx}>
       {guess ? guess : <SkippedGuessStyle>{skippedMessage}</SkippedGuessStyle>}
     </GuessStyle>
   )
@@ -20,7 +19,9 @@ function GuessEntry({ guess, isCorrect }) {
 export default function GuessContainer({ guesses, correctGuess }) {
   return (
     <GuessWrapperStyle>
-      { blankArray.map((_,idx) => <GuessEntry key={guesses[idx] || idx} isCorrect={correctGuess === idx} guess={guesses[idx]} />) }
+      { blankArray.map((_,idx) => (
+        <GuessEntry key={guesses[idx] || idx} idx={idx} isCorrect={correctGuess === idx} guess={guesses[idx]} />
+      )) }
     </GuessWrapperStyle>
   )
 }

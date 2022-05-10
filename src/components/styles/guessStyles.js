@@ -1,14 +1,20 @@
+import { maxGuessCount, guessColumns, order } from "../../assets/constants"
+import { reorderArray } from "../../services/utils"
+
+// Generate grid cell order
+const reorder = reorderArray(order.slice(0, maxGuessCount), guessColumns)
 
 export const GuessWrapperStyle = ({ children }) => (
-  <div className="text-center py-4">
-    <ul className="steps steps-vertical">{children}</ul>
+  <div className="my-2 sm:my-4 grid grid-cols-2 gap-1 sm:gap-2">
+    {children}
   </div>
 )
 
-export const GuessStyle = ({ children, mark, color }) => (
-  <li data-content={mark} className={`step text-secondary-content ${color}`}>
-    {children}
-  </li>
+export const GuessStyle = ({ children, mark, color, idx }) => (
+  <div className={`badge w-full h-10 justify-start items-center ${color} ${reorder[idx]}`}>
+    <span className="mr-2">{mark}</span>
+    <span className="text-ellipsis line-clamp-2 break-words leading-tight overflow-hidden text-sm">{children ?? ' '}</span>
+  </div>
 )
 
 export const SkippedGuessStyle = ({ children }) => <i className="italic opacity-40">{children}</i>
