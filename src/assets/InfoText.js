@@ -1,6 +1,6 @@
 import { LinkStyle } from "../components/styles/appStyles"
 
-const gitHubLink = "https://github.com/" // Change to repository
+const gitHubLink = "https://github.com/bathtaters/mtg-settle"
 
 export default function InfoText() {
   return (<>

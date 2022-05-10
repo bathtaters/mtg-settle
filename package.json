@@ -1,5 +1,6 @@
 {
   "name": "mtg-settle",
+  "homepage": "http://mtg-drafter.com/settlethewreckage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
