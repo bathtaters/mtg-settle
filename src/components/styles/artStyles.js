@@ -34,7 +34,7 @@ export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
 export const ButtonStyle = (props) => (
   <input
     type="button" {...props}
-    className={`btn btn-sm btn-primary sm:btn-md sm:text-lg${props.selected ? ' scale-125' : ''}`}
+    className={`btn btn-sm btn-primary sm:btn-md sm:text-lg z-0${props.selected ? ' scale-125' : ''}`}
   /> 
 )
 
