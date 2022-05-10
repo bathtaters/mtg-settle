@@ -1,6 +1,7 @@
-import { useState } from "react"
-import { maxGuessCount } from "../assets/constants"
+import { useMemo, useState } from "react"
+import { maxGuessCount, illegalGuessMsg } from "../assets/constants"
 import usePickSet from "./pickSet.controller"
+import allSets from "../assets/setList.json"
 
 // Blank array, used for iterating
 export const blankArray = [...Array(maxGuessCount)]
@@ -13,20 +14,16 @@ export default function useAppController() {
   const [guesses, setGuesses] = useState([])
   const [correctGuess, setCorrect] = useState(-1)
 
-  // Button controller
-  const click = () => {
+  // Click guess controller
+  const handleGuess = (text, isInList) => {
+    if (text && !isInList) return window.alert(illegalGuessMsg(text))
     if (text === setInfo.name || text === setInfo.code) setCorrect(guesses.length)
     if (guesses.length + 1 === maxGuessCount) setCorrect(-2)
     setGuesses((state) => state.concat(text.trim()))
-    setText('')
   }
 
-  // Simple controlled text box
-  const [text, setText] = useState('')
-  const change = (val) => setText(val)
+  // Create list for auto-complete
+  const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length])
 
-  return {
-    setInfo, blankArray, guesses, correctGuess, text,
-    handlers: { click, change }
-  }
+  return { setList, setInfo, guesses, correctGuess, handleGuess }
 }
