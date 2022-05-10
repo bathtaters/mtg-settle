@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { maxGuessCount, illegalGuessMsg } from "../assets/constants"
 import usePickSet from "./pickSet.controller"
 import allSets from "../assets/setList.json"
@@ -24,10 +24,11 @@ export default function useAppController() {
   }
 
   // Create list for auto-complete
+  // eslint-disable-next-line
   const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length])
 
   // Allow alert to clear its messages
-  const clearMsg = () => setAlertMsg(null)
+  const clearMsg = useCallback(() => setAlertMsg(null), [setAlertMsg])
 
   return { setList, setInfo, guesses, correctGuess, handleGuess, alertMsg, clearMsg }
 }

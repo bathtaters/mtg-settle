@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { alertHideDelay } from "../assets/constants"
 
 export default function useShowAlert(message, clearMessage) {
@@ -8,7 +8,7 @@ export default function useShowAlert(message, clearMessage) {
 
     const timeoutId = setTimeout(() => clearMessage(), alertHideDelay)
     return () => { clearTimeout(timeoutId) }
-  }, [message])
+  }, [message, clearMessage])
 
   // Click to hide
   const handleClick = () => message && clearMessage()

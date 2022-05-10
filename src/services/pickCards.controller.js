@@ -60,7 +60,8 @@ export default function useGetCards(setCode, cardCount) {
         )
       })
     }
-  }, [setCode])
+  // eslint-disable-next-line
+  }, [setCode, cardCount, getCards])
 
   // Error-check & return expected value
   if (debugging) return { data: cardData } // DEBUG

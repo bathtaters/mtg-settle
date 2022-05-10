@@ -29,6 +29,7 @@ export const ListStyle = forwardRef(function ListStyle({ textbox, children, clas
       + layoutClasses.listVerticalOffset
       // - window.document.firstElementChild.scrollTop // doesn't work on mobile
     }px`
+  // eslint-disable-next-line
   }, [textbox.current?.offsetHeight])
 
   // List width

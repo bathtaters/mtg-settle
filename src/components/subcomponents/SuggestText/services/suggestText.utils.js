@@ -35,6 +35,7 @@ export function useLayoutListener(listenerType, effect, deps) {
     window.addEventListener(listenerType, effect)
     effect()
     return () => { window.removeEventListener(listenerType, effect) }
+  // eslint-disable-next-line
   }, deps)
 }
 
@@ -50,20 +51,21 @@ export function useScrollToRef({
 } = {}) {
   // Create scroll callback
   const [ elementRef, setRef ] = useState(null)
-  const scrollTo = (entries) => {
-    if (elementRef && !entries[0].isIntersection)
-      elementRef.scrollIntoView({ behavior, block, inline })
-  }
 
   // Add/Remove observer listener
   useEffect(() => {
     const root = rootRef && 'current' in rootRef ? rootRef.current : rootRef
 
-    const observer = new IntersectionObserver(scrollTo, {root, threshold, rootMargin})
+    const observer = new IntersectionObserver((entries) => {
+      if (elementRef && !entries[0].isIntersection)
+        elementRef.scrollIntoView({ behavior, block, inline })
+
+      }, {root, threshold, rootMargin})
+
     if (elementRef) observer.observe(elementRef)
 
     return () => { if (elementRef) observer.unobserve(elementRef) }
-  }, [elementRef, rootRef, threshold, rootMargin])
+  }, [elementRef, rootRef, threshold, rootMargin, behavior, block, inline])
 
   // Get reference to element
   return (newRef) => setRef(newRef)
@@ -82,7 +84,8 @@ export function useHotkeys(hotkeyMap, { skip, deps } = {}) {
 
     if (typeof hotkeyMap[ev.keyCode] === 'function') hotkeyMap[ev.keyCode](ev);
     else console.error('Malformed keyMap for', ev.keyCode, hotkeyMap[ev.keyCode]);
-
+  
+  // eslint-disable-next-line
   }, deps);
 
   useEffect(() => {
@@ -90,6 +93,7 @@ export function useHotkeys(hotkeyMap, { skip, deps } = {}) {
     else document.removeEventListener('keydown', hotkeyHandler, false);
 
     return () => document.removeEventListener('keydown', hotkeyHandler, false);
-
+  
+  // eslint-disable-next-line
   }, deps && deps.concat(skip));
 }

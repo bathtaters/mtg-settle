@@ -35,7 +35,7 @@ export default function useRandomImages(setCode, imageCount) {
       if (debugging) setArtImages((state) => state.map(() => imgSrc))
       else getImages(data.map(({ id }) => id), setImage)
     }
-  }, [data])
+  }, [data, locked])
 
   return { msg, artImages, cards: data }
 }

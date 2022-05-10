@@ -12,6 +12,8 @@ export default function useScrollToIndex({ behavior = "smooth", block = "center"
   // On change in scrollEndDeps, scroll to last element
   useEffect(() => {
     childRefs.current.length && scrollTo(childRefs.current.length - 1)
+    
+  // eslint-disable-next-line
   }, scrollEndDeps)
 
   // Main effect

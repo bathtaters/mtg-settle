@@ -6,7 +6,7 @@ import useScrollToIndex from "../services/scroll.controller"
 import { useCallback, useEffect } from "react"
 
 function CarouselArrow({ isPrev, scrollTo, disabled }) {
-  const handleClick = useCallback(() => scrollTo((idx) => idx + (isPrev ? -1 : 1)), [isPrev])
+  const handleClick = useCallback(() => scrollTo((idx) => idx + (isPrev ? -1 : 1)), [isPrev, scrollTo])
   return <ArrowButtonStyle isLeft={isPrev} value={isPrev ? '<' : '>'} onClick={handleClick} disabled={disabled} />
 }
 
@@ -15,7 +15,7 @@ export default function ArtContainer({ currentGuess, correctGuess, setCode }) {
 
   const { visibleIdx, setChildRef, scrollTo } = useScrollToIndex({ scrollEndDeps: [currentGuess] })
 
-  useEffect(() => { if (correctGuess >= 0) scrollTo(correctGuess) }, [correctGuess])
+  useEffect(() => { if (correctGuess >= 0) scrollTo(correctGuess) }, [correctGuess, scrollTo])
 
   if (msg) return <ArtWrapperStyle>{msg}</ArtWrapperStyle>
 

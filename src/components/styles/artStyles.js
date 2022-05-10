@@ -3,7 +3,7 @@ export const ArtWrapperStyle = ({ children }) => <div className="w-full h-1/2 my
 
 export const CarouselStyle = ({ children }) => <div className="carousel carousel-center mb-2">{children}</div>
 
-export const CarouselSpacer = () => <div className="carousel-item w-1/4" />
+export const CarouselSpacer = () => <div className="carousel-item w-[10%]" />
 
 export const ArtStyle = ({ id, divRef, children }) => (
   <div ref={divRef} id={id} className="carousel-item relative items-end h-full mx-auto px-2">
@@ -11,6 +11,7 @@ export const ArtStyle = ({ id, divRef, children }) => (
   </div>
 )
 
+// eslint-disable-next-line
 export const ImageStyle = (props) => <img {...props} className="h-full w-auto max-h-[70vw] border border-primary rounded-lg overflow-hidden" />
 
 export const ArrowWrapperStyle = ({ children }) => <div className="relative">{children}</div>

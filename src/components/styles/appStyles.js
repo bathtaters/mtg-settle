@@ -16,7 +16,7 @@ export const AppErrorStyle = ({ title, children }) => (
 )
 
 export const LinkStyle = ({ href, children }) => (
-  <a href={href} target="_blank" className="link link-hover link-secondary">
+  <a href={href} target="_blank" rel="noreferrer" className="link link-hover link-secondary">
     {children}
   </a>
 )
