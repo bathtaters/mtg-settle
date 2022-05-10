@@ -3,7 +3,12 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: [ 'Sorts Mill Goudy', 'serif' ],
+        sans: [ 'Poppins', 'sans-serif' ],
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
