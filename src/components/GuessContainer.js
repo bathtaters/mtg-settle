@@ -20,7 +20,7 @@ export default function GuessContainer({ guesses, correctGuess }) {
   return (
     <GuessWrapperStyle>
       { blankArray.map((_,idx) => (
-        <GuessEntry key={guesses[idx] || idx} idx={idx} isCorrect={correctGuess === idx} guess={guesses[idx]} />
+        <GuessEntry guess={guesses[idx]} isCorrect={correctGuess === idx} idx={idx} key={guesses[idx] || idx} />
       )) }
     </GuessWrapperStyle>
   )
