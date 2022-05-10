@@ -8,12 +8,15 @@
 
 /* Base Styles */
 @layer base {
-    
+    .text-scale-lg { @apply text-base sm:text-lg   print:text-base; }
+    .text-scale-md { @apply text-sm   sm:text-base print:text-sm;   }
+    .text-scale-sm { @apply text-xs   sm:text-sm   print:text-xs;   }
+    .text-scale-xs { @apply text-2xs  sm:text-xs   print:text-2xs;  }
 
     html, body, #root { @apply h-full w-full; }
     body {
         @apply relative  leading-none  font-serif;
-        @apply text-xs   sm:text-base  print:text-xs;
+        @apply text-scale-md  print:text-xs;
     }
     
     h1, h2, h3, h4, h5, h6 { @apply    font-serif   pt-1; }

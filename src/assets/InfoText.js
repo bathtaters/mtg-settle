@@ -4,25 +4,29 @@ const gitHubLink = "https://github.com/" // Change to repository
 
 export default function InfoText() {
   return (<>
-    <p className="">
-      Try to guess which <i>Magic: the Gathering</i> set the art is from
+    <p className="text-scale-lg">
+      Try to guess which <i>Magic: the Gathering</i> expansion the card art is from.
     </p>
 
-    <p className="text-sm my-1">
-      All rights belong to the respective artists
-    </p>
+    <div className="text-scale-md my-3 text-secondary/70">
+      <p>All rights belong to the respective artists</p>
 
-    <p className="text-xs mt-3 text-secondary/75">
-      Inspired by <LinkStyle href="https://nytimes.com/games/wordle/">Wordle</LinkStyle>,&nbsp;
-      <LinkStyle href="https://heardle.app">Heardle</LinkStyle>,&nbsp;
-      <LinkStyle href="https://framed.wtf">Framed</LinkStyle>&nbsp; 
-      &amp; the Lords of Luxury
-    </p>
+      <p>
+        Inspired by the Lords of Luxury&nbsp;
+        <span className="text-scale-sm">
+          (as well as&nbsp;<i>
+            <LinkStyle href="https://nytimes.com/games/wordle/">Wordle</LinkStyle>,&nbsp;
+            <LinkStyle href="https://heardle.app">Heardle</LinkStyle>,&nbsp;
+            <LinkStyle href="https://framed.wtf">Framed</LinkStyle>,&nbsp;
+          </i>etc.)
+        </span>
+      </p>
+    </div>
 
-    <p className="text-xs mt-0.5 text-secondary/75">
-      Set/Card data via <LinkStyle href="https://mtgjson.com">MTGJSON</LinkStyle>, 
-      Artwork via <LinkStyle href="https://scryfall.com">Scryfall</LinkStyle>,&nbsp;
-      <LinkStyle href={gitHubLink}>GitHub</LinkStyle>
+    <p className="text-scale-xs mt-2 font-sans">
+      <LinkStyle href="https://mtgjson.com">MTGJSON DB</LinkStyle>&nbsp;-&nbsp; 
+      <LinkStyle href="https://scryfall.com">Scryfall Art</LinkStyle>&nbsp;-&nbsp;
+      <LinkStyle href={gitHubLink}>GitHub repo</LinkStyle>
     </p>
   </>)
 }
