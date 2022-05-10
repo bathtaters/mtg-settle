@@ -1,7 +1,6 @@
-import AutoCompleteBox from "./AutoCompleteBox"
-import { AnswerWrapperStyle, FormStyle, ButtonStyle } from "./styles/entryStyles"
-import setList from "../assets/setList.json"
-
+import SuggestText from "./subcomponents/SuggestText/SuggestText"
+import { AnswerWrapperStyle, FormStyle, ButtonStyle, suggestClasses } from "./styles/entryStyles"
+import useEntryController from "../services/entry.controller"
 
 function AnswerContainer({ setInfo }) {
   return (
@@ -9,11 +8,14 @@ function AnswerContainer({ setInfo }) {
   )
 }
 
-function InputContainer({ text, handlers }) {
+function InputContainer({ handleGuess, list }) {
+  const { props, handleClick, hasText } = useEntryController(handleGuess)
+  
   return (
     <FormStyle>
-      <AutoCompleteBox value={text} list={setList} onChange={handlers.change} />
-      <ButtonStyle value={text ? "Guess" : "Skip"} onClick={handlers.click} />
+      <SuggestText className={suggestClasses.textbox} listClasses={suggestClasses} list={list} {...props}>
+        <ButtonStyle value={hasText ? "Guess" : "Skip"} onClick={handleClick} />
+      </SuggestText>
     </FormStyle>
   )
 }
