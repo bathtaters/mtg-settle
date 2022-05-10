@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react"
-import { useGetCards } from "./dbQuery.services"
-import { ignoreCards, imageURL, getDebug } from "../assets/constants"
+import { useEffect, useState } from "react"
+import useGetCards from "./pickCards.controller"
+import { imageURL, getDebug } from "../assets/constants"
 const { imgSrc, enable: debugging } = getDebug()
 
 const imageDelay = 510 // as per ScryFall regulations
@@ -19,50 +19,23 @@ const getImages = (ids, setImage, idx = 0) => {
 
 
 
-// Rules for ignoring cards
-const filterCards = (cardList) => cardList.filter((card) => 
-  !Object.keys(ignoreCards.equals).some((field) => card[field] === ignoreCards.equals[field] && !console.debug('failed =',field,card)) &&
-  !Object.keys(ignoreCards.matches).some((field) => ignoreCards.matches[field].test(card[field]) && !console.debug('failed test:',field,card))
-)
-
-// Hide uneeded fields
-const normalizeCards = (cardList) => cardList.map(({ name, artist, identifiers }) => ({ name, artist, id: identifiers.scryfallId }))
-
-// Pick <cardCount> random cards from a list
-function pickCards(allCards, cardCount) {
-  const cardList = filterCards(allCards)
-  if (cardList.length < cardCount) throw new Error(`Error: Card set is too small! [${cardList.length}, ${cardCount}]`)
-
-  let indexes = []
-  for (let i = 0; i < cardCount; i++) {
-    while (indexes.length === i) {
-      const nextIdx = Math.floor(Math.random() * cardList.length)
-      if (!indexes.includes(nextIdx)) indexes.push(nextIdx)
-    }
-  }
-
-  return normalizeCards(indexes.map((idx) => cardList[idx]))
-}
-
-
-
 export default function useRandomImages(setCode, imageCount) {
-  const { data, msg } = useGetCards(setCode)
+  // Get random cards
+  const { data, msg } = useGetCards(setCode, imageCount)
 
-  const [artImages, setArtImages] = useState([...Array(imageCount)].map(() => null))
+  // Setup state
+  const [artImages, setArtImages] = useState([])
+  const [locked, setLock] = useState(false)
   const setImage = (newImg, idx) => setArtImages((state) => Object.assign([], state, { [idx]: newImg }))
   
-  const cards = useMemo(() => {
-    if (data) {
-      const cards = pickCards(data, imageCount)
+  useEffect(() => {
+    if (data && !locked) {
+      // Download images only the first time
+      setLock(true)
       if (debugging) setArtImages((state) => state.map(() => imgSrc))
-      else getImages(cards.map(({ id }) => id), setImage)
-      return cards
+      else getImages(data.map(({ id }) => id), setImage)
     }
-    return []
+  }, [data])
 
-  // eslint-disable-next-line
-  }, [!!data, imageCount])
-
-  return { msg, artImages, cards }
+  return { msg, artImages, cards: data }
 }
