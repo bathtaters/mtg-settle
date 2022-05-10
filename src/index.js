@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './services/reportWebVitals';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
-import { CardProvider } from './services/dbQuery.services';
+import CardProvider from './services/dbQuery.services';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
