@@ -1,16 +1,16 @@
-import { AppWraperStyle } from "./styles/appStyles"
+import { AppWrapperStyle } from "./styles/appStyles"
 import ArtContainer from "./ArtContainer"
 import GuessContainer from "./GuessContainer"
 import useAppController from "../services/app.controller"
 import EntryContainer from "./EntryContainer"
 import HeaderContainer from "./HeaderContainer"
-
+import Alert from "./subcomponents/Alert"
 
 function App() {
-  const { setList, setInfo, guesses, correctGuess, handleGuess } = useAppController()  
+  const { setList, setInfo, guesses, correctGuess, handleGuess, alertMsg, clearMsg } = useAppController()  
 
   return (
-    <AppWraperStyle>
+    <AppWrapperStyle>
       <HeaderContainer />
 
       <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} setCode={setInfo.code} />
@@ -18,7 +18,9 @@ function App() {
       <EntryContainer list={setList} setInfo={setInfo} correctGuess={correctGuess} handleGuess={handleGuess} />
 
       <GuessContainer guesses={guesses} correctGuess={correctGuess} />
-    </AppWraperStyle>
+
+      <Alert message={alertMsg} clearMessage={clearMsg} />
+    </AppWrapperStyle>
   )
 }
 

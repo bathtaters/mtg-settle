@@ -13,10 +13,11 @@ export default function useAppController() {
   // Setup state
   const [guesses, setGuesses] = useState([])
   const [correctGuess, setCorrect] = useState(-1)
+  const [alertMsg, setAlertMsg] = useState(null)
 
   // Click guess controller
   const handleGuess = (text, isInList) => {
-    if (text && !isInList) return window.alert(illegalGuessMsg(text))
+    if (text && !isInList) return setAlertMsg(illegalGuessMsg(text))
     if (text === setInfo.name || text === setInfo.code) setCorrect(guesses.length)
     if (guesses.length + 1 === maxGuessCount) setCorrect(-2)
     setGuesses((state) => state.concat(text.trim()))
@@ -25,5 +26,8 @@ export default function useAppController() {
   // Create list for auto-complete
   const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length])
 
-  return { setList, setInfo, guesses, correctGuess, handleGuess }
+  // Allow alert to clear its messages
+  const clearMsg = () => setAlertMsg(null)
+
+  return { setList, setInfo, guesses, correctGuess, handleGuess, alertMsg, clearMsg }
 }
