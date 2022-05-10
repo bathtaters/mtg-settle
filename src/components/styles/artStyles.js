@@ -15,10 +15,10 @@ export const ImageStyle = (props) => <img {...props} className="h-full w-auto ma
 
 export const ArrowWrapperStyle = ({ children }) => <div className="relative">{children}</div>
 
-export const ArrowButtonStyle = (props) => (
+export const ArrowButtonStyle = ({ isLeft, ...props }) => (
   <input
     type="button"
-    className={`btn btn-sm btn-ghost hover:bg-base-300/30 rounded-none text-2xl h-auto absolute ${props.isLeft ? '-left-2' : '-right-2'} bottom-2 top-0 z-10`}
+    className={`btn btn-sm btn-ghost hover:bg-base-300/30 disabled:bg-transparent rounded-none text-2xl h-auto absolute ${isLeft ? '-left-2' : '-right-2'} bottom-2 top-0 z-10`}
     {...props}
   />
 )
@@ -34,7 +34,7 @@ export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
 export const ButtonStyle = (props) => (
   <input
     type="button" {...props}
-    className={`btn btn-sm btn-primary sm:btn-md sm:text-lg${props.selected ? ' outline outline-4 outline-primary' : ''}`}
+    className={`btn btn-sm btn-primary sm:btn-md sm:text-lg${props.selected ? ' scale-125' : ''}`}
   /> 
 )
 
