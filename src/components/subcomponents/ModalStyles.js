@@ -3,7 +3,7 @@ export const ModalStyle = ({ modalId, hideClose = false, children }) => (<>
   <input type="checkbox" id={modalId} className="modal-toggle" />
 
   <label htmlFor={modalId} className="modal cursor-pointer">
-    <label className="modal-box bg-secondary-content text-secondary" htmlFor="">
+    <label className="modal-box bg-secondary-content text-secondary px-4 pt-3 pb-2 pr-6 sm:pt-4" htmlFor="">
       { hideClose || <ModalCloseButton modalId={modalId} /> }
       {children}
     </label>

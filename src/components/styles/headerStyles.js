@@ -9,4 +9,4 @@ export const HeaderPartStyle = ({ isLeft, children }) => <div className={isLeft 
 
 export const InfoTitleStyle = ({ children }) => <h3 className="opacity-75 font-sans">{children}</h3>
 
-export const InfoBodyStyle = ({ children }) => <div className="py-4">{children}</div>
+export const InfoBodyStyle = ({ children }) => <div className="py-4 text-center">{children}</div>
