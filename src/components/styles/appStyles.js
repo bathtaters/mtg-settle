@@ -5,6 +5,16 @@ export const AppWrapperStyle = ({ children }) => (
   </div>
 )
 
+export const AppErrorStyle = ({ title, children }) => (
+  <div className="text-center">
+    <h3 className="font-sans">{title}</h3>
+    <details className="mt-4 whitespace-pre-wrap">
+      <summary className="text-lg">Click to view details</summary>
+      <div className="m-2 mockup-code before:hidden font-mono p-4">{children}</div>
+    </details>
+  </div>
+)
+
 export const LinkStyle = ({ href, children }) => (
   <a href={href} target="_blank" className="link link-hover link-secondary">
     {children}

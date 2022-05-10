@@ -13,16 +13,14 @@ export const getDebug = () => _DEBUG
 // END DEBUG
 
 
-// Set the number of images available to guess
+// App options
 export const maxGuessCount = 6
-
-// Load guess classes (Should go up to 'maxGuessCount')
-export const order = ['order-1','order-2','order-3','order-4','order-5','order-6','order-7','order-8']
+export const order = ['order-1','order-2','order-3','order-4','order-5','order-6','order-7','order-8'] // Should go up to at least 'maxGuessCount'
 
 // Image options
 export const imageURL = (uuid) => `https://api.scryfall.com/cards/${uuid}?format=image&version=art_crop`
 
-// About modal
+// Modal options
 export const aboutModalId = "about-modal"
 
 // Guess list options
@@ -34,15 +32,18 @@ export const guessOptions = [
 ]
 export const skippedMessage = 'Skipped'
 
-// Alert messages
+// Alert options
+export const alertHideDelay = 5000
 export const illegalGuessMsg = (guess) => `"${guess}" isn't a remaining set.`
 
-// Hide alert after (milliseconds)
-export const alertHideDelay = 5000
+// Error Boundary options
+export const showStackTrace = true
+export const errorFooter = "Try refreshing"
 
-// Images Controller options
+
+// Card database parameters
 export const ignoreCards = {
-  equals: {
+  equals: { // Card[Key] === Value
     isTextless: true,
     isPromo: true,
     isOversized: true,
@@ -52,13 +53,12 @@ export const ignoreCards = {
     isFoil: true,
   },
 
-  matches: {
+  matches: { // Value.test(Card[Key])
     type: /$Basic Land/,
     // number: /[^\d]/,
   }
 }
 
-// Card database parameters (GraphQL)
 export const databaseParams = {
   uri: 'https://graphql.mtgjson.com/',
   headers: { authorization: `Bearer ${credentials.gqlKey}` },
