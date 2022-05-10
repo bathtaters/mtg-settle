@@ -1,24 +1,23 @@
-import { AppWraperStyle, AppTitleStyle } from "./styles/appStyles"
+import { AppWraperStyle, AppTitleStyle, AppNavbarStyle } from "./styles/appStyles"
 import ArtContainer from "./ArtContainer"
-import AnswerContainer from "./AnswerContainer"
-import InputContainer from "./InputContainer"
 import GuessContainer from "./GuessContainer"
 import useAppController from "../services/app.controller"
+import EntryContainer from "./EntryContainer"
 
 
 function App() {
-  const { setInfo, guesses, correctGuess, text, handlers } = useAppController()  
+  const { setList, setInfo, guesses, correctGuess, handleGuess } = useAppController()  
 
   return (
     <AppWraperStyle>
-      <AppTitleStyle>MtG Set-le</AppTitleStyle>
+      <AppNavbarStyle>
+        <AppTitleStyle>MtG Set-le</AppTitleStyle>
+      </AppNavbarStyle>
 
       <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} setCode={setInfo.code} />
       
-      <InputContainer text={text} correctGuess={correctGuess} handlers={handlers} />
+      <EntryContainer list={setList} setInfo={setInfo} correctGuess={correctGuess} handleGuess={handleGuess} />
 
-      <AnswerContainer setInfo={setInfo} correctGuess={correctGuess} />
-      
       <GuessContainer guesses={guesses} correctGuess={correctGuess} />
     </AppWraperStyle>
   )
