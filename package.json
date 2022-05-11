@@ -1,6 +1,11 @@
 {
   "name": "mtg-settle",
   "homepage": "http://mtg-drafter.com/settlethewreckage",
+  "repository": "github:bathtaters/mtg-settle",
+  "bugs": {
+    "url" : "https://github.com/bathtaters/mtg-settle/issues",
+    "email" : "bathtaters@gmail.com"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
