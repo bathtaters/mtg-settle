@@ -19,7 +19,7 @@ export default function useAppController() {
   const handleGuess = (text, isInList) => {
     if (text && !isInList) return setAlertMsg(illegalGuessMsg(text))
     if (text === setInfo.name || text === setInfo.code) setCorrect(guesses.length)
-    if (guesses.length + 1 === maxGuessCount) setCorrect(-2)
+    else if (guesses.length + 1 === maxGuessCount) setCorrect(-2)
     setGuesses((state) => state.concat(text.trim()))
   }
 
