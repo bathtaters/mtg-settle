@@ -19,6 +19,8 @@ export const order = ['order-1','order-2','order-3','order-4','order-5','order-6
 
 // Image options
 export const imageURL = (uuid) => `https://api.scryfall.com/cards/${uuid}?format=image&version=art_crop`
+export const setInfoURL = (setCode) => `https://api.scryfall.com/sets/${setCode}`
+export const setSymbolKey = 'icon_svg_uri'
 
 // Modal options
 export const aboutModalId = "about-modal"
@@ -54,7 +56,7 @@ export const ignoreCards = {
   },
 
   matches: { // Value.test(Card[Key])
-    type: /$Basic Land/,
+    // type: /Basic Land/,
     // number: /[^\d]/,
   }
 }

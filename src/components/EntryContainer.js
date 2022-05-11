@@ -1,10 +1,13 @@
 import SuggestText from "./subcomponents/SuggestText/SuggestText"
-import { AnswerWrapperStyle, FormStyle, ButtonStyle, suggestClasses } from "./styles/entryStyles"
+import { AnswerWrapperStyle, SetSymbolStyle, SetTextStyle, FormStyle, ButtonStyle, suggestClasses } from "./styles/entryStyles"
 import useEntryController from "../services/entry.controller"
 
 function AnswerContainer({ setInfo }) {
   return (
-    <AnswerWrapperStyle>{setInfo.name} [{setInfo.code}]</AnswerWrapperStyle>
+    <AnswerWrapperStyle>
+      { setInfo.symbol && <SetSymbolStyle src={setInfo.symbol} alt={setInfo.name} /> }
+      <SetTextStyle>{setInfo.name} [{setInfo.code}]</SetTextStyle>
+    </AnswerWrapperStyle>
   )
 }
 
@@ -21,5 +24,5 @@ function InputContainer({ handleGuess, list }) {
 }
 
 export default function EntryContainer(props) {
-  return props.correctGuess === -1 ? InputContainer(props) : AnswerContainer(props)
+  return props.correctGuess === -1 ? <InputContainer {...props} /> : <AnswerContainer {...props} />
 }
