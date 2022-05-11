@@ -28,15 +28,13 @@ function pickCards(allCards, cardCount) {
   const cardList = filterCards(allCards)
   if (cardList.length < cardCount) throw new Error(`Error: Card set is too small! [${cardList.length}, ${cardCount}]`)
 
-  let indexes = []
-  for (let i = 0; i < cardCount; i++) {
-    while (indexes.length === i) {
-      const nextIdx = Math.floor(Math.random() * cardList.length)
-      if (!indexes.includes(nextIdx)) indexes.push(nextIdx)
-    }
+  let pickedCards = []
+  while (cardList.length && pickedCards.length < cardCount) {
+    const nextCard = cardList.splice(Math.floor(Math.random() * cardList.length), 1)[0]
+    if (!pickedCards.some(({ name }) => name === nextCard.name)) pickedCards.push(nextCard)
   }
 
-  return normalizeCards(indexes.map((idx) => cardList[idx]))
+  return normalizeCards(pickedCards)
 }
 
 
