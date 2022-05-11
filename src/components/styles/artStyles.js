@@ -1,5 +1,5 @@
 
-export const ArtWrapperStyle = ({ children }) => <div className="w-full h-1/2 my-2 text-center flex flex-col justify-center">{children}</div>
+export const ArtWrapperStyle = ({ children }) => <div className="w-full my-2 text-center flex flex-col justify-center">{children}</div>
 
 export const CarouselStyle = ({ children }) => <div className="carousel carousel-center mb-2">{children}</div>
 
