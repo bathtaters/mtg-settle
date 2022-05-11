@@ -1,11 +1,11 @@
 import { ArtStyle, ArtCaptionStyle, ImageStyle } from "../styles/artStyles"
-import { WarningIcon } from "./Icons"
+import LoadingSpinner from "./LoadingSpinner"
 
 
 export default function ArtBox({ src, idx, info, hidden, divRef }) {
   if (hidden) return false
 
-  if (!src) return (<ArtStyle divRef={divRef}><WarningIcon className="stroke-current w-full h-auto" /></ArtStyle>)
+  if (!src) return (<ArtStyle divRef={divRef}><LoadingSpinner /></ArtStyle>)
 
   return (
     <ArtStyle divRef={divRef}>
