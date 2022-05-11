@@ -1,18 +1,19 @@
 import { LinkStyle } from "../components/styles/appStyles"
+import { maxGuessCount } from "./constants"
 
 const gitHubLink = "https://github.com/bathtaters/mtg-settle"
 
 export default function InfoText() {
   return (<>
     <p className="text-scale-lg">
-      Try to guess which <i>Magic: the Gathering</i> expansion the card art is from.
+      Try to guess the <i>Magic: the Gathering</i> set based off of the art from {maxGuessCount} cards in a single expansion set.
     </p>
 
     <div className="text-scale-md my-3 text-secondary/70">
       <p>All rights belong to the respective artists</p>
 
       <p>
-        Inspired by the Lords of Luxury&nbsp;
+        Inspired by the <LinkStyle href="https://www.youtube.com/channel/UCx7-zijZRQsYuGYHai8FXOg">Lords of Luxury</LinkStyle>&nbsp;
         <span className="text-scale-sm">
           (as well as&nbsp;<i>
             <LinkStyle href="https://nytimes.com/games/wordle/">Wordle</LinkStyle>,&nbsp;
