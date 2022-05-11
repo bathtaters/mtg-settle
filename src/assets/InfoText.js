@@ -8,7 +8,7 @@ const reportEmail = "bathtaters@gmail.com"
 export default function InfoText() {
   return (<>
     <p className="text-scale-lg">
-      Try to guess the <i>Magic: the Gathering</i> set based off of the art from {maxGuessCount} cards in a single expansion set.
+      Try to guess which <i>Magic: the Gathering</i> set all {maxGuessCount} cards are from.
     </p>
 
     <div className="text-scale-md my-4 sm:my-6 text-secondary/70">
