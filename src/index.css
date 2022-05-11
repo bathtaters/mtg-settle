@@ -14,6 +14,7 @@
     .text-scale-xs { @apply text-2xs  sm:text-xs   print:text-2xs;  }
 
     html, body, #root { @apply h-full w-full; }
+    #root { @apply flex }
     body {
         @apply relative  leading-none  font-serif;
         @apply text-scale-md  print:text-xs;
