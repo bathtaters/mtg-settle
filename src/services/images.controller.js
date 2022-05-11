@@ -8,6 +8,8 @@ const imageDelay = 510 // as per ScryFall regulations
 // Load images
 const getImages = (ids, setImage, idx = 0) => {
   const cont = idx + 1 < ids.length
+  if (!ids[idx]) return cont && getImages(ids, setImage, idx+1)
+  
   return fetch(imageURL(ids[idx]))
     .then((res) => res.blob())
     .then(imageBlob => {
