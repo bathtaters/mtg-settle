@@ -1,6 +1,8 @@
 
 export const HeaderWrapperStyle = ({ children }) => (
-  <div className="navbar justify-center">{children}</div>
+  <div className="p-2 sm:p-4 bg-base-200 w-full">
+    <div className="navbar justify-center w-full max-w-4xl m-auto">{children}</div>
+  </div>
 )
 
 export const TitleStyle = ({ children }) => <h2 className="navbar-center">{children}</h2>

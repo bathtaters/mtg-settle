@@ -1,5 +1,9 @@
 
-export const ArtWrapperStyle = ({ children }) => <div className="w-full my-2 text-center flex flex-col justify-center">{children}</div>
+export const ArtWrapperStyle = ({ children }) => (
+  <div className="w-full max-w-3xl my-2 text-center flex flex-col justify-center">
+    {children}
+  </div>
+)
 
 export const CarouselStyle = ({ children }) => <div className="carousel carousel-center mb-2">{children}</div>
 
@@ -12,14 +16,16 @@ export const ArtStyle = ({ id, divRef, children }) => (
 )
 
 // eslint-disable-next-line
-export const ImageStyle = (props) => <img {...props} className="h-full w-auto max-h-[70vw] border border-primary rounded-lg overflow-hidden" />
+export const ImageStyle = (props) => (
+  <img {...props} className="h-full w-auto max-h-[70vw] border border-primary rounded-lg overflow-hidden" />
+)
 
 export const ArrowWrapperStyle = ({ children }) => <div className="relative">{children}</div>
 
 export const ArrowButtonStyle = ({ isLeft, ...props }) => (
   <input
     type="button"
-    className={`btn btn-sm btn-ghost hover:bg-base-300/30 disabled:bg-transparent rounded-none text-2xl h-auto absolute ${isLeft ? '-left-2' : '-right-2'} bottom-2 top-0 z-10`}
+    className={`btn btn-md btn-ghost hover:bg-base-300/30 disabled:bg-transparent rounded-none text-2xl h-auto absolute ${isLeft ? '-left-2' : '-right-2'} bottom-2 top-0 z-10`}
     {...props}
   />
 )
@@ -27,7 +33,7 @@ export const ArrowButtonStyle = ({ isLeft, ...props }) => (
 export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
   <div className="absolute top-0 bottom-0 left-2 right-2 rounded-lg overflow-hidden flex justify-start items-end">
     <div className="inline-block px-1.5 py-1 text-sm sm:text-base font-light text-primary-content bg-primary/80 rounded-t">
-      <span className="line-clamp-2 leading-tight break-words text-ellipsis">{children}</span>
+      <span className="line-clamp-4 leading-tight break-words text-ellipsis">{children}</span>
     </div>
   </div>
 )

@@ -5,7 +5,7 @@ import { reorderArray } from "../../services/utils"
 const reorder = reorderArray(order.slice(0, maxGuessCount), guessColumns)
 
 export const GuessWrapperStyle = ({ children }) => (
-  <div className="my-2 sm:my-4 grid grid-cols-2 gap-1 sm:gap-2">
+  <div className="w-full max-w-3xl p-2 sm:p-4 grid grid-cols-2 gap-1 sm:gap-2">
     {children}
   </div>
 )
