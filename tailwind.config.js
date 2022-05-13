@@ -8,6 +8,13 @@ module.exports = {
         serif: [ 'Sorts Mill Goudy', 'serif' ],
         sans: [ 'Poppins', 'sans-serif' ],
       },
+      gridTemplateColumns: {
+        // For stats progress bars
+        'stats': 'auto 1fr',
+      },
+      screens: {
+        'xs': '360px',
+      }
     },
   },
   plugins: [
