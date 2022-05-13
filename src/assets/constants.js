@@ -26,7 +26,7 @@ export const setSymbolKey = 'icon_svg_uri'
 // Share options
 export const shareDefaults = {
   title: "MtG Settle share",
-  url: "http://mtg-drafter.com/settlethewreckage",
+  url: "https://mtg-drafter.com/settlethewreckage",
   text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
   copyMsg: "Copied to clipboard",
 }
