@@ -29,6 +29,7 @@ export const shareDefaults = {
   text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
   copyMsg: "Copied to clipboard",
 }
+export const shareChars = { wrong: "🟥", right: "🟩", empty: "⬛" }
 
 // Modal options
 export const modalIds = { about: "about-modal", stats: "stats-modal" }
