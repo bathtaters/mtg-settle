@@ -33,7 +33,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     if (picked && e.target.value !== displayEntry(picked)) setPick(null) // Clear pick value
   }
   // User onChange function
-  useEffect(() => { if (onChange) onChange(value, suggestions, isExact, picked) }, [value, suggestions, isExact])
+  useEffect(() => { if (onChange) onChange(value, suggestions, isExact, picked) }, [value, suggestions, isExact, picked, onChange])
 
   const getSubmitValue = () => !isHidden && (picked || isExact || (!isEmpty && getNonStaticSolo(suggestions)))
 
