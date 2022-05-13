@@ -15,8 +15,8 @@ export const ArtStyle = ({ id, divRef, children }) => (
   </div>
 )
 
-// eslint-disable-next-line
 export const ImageStyle = (props) => (
+  // eslint-disable-next-line
   <img {...props} className="h-full w-auto max-h-[70vw] border border-primary rounded-lg overflow-hidden" />
 )
 
