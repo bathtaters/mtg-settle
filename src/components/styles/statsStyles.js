@@ -1,4 +1,4 @@
-import { ShareIcon, ReloadIcon } from "../subcomponents/Icons"
+import { ShareIcon, NewGameIcon } from "../subcomponents/Icons"
 
 // Main Stats Modal styles
 export const StatsWrapperStyle = ({ children }) => <div className="flex flex-col items-center">{children}</div>
@@ -40,7 +40,7 @@ export const ShareButton = ({ onClick }) => (
 
 export const NewGameButton = ({ onClick }) => (
   <StatsButton onClick={onClick} label="New Game">
-    <ReloadIcon className="fill-current w-auto h-full py-3" />
+    <NewGameIcon className="fill-current w-auto h-full py-3" />
   </StatsButton>
 )
 
