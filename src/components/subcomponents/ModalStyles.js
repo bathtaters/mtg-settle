@@ -20,13 +20,15 @@ export function ModalStyle({ modalId, hideClose = false, force, children }) {
   </>)
 }
 
-export const ModalOpenButton = ({ modalId, onClick, children }) => (
-  <label
-    htmlFor={modalId} onClick={onClick}
-    className="btn btn-circle btn-secondary btn-sm sm:btn-md modal-button mx-1 p-1 sm:p-1"
-  >
-    {children}
-  </label>
+export const ModalOpenButton = ({ modalId, onClick, tip, children }) => (
+  <div className="tooltip tooltip-bottom tooltip-secondary font-sans text-xl" data-tip={tip}>
+    <label
+      htmlFor={modalId} onClick={onClick}
+      className="btn btn-circle btn-secondary btn-sm sm:btn-md modal-button mx-1 p-1 sm:p-1"
+    >
+      {children}
+    </label>
+  </div>
 )
 
 export const ModalCloseButton = ({ modalId }) => (
