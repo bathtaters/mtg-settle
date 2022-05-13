@@ -1,11 +1,16 @@
 import { useRef, useState } from "react"
+import { helperText } from "../assets/constants"
 
 export default function useEntryController(handler) {
   const ref = useRef(null)
   const [ hasText, setHasText ] = useState(false)
+  const [ disable, setDisable ] = useState(true)
 
   // Set button value based on text in box
-  const onChange = (ev) => !ev.target.value === hasText && setHasText(!!ev.target.value)
+  const onChange = (value, suggestions, exact, picked) => {
+    if (!value === hasText) setHasText(!!value)
+    if (disable ? exact || picked || suggestions?.length === 1 : suggestions?.length !== 1) setDisable(!disable)
+  }
 
   // onSubmit for SuggestText
   const onSubmit = (match, text) => handler(text, Boolean(match))
@@ -14,7 +19,7 @@ export default function useEntryController(handler) {
   const handleClick = () => ref.current?.submit()
 
   return {
-    hasText, handleClick,
-    props: { ref, onChange, onSubmit },
+    hasText, handleClick, disabled: hasText && disable,
+    props: { ref, onChange, onSubmit, placeholder: helperText },
   }
 }
