@@ -22,8 +22,17 @@ export const imageURL = (uuid) => `https://api.scryfall.com/cards/${uuid}?format
 export const setInfoURL = (setCode) => `https://api.scryfall.com/sets/${setCode}`
 export const setSymbolKey = 'icon_svg_uri'
 
+// Share options
+export const shareDefaults = {
+  title: "MtG Settle share",
+  url: "http://mtg-drafter.com/settlethewreckage",
+  text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
+  copyMsg: "Copied to clipboard",
+}
+
 // Modal options
-export const aboutModalId = "about-modal"
+export const modalIds = { about: "about-modal", stats: "stats-modal" }
+export const modalDelay = 3000
 
 // Guess list options
 export const guessColumns = 2
