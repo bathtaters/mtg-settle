@@ -6,7 +6,7 @@ import { hideListWhenEmpty, hideStaticWhenEmpty, adaptEntry, adaptInput, testEnt
 export function getSuggestions(list, value) {
   // Setup registers/constants
   const len = value.length
-  if (hideListWhenEmpty && !len) return { suggestions: [] } // Hide all when text box is empty 
+  if (hideListWhenEmpty && !len) return [[]] // Hide all when text box is empty 
 
   const inputAdapt = adaptInput(value)
   let exact = false
@@ -18,10 +18,10 @@ export function getSuggestions(list, value) {
     const entryAdapt = adaptEntry(entry) || console.warn('List item is invalid',entry)
     
     if (entryAdapt === inputAdapt) exact = entry // get exact matches
-    return !exact && testEntry(inputAdapt, entryAdapt, entry)
+    return testEntry(inputAdapt, entryAdapt, entry)
   })
 
-  return exact || matches
+  return [ matches, exact ]
 }
 
 

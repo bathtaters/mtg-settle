@@ -1,7 +1,7 @@
 // ---- Customization ---- \\
 
 // Hide 'static' entries, Hide list when text-box is empty
-export const hideStaticWhenEmpty = true, hideListWhenEmpty = true
+export const hideStaticWhenEmpty = true, hideListWhenEmpty = true, hideListWhenExact = false
 
 // adapt list entry for display
 export const displayEntry = (entry) => entry.name
