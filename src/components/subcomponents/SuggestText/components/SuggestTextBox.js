@@ -1,9 +1,13 @@
 import { forwardRef } from "react"
 
-function SuggestTextBox({ value, className, isHidden, setListVisible, change }, ref) {
+function SuggestTextBox({ value, placeholder, className, isHidden, setListVisible, change }, ref) {
   return (
     <input
       type="text"
+      autoComplete="off"
+      autoCorrect="off"
+      autoCapitalize="on"
+      placeholder={placeholder ?? ""}
       value={value}
       className={`${className} ${isHidden ? 'hidden' : ''}`}
       onBlur={() => setListVisible(false)}

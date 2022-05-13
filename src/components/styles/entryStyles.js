@@ -26,7 +26,8 @@ export const ButtonStyle = (props) => <input {...props} type="button" className=
 
 export const suggestClasses = {
   main: "input-group",
-  textbox: "w-full h-full input input-bordered input-secondary bg-secondary text-secondary-content",
+  textbox: "w-full h-full input input-bordered input-secondary bg-secondary text-secondary-content text-lg "+
+    "placeholder:opacity-70 placeholder:italic placeholder:text-center",
   select: "bg-secondary text-secondary-content",
   unselect: "bg-secondary-focus text-secondary-content",
 }

@@ -9,14 +9,17 @@ import useSuggestTextController from "./services/suggestText.controller";
 import { listClassDef } from "./services/suggestText.custom"
 
 const SuggestText = forwardRef(function SuggestText({
-  list = [], className, listClasses = listClassDef, onChange, onSubmit, isHidden, children
+  list = [], placeholder, className, listClasses = listClassDef, onChange, onSubmit, isHidden, children
 }, ref) {
 
   const { boxProps, listProps, showList } = useSuggestTextController(list, isHidden, onChange, onSubmit, ref)
 
   return (
     <WrapperStyle className={listClasses.main ?? ""}>
-      <SuggestTextBox className={className ?? listClasses.textbox ?? listClassDef.textbox} isHidden={isHidden} {...boxProps} />
+      <SuggestTextBox
+        className={className ?? listClasses.textbox ?? listClassDef.textbox}
+        isHidden={isHidden} placeholder={placeholder} {...boxProps}
+      />
       
       { showList && <SuggestList classes={listClasses} {...listProps} /> }
 
