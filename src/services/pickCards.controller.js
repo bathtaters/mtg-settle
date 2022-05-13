@@ -1,11 +1,8 @@
 import { useLazyQuery } from "@apollo/client"
-import { useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { databaseParams, ignoreCards } from "../assets/constants"
-
-// DEBUG BLOCK
-import { getDebug } from "../assets/constants"
-import LoadingSpinner from "../components/subcomponents/LoadingSpinner"
-const { cardData, enable: debugging } = getDebug()
+import { newGame, loadEncrypted } from "./storage.services"
+import useFetchImages from "./images.controller"
 
 
 // Rules for ignoring cards
@@ -39,33 +36,55 @@ function pickCards(allCards, cardCount) {
 
 
 
-export default function useGetCards(setCode, cardCount) {
+export default function useGetCards() {
   // Setup main state
   const [ cards, setCards ] = useState(null)
+  const [ loading, setLoading ] = useState(true)
 
-  // Query GraphQL server
-  const [ getCards, { loading, error, called } ] = useLazyQuery(databaseParams.query, { variables: { setCode } }) // DEBUG
+  // Image fetch hook
+  const [ fetchImages, { images, loading: background, error: imgErr } ] = useFetchImages(cards)
+
+  // GraphQL hook
+  const [ fetchCards, { error: cardErr } ] = useLazyQuery(databaseParams.query, { onError: console.error })
   
-  useEffect(() => {
-    if (!debugging && !cards && setCode) {
-      setCards('loading')
-      getCards(
-        { variables: { setCode },
+  const getCards = useCallback((setCode, cardCount, forceRefetch = true) => {
+    if (!setCode) return
+    setLoading(true)
+    
+    if (!forceRefetch) {
+      // Load cards from storage
+      const stored = loadEncrypted('cards')
+      if (stored) {
+        setCards(stored)
+        setLoading(false)
 
-        // Pick random cards
-        onCompleted: (data) => setCards(
-          data?.sets?.[0]?.cards && pickCards(data.sets[0].cards, cardCount)
-        )
-      })
+        // Load artwork
+        fetchImages(stored)
+        return
+      }
     }
-  // eslint-disable-next-line
-  }, [setCode, cardCount, getCards])
 
-  // Error-check & return expected value
-  if (debugging) return { data: cardData } // DEBUG
-  if (error) return console.error(error) || { msg: `Error picking cards: ${error.message}` }
-  if (!called || loading || cards === 'loading') return { msg: <LoadingSpinner /> }
-  if (!cards) return { msg: 'Error picking cards: Cards not found!' }
+    // Load cards from GraphQL
+    setCards([])
+    fetchCards({ variables: { setCode } }).then(({ data, error }) => {
+      if (!data?.sets?.[0]?.cards || error) return
+      
+      // Pick random cards
+      const newCards = pickCards(data.sets[0].cards, cardCount)
+      setCards(newGame(newCards))
+      
+      // Load artwork
+      fetchImages(newCards)
 
-  return { data: cards }
+    }).finally(() => setLoading(false))
+    
+  }, [fetchCards, fetchImages, setCards, setLoading])
+
+  // Set error & return expected value
+  return [{
+    images, cards,
+    loading, background,
+    error: !cardErr && !imgErr && (loading || cards?.length) ? undefined :
+      `Error picking cards: ${cardErr.message || imgErr.message || 'Cards not found!'}`
+  }, getCards]
 }

@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import setList from "../assets/setList.json"
 import { setInfoURL, setSymbolKey } from "../assets/constants"
-
-// DEBUG BLOCK
-import { getDebug } from "../assets/constants"
-const { setData: debugData, enable: debugging } = getDebug()
+import { loadEncrypted, updateSolution } from "./storage.services"
 
 // Get random set
-const getRandomEntry = (array) => array[Math.floor(Math.random() * array.length)]
+const getRandomEntry = (array) => updateSolution(array[Math.floor(Math.random() * array.length)])
 
 // Fetch set symbol
 async function fetchSymbol(setCode, callback) {
@@ -26,15 +23,26 @@ async function fetchSymbol(setCode, callback) {
 
 
 export default function usePickSet() {
-  const [ setData, updateSetData ] = useState(debugging ? debugData : getRandomEntry(setList))
+  // Fetch stored set or new random one
+  const [ setData, updateSetData ] = useState(loadEncrypted('setInfo') || getRandomEntry(setList))
   
+  // Pick random set
+  const pickNewSet = useCallback(() => {
+    const newSet = getRandomEntry(setList)
+    updateSetData(newSet)
+    return newSet
+  }, [])
+
+  // Load symbol
   useEffect(() => {
-    // Async load symbol
     if (!setData.symbol && setData.code)
-      fetchSymbol(setData.code, (symbol) => updateSetData((set) => Object.assign({}, set, { symbol })))
+      fetchSymbol(
+        setData.code,
+        (symbol) => updateSetData((set) => Object.assign({}, set, { symbol }))
+      )
 
   // eslint-disable-next-line
-  }, [setData.code])
+  }, [setData.code, setData.symbol])
 
-  return setData
+  return [ setData, pickNewSet ]
 }

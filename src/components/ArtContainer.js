@@ -2,6 +2,7 @@ import ArtBox from "./subcomponents/ArtBox"
 import { ArtWrapperStyle, CarouselStyle, CarouselSpacer, ArrowWrapperStyle, ArrowButtonStyle, ButtonContainerStyle, ButtonStyle } from "./styles/artStyles"
 import { blankArray } from "../services/app.controller"
 import useArtController, { useCarouselHandler } from "../services/art.controller"
+import LoadingSpinner from "./subcomponents/LoadingSpinner"
 
 function CarouselArrow({ isPrev, scrollTo, disabled }) {
   const handleClick = useCarouselHandler(isPrev, scrollTo)
@@ -9,10 +10,11 @@ function CarouselArrow({ isPrev, scrollTo, disabled }) {
 }
 
 
-export default function ArtContainer({ currentGuess, correctGuess, setCode }) {
-  const { msg, artImages, cards, visibleIdx, setChildRef, scrollTo, maxVisible } = useArtController(setCode, currentGuess, correctGuess)
+export default function ArtContainer({ currentGuess, correctGuess, data }) {
+  const { loading, error, images, cards, visibleIdx, setChildRef, scrollTo, maxVisible } = useArtController(data, currentGuess, correctGuess)
   
-  if (msg) return <ArtWrapperStyle>{msg}</ArtWrapperStyle>
+  if (error) return <ArtWrapperStyle>{error}</ArtWrapperStyle>
+  if (loading) return <ArtWrapperStyle><LoadingSpinner /></ArtWrapperStyle>
 
   return (
     <ArtWrapperStyle>
@@ -26,7 +28,7 @@ export default function ArtContainer({ currentGuess, correctGuess, setCode }) {
           {blankArray.map((_, idx) =>(
             <ArtBox
               key={idx+'p'} idx={idx+1} 
-              src={artImages[idx]}
+              src={images[idx]}
               info={correctGuess !== -1 && cards[idx]}
               hidden={maxVisible < idx}
               divRef={setChildRef(idx)}

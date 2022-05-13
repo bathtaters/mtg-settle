@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react"
-import useGetCards from "./pickCards.controller"
-import { imageURL, getDebug } from "../assets/constants"
-const { imgSrc, enable: debugging } = getDebug()
+import { useCallback, useState } from "react"
+import { imageURL } from "../assets/constants"
 
-const imageDelay = 510 // as per ScryFall regulations
+const imageDelay = 510 // ms delay between image requests (per ScryFall rules)
 
 // Load images
 const getImages = (ids, setImage, idx = 0) => {
   const cont = idx + 1 < ids.length
-  if (!ids[idx]) return cont && getImages(ids, setImage, idx+1)
+  if (!ids[idx]) return cont ? getImages(ids, setImage, idx+1) : Promise.resolve()
   
   return fetch(imageURL(ids[idx]))
     .then((res) => res.blob())
@@ -16,28 +14,32 @@ const getImages = (ids, setImage, idx = 0) => {
       setImage(URL.createObjectURL(imageBlob), idx)
       cont && setTimeout(() => getImages(ids, setImage, idx+1), imageDelay)
     })
-    .catch((err) => console.error(err))
 }
 
 
 
-export default function useRandomImages(setCode, imageCount) {
-  // Get random cards
-  const { data, msg } = useGetCards(setCode, imageCount)
-
+export default function useFetchImages() {
   // Setup state
-  const [artImages, setArtImages] = useState([])
-  const [locked, setLock] = useState(false)
-  const setImage = (newImg, idx) => setArtImages((state) => Object.assign([], state, { [idx]: newImg }))
-  
-  useEffect(() => {
-    if (data && !locked) {
-      // Download images only the first time
-      setLock(true)
-      if (debugging) setArtImages((state) => state.map(() => imgSrc))
-      else getImages(data.map(({ id }) => id), setImage)
-    }
-  }, [data, locked])
+  const [images, setImages] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState()
 
-  return { msg, artImages, cards: data }
+  const fetchImages = useCallback((cards) => {
+    if (!cards?.length) return Promise.reject('Empty array sent to fetchImages')
+
+    // Reset images
+    setImages([])
+    setLoading(true)
+
+    // Download images
+    let loaded = cards.length
+    return getImages(cards.map(({ id }) => id),
+      (newImg, idx) => {
+        setImages((state) => Object.assign([], state, { [idx]: newImg }))
+        if (--loaded < 1) setLoading(false) // when all are loaded
+      }
+    ).catch((err) => console.error(err) || setError(err))
+  }, [])
+
+  return [ fetchImages, { images, loading, error } ]
 }
