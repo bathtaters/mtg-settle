@@ -1,26 +1,37 @@
 import InfoText from "../assets/InfoText"
-import { InfoIcon } from "./subcomponents/Icons"
+import { InfoIcon, ReloadIcon, StatsIcon } from "./subcomponents/Icons"
 import { ModalStyle, ModalOpenButton } from "./subcomponents/ModalStyles"
-import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, InfoTitleStyle, InfoBodyStyle } from "./styles/headerStyles"
-import { aboutModalId } from "../assets/constants"
+import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalTitleStyle, ModalBodyStyle } from "./styles/headerStyles"
+import { modalIds } from "../assets/constants"
+import StatsContainer from "./subcomponents/StatsContainer"
 
 
-export default function HeaderContainer() {
+export default function HeaderContainer({ newGame, correctGuess, setCode, setAlert }) {
 
   return (<>
-    <ModalStyle modalId={aboutModalId}>
-      <InfoTitleStyle>About</InfoTitleStyle>
-      <InfoBodyStyle><InfoText /></InfoBodyStyle>
+    <ModalStyle modalId={modalIds.about}>
+      <ModalTitleStyle>About</ModalTitleStyle>
+      <ModalBodyStyle><InfoText /></ModalBodyStyle>
+    </ModalStyle>
+
+    <ModalStyle modalId={modalIds.stats} force={correctGuess !== -1}>
+      <ModalTitleStyle>Stats</ModalTitleStyle>
+      <ModalBodyStyle>
+        <StatsContainer correctGuess={correctGuess} setCode={setCode} setAlert={setAlert} newGame={newGame} />
+      </ModalBodyStyle>
     </ModalStyle>
 
     <HeaderWrapperStyle>
       <HeaderPartStyle isLeft={true}>
-        <ModalOpenButton modalId={aboutModalId}><InfoIcon /></ModalOpenButton>
+        <ModalOpenButton modalId={modalIds.about}><InfoIcon /></ModalOpenButton>
+        <ModalOpenButton modalId={modalIds.stats}><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
       <TitleStyle>Settle</TitleStyle>
 
-      <HeaderPartStyle isLeft={false} />
+      <HeaderPartStyle isLeft={false}>
+        <ModalOpenButton onClick={newGame}><ReloadIcon /></ModalOpenButton>
+      </HeaderPartStyle>
     </HeaderWrapperStyle>
   </>)
 }
