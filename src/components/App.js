@@ -7,13 +7,18 @@ import HeaderContainer from "./HeaderContainer"
 import Alert from "./subcomponents/Alert"
 
 function App() {
-  const { setList, setInfo, guesses, correctGuess, handleGuess, alertMsg, clearMsg } = useAppController()  
+  const {
+    setList, setInfo, artData,
+    guesses, correctGuess,
+    handleGuess, newGame,
+    alertMsg, setAlertMsg, clearMsg
+  } = useAppController()  
 
   return (
     <AppWrapperStyle>
-      <HeaderContainer />
+      <HeaderContainer newGame={newGame} correctGuess={correctGuess} setCode={setInfo.code} setAlert={setAlertMsg} />
 
-      <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} setCode={setInfo.code} />
+      <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} data={artData} />
       
       <EntryContainer list={setList} setInfo={setInfo} correctGuess={correctGuess} handleGuess={handleGuess} />
 
