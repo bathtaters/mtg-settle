@@ -12,12 +12,12 @@ function AnswerContainer({ setInfo }) {
 }
 
 function InputContainer({ handleGuess, list }) {
-  const { props, handleClick, hasText } = useEntryController(handleGuess)
+  const { props, handleClick, hasText, disabled } = useEntryController(handleGuess)
   
   return (
     <FormStyle>
       <SuggestText className={suggestClasses.textbox} listClasses={suggestClasses} list={list} {...props}>
-        <ButtonStyle value={hasText ? "Guess" : "Skip"} onClick={handleClick} />
+        <ButtonStyle value={hasText ? "Guess" : "Skip"} disabled={disabled} onClick={handleClick} />
       </SuggestText>
     </FormStyle>
   )
