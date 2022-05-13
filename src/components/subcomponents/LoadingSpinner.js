@@ -2,7 +2,7 @@
 const percentFilled = '35'
 
 // Create rotating ring effect
-export default function LoadingSpinner({ size = '4rem', className = 'my-24 mx-auto' }) {
+export default function LoadingSpinner({ size = '4rem', className = 'my-48 mx-64' }) {
   return (
     <div
       className={`animate-spin ease-linear radial-progress ${className}`}
