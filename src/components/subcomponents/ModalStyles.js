@@ -1,17 +1,30 @@
+import { useEffect, useRef } from "react"
+import { modalDelay } from "../../assets/constants"
 
-export const ModalStyle = ({ modalId, hideClose = false, children }) => (<>
-  <input type="checkbox" id={modalId} className="modal-toggle" />
+export function ModalStyle({ modalId, hideClose = false, force, children }) {
+  // Allow programmatic open/close
+  const modalToggle = useRef(null)
+  useEffect(() => {
+    if (typeof force === 'boolean') setTimeout(() => { modalToggle.current.checked = force }, modalDelay)
+  }, [force])
 
-  <label htmlFor={modalId} className="modal cursor-pointer">
-    <label className="modal-box bg-secondary-content text-secondary px-4 pt-3 pb-2 pr-6 sm:pt-4" htmlFor="">
-      { hideClose || <ModalCloseButton modalId={modalId} /> }
-      {children}
+  return (<>
+    <input type="checkbox" ref={modalToggle} id={modalId} className="modal-toggle" />
+
+    <label htmlFor={modalId} className="modal cursor-pointer">
+      <label className="modal-box bg-secondary-content text-secondary max-h-[85vh] px-4 pt-3 pb-2 pr-6 sm:pt-4" htmlFor="">
+        { hideClose || <ModalCloseButton modalId={modalId} /> }
+        {children}
+      </label>
     </label>
-  </label>
-</>)
+  </>)
+}
 
-export const ModalOpenButton = ({ modalId, children }) => (
-  <label htmlFor={modalId} className="btn btn-circle btn-secondary btn-sm sm:btn-md modal-button sm:p-1">
+export const ModalOpenButton = ({ modalId, onClick, children }) => (
+  <label
+    htmlFor={modalId} onClick={onClick}
+    className="btn btn-circle btn-secondary btn-sm sm:btn-md modal-button mx-1 p-1 sm:p-1"
+  >
     {children}
   </label>
 )
