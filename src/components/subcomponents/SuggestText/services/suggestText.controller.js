@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useMemo, useImperativeHandle } from "react"
 import { getSuggestions, autoSelect, autoShow } from "./suggestText.services"
 import { getSelected, getNext, getPrev, validList, getNonStaticSolo, useHotkeys } from "./suggestText.utils"
-import { displayEntry, enterBehavior } from "./suggestText.custom"
+import { displayEntry, enterBehavior, hideListWhenExact } from "./suggestText.custom"
 
 
 function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
@@ -18,10 +18,10 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
   
   // Setup List
   const isEmpty = !value || !value.trim()
-  const suggestions = useMemo(() => getSuggestions(list, value), [list, value])
+  const [suggestions, exact] = useMemo(() => getSuggestions(list, value), [list, value])
   useEffect(() => autoSelect(selected, suggestions, setSelected), [selected, suggestions])
   useEffect(() => autoShow(listIsVisible, isFocused, setListVisible), [listIsVisible, isFocused, value])
-  const isExact = !isEmpty && (!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
+  const isExact = !isEmpty && exact //(!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
 
 
   // --- Action Handlers --- \\
@@ -31,9 +31,9 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     setValue(e.target.value) // Controlled component
     
     if (picked && e.target.value !== displayEntry(picked)) setPick(null) // Clear pick value
-
-    if (onChange) onChange(e) // Passthrough onChange function
   }
+  // User onChange function
+  useEffect(() => { if (onChange) onChange(value, suggestions, isExact, picked) }, [value, suggestions, isExact])
 
   const getSubmitValue = () => !isHidden && (picked || isExact || (!isEmpty && getNonStaticSolo(suggestions)))
 
@@ -78,7 +78,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
   return {
     boxProps:  { value, setListVisible, change, ref: textbox },
     listProps: { suggestions, selected, pick, setSelected, textbox },
-    showList:  listIsVisible && validList(suggestions),
+    showList:  listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions),
   }
 }
 
