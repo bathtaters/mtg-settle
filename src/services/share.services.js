@@ -5,7 +5,7 @@ async function shareData(text, title = shareDefaults.title, url = shareDefaults.
   if (canShare) {
     await window.navigator.share({ title, url, text }).catch(() => {})
   } else {
-    await window.navigator.clipboard.writeText(text)
+    await window.navigator.clipboard.writeText(text + '\n' + url)
   }
   return canShare
 }
