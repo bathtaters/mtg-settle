@@ -23,7 +23,7 @@ export default function HeaderContainer({ newGame, correctGuess, setCode, setAle
 
     <HeaderWrapperStyle>
       <HeaderPartStyle isLeft={true}>
-        <ModalOpenButton modalId={modalIds.about} tip="Info"><InfoIcon /></ModalOpenButton>
+        <ModalOpenButton modalId={modalIds.about} tip="About"><InfoIcon /></ModalOpenButton>
         <ModalOpenButton modalId={modalIds.stats} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
