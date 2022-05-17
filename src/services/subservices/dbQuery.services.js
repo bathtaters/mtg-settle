@@ -5,7 +5,8 @@ import { databaseParams } from "../../assets/constants"
 const client = new ApolloClient({ 
   uri: databaseParams.uri,
   headers: databaseParams.headers,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  connectToDevTools: true,
 });
 
 export default function CardProvider ({ children }) {
