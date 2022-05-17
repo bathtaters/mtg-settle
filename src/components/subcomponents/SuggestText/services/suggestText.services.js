@@ -3,10 +3,16 @@ import { validList, getNonStaticSoloIdx } from "./suggestText.utils"
 import { hideListWhenEmpty, hideStaticWhenEmpty, adaptEntry, adaptInput, testEntry } from "./suggestText.custom"
 
 // Filter Suggestions logic
-export function getSuggestions(list, value) {
+export function getSuggestions(list, value, setSuggestions, setExact) {
   // Setup registers/constants
   const len = value.length
-  if (hideListWhenEmpty && !len) return [[]] // Hide all when text box is empty 
+
+  // Hide all when text box is empty 
+  if (hideListWhenEmpty && !len) {
+    setSuggestions && setSuggestions([])
+    setExact && setExact(false)
+    return [[]]
+  }
 
   const inputAdapt = adaptInput(value)
   let exact = false
@@ -21,6 +27,8 @@ export function getSuggestions(list, value) {
     return testEntry(inputAdapt, entryAdapt, entry)
   })
 
+  setSuggestions && setSuggestions(matches)
+  setExact && setExact(exact)
   return [ matches, exact ]
 }
 

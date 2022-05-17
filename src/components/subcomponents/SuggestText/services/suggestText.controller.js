@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo, useImperativeHandle } from "react"
+import { useEffect, useState, useRef, useImperativeHandle } from "react"
 import { getSuggestions, autoSelect, autoShow } from "./suggestText.services"
 import { getSelected, getNext, getPrev, validList, getNonStaticSolo, useHotkeys } from "./suggestText.utils"
 import { displayEntry, enterBehavior, hideListWhenExact } from "./suggestText.custom"
@@ -10,38 +10,45 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
 
   // Setup Local State
   const textbox = useRef(null)
-  const isFocused = document.activeElement === textbox.current
+  const [suggestions, setSuggestions] = useState(list)
   const [value, setValue] = useState("")
   const [selected, setSelected] = useState(-1)
   const [picked, setPick] = useState(null)
+  const [exact, setExact] = useState(null)
   const [listIsVisible, setListVisible] = useState(false)
   
-  // Setup List
+  // Basic vars
+  const isFocused = document.activeElement === textbox.current
   const isEmpty = !value || !value.trim()
-  const [suggestions, exact] = useMemo(() => getSuggestions(list, value), [list, value])
+  const isExact = !isEmpty && exact //(!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
+  const getSubmitValue = () => !isHidden && (picked || isExact || (!isEmpty && getNonStaticSolo(suggestions)))
+
+  // Auto update state
   useEffect(() => autoSelect(selected, suggestions, setSelected), [selected, suggestions])
   useEffect(() => autoShow(listIsVisible, isFocused, setListVisible), [listIsVisible, isFocused, value])
-  const isExact = !isEmpty && exact //(!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
-
+  // eslint-disable-next-line
+  useEffect(() => { getSuggestions(list, value, setSuggestions, setExact) }, [list]) // Pass prop updates to state
 
   // --- Action Handlers --- \\
 
   // TextBox controller
   const change = (e) => {
-    setValue(e.target.value) // Controlled component
-    
-    if (picked && e.target.value !== displayEntry(picked)) setPick(null) // Clear pick value
-  }
-  // User onChange function
-  useEffect(() => { if (onChange) onChange(value, suggestions, isExact, picked) }, [value, suggestions, isExact, picked, onChange])
+    if (e.target.value !== value) setValue(e.target.value) // Controlled component
 
-  const getSubmitValue = () => !isHidden && (picked || isExact || (!isEmpty && getNonStaticSolo(suggestions)))
+    // Clear pick value
+    const newPick = e.forcePick || (e.target.value === displayEntry(picked) && picked)
+    if (picked && !newPick) setPick(null)
+
+    // Update list
+    const [newSuggestions, newExact] = getSuggestions(list, e.target.value, setSuggestions, setExact)
+    onChange && onChange(e.target.value, newPick, newExact, newSuggestions) // User onChange function
+  }
 
   const submit = async (forcePick) => {
     const newPick = forcePick || getSubmitValue()
 
     // Submit
-    const result = await (onSubmit && onSubmit(newPick, value, suggestions))
+    const result = await (onSubmit && onSubmit(value, newPick, exact, suggestions))
 
     // Reset form
     setListVisible(false)
@@ -56,9 +63,12 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     if (!newPick) return false // Ignore missing pick
     if (newPick.isStatic) return submit(newPick) // Submit static pick
 
+    const pickDisplay = displayEntry(newPick)
+    if (displayEntry(picked) === pickDisplay) return false // Already picked
+
     // Pick newPick
+    change({ target: { value: pickDisplay }, forcePick: newPick })
     setPick(newPick)
-    setValue(displayEntry(newPick))
   }
 
   // --- Additional Hooks --- \\
