@@ -4,7 +4,7 @@
 export const hideStaticWhenEmpty = true, hideListWhenEmpty = true, hideListWhenExact = false
 
 // adapt list entry for display
-export const displayEntry = (entry) => entry.name
+export const displayEntry = (entry) => entry?.name
 
 // adapt input text for comparison
 export const adaptInput = (inputVal) => inputVal.toUpperCase()
