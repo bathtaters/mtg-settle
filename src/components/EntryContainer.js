@@ -1,5 +1,5 @@
 import SuggestText from "./subcomponents/SuggestText/SuggestText"
-import { AnswerWrapperStyle, SetSymbolStyle, SetTextStyle, FormStyle, ButtonStyle, suggestClasses } from "./styles/entryStyles"
+import { AnswerWrapperStyle, SetSymbolStyle, SetTextStyle, FormStyle, ButtonStyle, suggestClasses } from "./styles/EntryStyles"
 import useEntryController from "../services/entry.controller"
 
 function AnswerContainer({ setInfo }) {

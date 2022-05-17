@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react"
-import useScrollToIndex from "../services/scroll.controller"
+import useScrollToIndex from "./subservices/scroll.controller"
 import { maxGuessCount } from "../assets/constants"
 
 // Handle clicking carousel next/previous buttons

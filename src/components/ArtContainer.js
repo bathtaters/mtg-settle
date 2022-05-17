@@ -1,5 +1,5 @@
 import ArtBox from "./subcomponents/ArtBox"
-import { ArtWrapperStyle, CarouselStyle, CarouselSpacer, ArrowWrapperStyle, ArrowButtonStyle, ButtonContainerStyle, ButtonStyle } from "./styles/artStyles"
+import { ArtWrapperStyle, CarouselStyle, CarouselSpacer, ArrowWrapperStyle, ArrowButtonStyle, ButtonContainerStyle, ButtonStyle } from "./styles/ArtStyles"
 import { blankArray } from "../services/app.controller"
 import useArtController, { useCarouselHandler } from "../services/art.controller"
 import LoadingSpinner from "./subcomponents/LoadingSpinner"

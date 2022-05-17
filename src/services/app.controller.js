@@ -4,7 +4,7 @@ import usePickSet from "./pickSet.controller"
 import useGetCards from "./pickCards.controller"
 import allSets from "../assets/setList.json"
 
-import { setDefaults, loadGame, endGame, updateGuesses } from "./storage.services"
+import { setDefaults, loadGame, endGame, updateGuesses } from "./subservices/storage.services"
 
 // Blank array, used for iterating
 export const blankArray = [...Array(maxGuessCount)]

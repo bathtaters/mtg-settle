@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import { imageURL } from "../assets/constants"
+import { imageURL } from "../../assets/constants"
 
 const imageDelay = 510 // ms delay between image requests (per ScryFall rules)
 

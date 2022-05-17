@@ -1,4 +1,4 @@
-import { AppWrapperStyle } from "./styles/appStyles"
+import { AppWrapperStyle } from "./styles/AppStyles"
 import ArtContainer from "./ArtContainer"
 import GuessContainer from "./GuessContainer"
 import useAppController from "../services/app.controller"

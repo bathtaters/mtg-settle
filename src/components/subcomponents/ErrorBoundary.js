@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { AppWrapperStyle, AppErrorStyle } from "../styles/appStyles";
+import { AppWrapperStyle, AppErrorStyle } from "../styles/AppStyles";
 import { errorFooter, showStackTrace } from "../../assets/constants"
 
 

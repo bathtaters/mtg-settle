@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { alertHideDelay } from "../assets/constants"
+import { alertHideDelay } from "../../assets/constants"
 
 export default function useShowAlert(message, clearMessage) {
   // Hide after <alertHideDelay> ms

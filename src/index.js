@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
-import reportWebVitals from './services/reportWebVitals';
+import reportWebVitals from './services/subservices/reportWebVitals';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
-import CardProvider from './services/dbQuery.services';
+import CardProvider from './services/subservices/dbQuery.services';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

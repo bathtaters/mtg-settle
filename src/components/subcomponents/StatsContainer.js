@@ -3,10 +3,10 @@ import {
   StatsWrapperStyle, InfoWrapperStyle, InfoItemStyle, StatsButtonWrapper,
   StatsDivider, ShareButton, NewGameButton,
   ProgressWrapperStyle, TooltipStyle, ProgressStyle
-} from "../styles/statsStyles"
+} from "../styles/StatsStyles"
 import { blankArray } from "../../services/app.controller"
-import { getStats } from "../../services/storage.services"
-import shareScore from "../../services/share.services"
+import { getStats } from "../../services/subservices/storage.services"
+import shareScore from "../../services/subservices/share.services"
 
 
 function StatsBar({ label, value, maxValue, totalValue }) {

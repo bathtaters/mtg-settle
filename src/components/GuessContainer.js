@@ -1,4 +1,4 @@
-import { GuessWrapperStyle, GuessStyle, SkippedGuessStyle } from "./styles/guessStyles"
+import { GuessWrapperStyle, GuessStyle, SkippedGuessStyle } from "./styles/GuessStyles"
 import { guessOptions, skippedMessage } from "../assets/constants"
 import { blankArray } from "../services/app.controller"
 

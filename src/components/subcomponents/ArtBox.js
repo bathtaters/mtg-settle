@@ -1,4 +1,4 @@
-import { ArtStyle, ArtCaptionStyle, ImageStyle } from "../styles/artStyles"
+import { ArtStyle, ArtCaptionStyle, ImageStyle } from "../styles/ArtStyles"
 import LoadingSpinner from "./LoadingSpinner"
 
 

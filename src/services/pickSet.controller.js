@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import setList from "../assets/setList.json"
 import { setInfoURL, setSymbolKey } from "../assets/constants"
-import { loadEncrypted, updateSolution } from "./storage.services"
+import { loadEncrypted, updateSolution } from "./subservices/storage.services"
 
 // Get random set
 const getRandomEntry = (array) => updateSolution(array[Math.floor(Math.random() * array.length)])

@@ -1,4 +1,4 @@
-import { LinkStyle } from "../components/styles/appStyles"
+import { LinkStyle } from "../components/styles/AppStyles"
 import { maxGuessCount } from "./constants"
 
 const gitHubLink = "https://github.com/bathtaters/mtg-settle"

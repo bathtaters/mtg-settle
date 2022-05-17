@@ -1,4 +1,4 @@
-import { shareDefaults, shareChars, maxGuessCount } from "../assets/constants"
+import { shareDefaults, shareChars, maxGuessCount } from "../../assets/constants"
 
 async function shareData(text, title = shareDefaults.title, url = shareDefaults.url) {
   const canShare = Boolean(window.navigator.share)

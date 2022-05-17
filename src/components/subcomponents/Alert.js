@@ -1,6 +1,6 @@
 import { WarningIcon } from "./Icons"
-import { AlertWrapperStyle } from "../styles/appStyles"
-import useShowAlert from "../../services/alert.controller"
+import { AlertWrapperStyle } from "../styles/AppStyles"
+import useShowAlert from "../../services/subservices/alert.controller"
 
 
 export default function Alert({ message, clearMessage }) {

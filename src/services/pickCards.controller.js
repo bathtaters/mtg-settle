@@ -1,8 +1,8 @@
 import { useLazyQuery } from "@apollo/client"
 import { useCallback, useState } from "react"
 import { databaseParams, ignoreCards } from "../assets/constants"
-import { newGame, loadEncrypted } from "./storage.services"
-import useFetchImages from "./images.controller"
+import { newGame, loadEncrypted } from "./subservices/storage.services"
+import useFetchImages from "./subservices/images.controller"
 
 
 // Rules for ignoring cards

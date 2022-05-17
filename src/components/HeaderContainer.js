@@ -1,7 +1,7 @@
 import InfoText from "../assets/InfoText"
 import { InfoIcon, NewGameIcon, StatsIcon } from "./subcomponents/Icons"
 import { ModalStyle, ModalOpenButton } from "./subcomponents/ModalStyles"
-import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalTitleStyle, ModalBodyStyle } from "./styles/headerStyles"
+import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalTitleStyle, ModalBodyStyle } from "./styles/HeaderStyles"
 import { modalIds } from "../assets/constants"
 import StatsContainer from "./subcomponents/StatsContainer"
 

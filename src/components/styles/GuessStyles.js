@@ -1,5 +1,5 @@
 import { maxGuessCount, guessColumns, order } from "../../assets/constants"
-import { reorderArray } from "../../services/utils"
+import { reorderArray } from "../../services/subservices/utils"
 
 // Generate grid cell order
 const reorder = reorderArray(order.slice(0, maxGuessCount), guessColumns)
