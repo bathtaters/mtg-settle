@@ -1,18 +1,6 @@
 import credentials from "./credentials.json"
 import { gql } from "@apollo/client"
 
-// DEBUG BLOCK
-// import debugData from "./debugData.json"
-const _DEBUG = {
-  //* ENABLE */ enable: true, cardData: debugData,
-  /* DISABLE */ enable: false, cardData: [],
-  setData:  { code: "JUD", name: "Judgment" },
-  imgSrc: 'https://picsum.photos/571/460'
-}
-export const getDebug = () => _DEBUG
-// END DEBUG
-
-
 // App options
 export const maxGuessCount = 6
 export const order = ['order-1','order-2','order-3','order-4','order-5','order-6','order-7','order-8'] // Should go up to at least 'maxGuessCount'
