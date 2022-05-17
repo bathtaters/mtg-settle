@@ -1,7 +1,10 @@
 
 export const AppWrapperStyle = ({ children }) => (
-  <div className="h-full w-full min-w-[18rem] min-h-[35rem]">
-    <div className="flex flex-col justify-between items-center h-full">{children}</div>
+  <div className="h-full w-full min-w-[18rem] min-h-[35rem] overflow-x-clip">
+    <div className="flex flex-col justify-between items-center h-full">
+      {children}
+      <div className="shrink" />
+    </div>
   </div>
 )
 
