@@ -1,19 +1,16 @@
-import { useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import { helperText } from "../assets/constants"
 
-export default function useEntryController(handler) {
+export default function useEntryController(onSubmit) {
   const ref = useRef(null)
   const [ hasText, setHasText ] = useState(false)
   const [ disable, setDisable ] = useState(true)
 
   // Set button value based on text in box
-  const onChange = (value, suggestions, exact, picked) => {
+  const onChange = useCallback((value, picked, exact, suggestions) => {
     if (!value === hasText) setHasText(!!value)
     if (disable ? exact || picked || suggestions?.length === 1 : suggestions?.length !== 1) setDisable(!disable)
-  }
-
-  // onSubmit for SuggestText
-  const onSubmit = (match, text) => handler(text, Boolean(match))
+  }, [disable, hasText])
 
   // Button click
   const handleClick = () => ref.current?.submit()

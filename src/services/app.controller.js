@@ -37,12 +37,17 @@ export default function useAppController() {
   const newGame = () => { setGuesses([]); setCorrect(-1); getCards(newSet().code, maxGuessCount); }
 
   // Click guess controller
-  const handleGuess = (text, isInList) => {
-    if (text && !isInList) return setAlertMsg(illegalGuessMsg(text))
-    if (text === setInfo.name || text === setInfo.code) setCorrect(endGame(guesses.length))
+  const handleGuess = useCallback((text, picked) => {
+    // Guess not in list
+    if (text && !picked) return setAlertMsg(illegalGuessMsg(text))
+    // Guess is correct
+    if (picked.code === setInfo.code) setCorrect(endGame(guesses.length))
+    // Game is over
     else if (guesses.length + 1 === maxGuessCount) setCorrect(endGame(-2))
-    setGuesses((state) => updateGuesses(state.concat(text.trim())))
-  }
+    // Update guess list
+    setGuesses((state) => updateGuesses(state.concat(picked && picked.name.trim())))
+    
+  }, [setInfo.code, guesses.length])
 
   // Create list for auto-complete
   // eslint-disable-next-line
