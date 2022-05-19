@@ -30,11 +30,11 @@ export const getNonStaticSoloIdx = (list) => {
 
 
 // Hook that works like 'useLayoutEffect', plus triggers effect on 'listenerType' event
-export function useLayoutListener(listenerType, effect, deps) {
+export function useLayoutListener(listenerTypes, effect, deps) {
   useLayoutEffect(() => {
-    window.addEventListener(listenerType, effect)
+    listenerTypes.forEach((type) => window.addEventListener(type, effect))
     effect()
-    return () => { window.removeEventListener(listenerType, effect) }
+    return () => { listenerTypes.forEach((type) => window.removeEventListener(type, effect)) }
   // eslint-disable-next-line
   }, deps)
 }
