@@ -1,17 +1,31 @@
-import { useEffect } from "react"
-import { alertHideDelay } from "../../assets/constants"
+import { useCallback, useEffect, useState } from "react"
+import { alertHideDelay, alertFadeDuration } from "../../assets/constants"
 
-export default function useShowAlert(message, clearMessage) {
+const alertFadeDelay = +(alertFadeDuration.match(/duration-(\d+)/)[1] ?? 300)
+
+export default function useShowAlert(message, setAlert) {
+  const [ hidden, setHidden ] = useState(true)
+
+  const hideAlert = useCallback(() => {
+    // Hide alert
+    setHidden(true)
+
+    // Clear alert data after fade duration + 5ms
+    const clearAlert = setTimeout(() => setAlert({}), alertFadeDelay + 5)
+    return () => { clearTimeout(clearAlert) }
+  }, [setAlert])
+
   // Hide after <alertHideDelay> ms
   useEffect(() => {
-    if (!message) return
+    if (!message) return hideAlert()
 
-    const timeoutId = setTimeout(() => clearMessage(), alertHideDelay)
-    return () => { clearTimeout(timeoutId) }
-  }, [message, clearMessage])
+    setHidden(false)
+    const closeAlert = setTimeout(() => hideAlert(), alertHideDelay)
+    return () => { clearTimeout(closeAlert) }
+  }, [message, hideAlert])
 
   // Click to hide
-  const handleClick = () => message && clearMessage()
+  const handleClick = () => message && hideAlert()
 
-  return handleClick
+  return { handleClick, hidden }
 }

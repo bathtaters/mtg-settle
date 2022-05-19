@@ -1,3 +1,4 @@
+import { alertFadeDuration } from "../../assets/constants"
 
 export const AppWrapperStyle = ({ children }) => (
   <div className="h-full w-full min-w-[18rem] min-h-[35rem] overflow-x-clip">
@@ -24,10 +25,18 @@ export const LinkStyle = ({ href, children }) => (
   </a>
 )
 
-export const AlertWrapperStyle = ({ onClick, children }) => (
-  <div className={'fixed bottom-4 right-4'}>
-    <div className="alert alert-warning opacity-75 shadow-black shadow-lg cursor-pointer" onMouseDown={onClick}>
-      <div>{children}</div>
-    </div>
+export const AlertWrapperStyle = ({ className = 'alert-warning', hidden, onClick, children }) => (
+  <div className={
+    "fixed bottom-4 right-4 z-[1000] transition-all ease-linear "+
+    alertFadeDuration + (hidden ? ' opacity-0' : ' opacity-100')
+  }>
+    {children && 
+      <div
+        className={"alert opacity-75 shadow-black font-sans shadow-lg cursor-pointer " + className}
+        onMouseDown={onClick}
+      >
+        {children}
+      </div>
+    }
   </div>
 )

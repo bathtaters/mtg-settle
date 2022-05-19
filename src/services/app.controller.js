@@ -18,7 +18,7 @@ export default function useAppController() {
   // Setup state
   const [guesses, setGuesses] = useState([])
   const [correctGuess, setCorrect] = useState(-1)
-  const [alertMsg, setAlertMsg] = useState(null)
+  const [alertObj, setAlert] = useState({})
 
   // Set/Load memory
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function useAppController() {
   // Click guess controller
   const handleGuess = useCallback((text, picked) => {
     // Guess not in list
-    if (text && !picked) return setAlertMsg(illegalGuessMsg(text))
+    if (text && !picked) return setAlert(illegalGuessMsg(text))
     // Guess is correct
     if (picked.code === setInfo.code) setCorrect(endGame(guesses.length))
     // Game is over
@@ -53,8 +53,5 @@ export default function useAppController() {
   // eslint-disable-next-line
   const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length])
 
-  // Allow alert to clear its messages
-  const clearMsg = useCallback(() => setAlertMsg(null), [setAlertMsg])
-
-  return { setList, setInfo, guesses, correctGuess, handleGuess, newGame, alertMsg, setAlertMsg, clearMsg, artData }
+  return { setList, setInfo, guesses, correctGuess, handleGuess, newGame, alertObj, setAlert, artData }
 }

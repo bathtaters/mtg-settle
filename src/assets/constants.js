@@ -1,5 +1,6 @@
 import credentials from "./credentials.json"
 import { gql } from "@apollo/client"
+import { InfoIcon, WarningIcon } from "../components/subcomponents/Icons"
 
 // App options
 export const maxGuessCount = 6
@@ -16,7 +17,7 @@ export const shareDefaults = {
   title: "MtG Settle share",
   url: "https://mtg-drafter.com/settlethewreckage",
   text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
-  copyMsg: "Copied to clipboard",
+  copyMsg: { message: "Copied link to clipboard", className: "alert-info", Icon: InfoIcon },
 }
 export const shareChars = { wrong: "🟥", right: "🟩", empty: "⬛" }
 
@@ -34,8 +35,13 @@ export const guessOptions = [
 export const skippedMessage = 'Skipped'
 
 // Alert options
+export const alertFadeDuration = "duration-500"
 export const alertHideDelay = 5000
-export const illegalGuessMsg = (guess) => `"${guess}" isn't a remaining set.`
+export const illegalGuessMsg = (guess) => ({
+  message: `"${guess}" isn't a remaining set.`,
+  className: "alert-warning",
+  Icon: WarningIcon
+})
 
 // Error Boundary options
 export const showStackTrace = true

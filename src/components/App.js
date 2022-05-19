@@ -11,12 +11,12 @@ function App() {
     setList, setInfo, artData,
     guesses, correctGuess,
     handleGuess, newGame,
-    alertMsg, setAlertMsg, clearMsg
+    alertObj, setAlert
   } = useAppController()  
 
   return (
     <AppWrapperStyle>
-      <HeaderContainer newGame={newGame} correctGuess={correctGuess} setCode={setInfo.code} setAlert={setAlertMsg} />
+      <HeaderContainer newGame={newGame} correctGuess={correctGuess} setCode={setInfo.code} setAlert={setAlert} />
 
       <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} data={artData} />
       
@@ -24,7 +24,7 @@ function App() {
 
       <GuessContainer guesses={guesses} correctGuess={correctGuess} />
 
-      <Alert message={alertMsg} clearMessage={clearMsg} />
+      <Alert {...alertObj} setAlert={setAlert} />
     </AppWrapperStyle>
   )
 }
