@@ -1,16 +1,19 @@
 // Answer Styles
 export const AnswerWrapperStyle = ({ children }) => (
   <div className="w-full max-w-3xl my-1 px-2 sm:px-8">
-    <div className="badge badge-secondary w-full h-16 sm:h-20 p-2 text-center text-ellipsis">
+    <div className="badge badge-secondary w-full h-16 sm:h-20 p-2 text-ellipsis gap-2">
       {children}
     </div>
   </div>
 )
 
-export const SetSymbolStyle = ({ src, alt }) => (
-  <span className="mr-1 p-1 bg-gray-400 mask mask-circle inline-block h-12 w-12">
-    <img className="w-auto h-full m-auto" src={src} alt={alt} />
-  </span>
+export const SetSymbolStyle = ({ label, svg }) => (
+  <span
+    aria-label={label+' symbol'}
+    className=" place-self-end inline-block h-12 w-12 fill-secondary-content"
+    dangerouslySetInnerHTML={{ __html: svg }}
+  />
+  /* <img className="w-auto h-full m-auto" src={src} alt={alt} /> */
 )
 
 export const SetTextStyle = ({ children }) => <h3 className="p-0 sm:px-2 line-clamp-2 break-words leading-tight my-auto">{children}</h3>

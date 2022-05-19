@@ -5,7 +5,7 @@ import useEntryController from "../services/entry.controller"
 function AnswerContainer({ setInfo }) {
   return (
     <AnswerWrapperStyle>
-      { setInfo.symbol && <SetSymbolStyle src={setInfo.symbol} alt={setInfo.name} /> }
+      { setInfo.symbol && <SetSymbolStyle label={setInfo.name} svg={setInfo.symbol} /> }
       <SetTextStyle>{setInfo.name} [{setInfo.code}]</SetTextStyle>
     </AnswerWrapperStyle>
   )

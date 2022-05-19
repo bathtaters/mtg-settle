@@ -13,12 +13,11 @@ async function fetchSymbol(setCode, callback) {
   if (!setData?.[setSymbolKey]) return console.warn("Set unable to be downloaded")
 
   // Fetch symbol SVG
-  const imageBlob = await fetch(setData[setSymbolKey]).then((res) => res.blob())
-  const imageURL = URL.createObjectURL(imageBlob)
+  const svgCode = await fetch(setData[setSymbolKey]).then((res) => res.text())
 
   // Forward to callback
-  callback && callback(imageURL)
-  return imageURL
+  callback && callback(svgCode)
+  return svgCode
 }
 
 
