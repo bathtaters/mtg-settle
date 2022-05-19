@@ -1,32 +1,24 @@
-import { useCallback, useEffect } from "react"
-import useScrollToIndex from "./subservices/scroll.controller"
+import { useState, useEffect } from "react"
 import { maxGuessCount } from "../assets/constants"
 
-// Handle clicking carousel next/previous buttons
-export const useCarouselHandler = (isPrev, scrollTo) => useCallback(() =>
-  scrollTo((idx) => idx + (isPrev ? -1 : 1)),
-  [isPrev, scrollTo]
-)
-
 export default function useArtController({ images, cards, loading, background, error }, currentGuess, correctGuess) {
-  // Scroll controller
-  const { visibleIdx, setChildRef, scrollTo } = useScrollToIndex({ scrollEndDeps: [currentGuess] })
+  // Control carousel index
+  const [selectedIdx, setSelectedIdx] = useState(correctGuess < 0 ? currentGuess : correctGuess)
 
-  // Scroll to correct guess at end
-  useEffect(() => { if (correctGuess >= 0) scrollTo(correctGuess) }, [correctGuess, scrollTo])
+  // Calculated state
+  const maxVisible = correctGuess === -1 ? currentGuess : maxGuessCount - 1,
+    disableNext = selectedIdx >= maxVisible
 
-  // Center current index on load
-  // eslint-disable-next-line
-  useEffect(() => { if (!background) scrollTo(visibleIdx) }, [background])
+  // Auto-set carousel image
+  useEffect(() => { setSelectedIdx(correctGuess < 0 ? maxVisible : correctGuess) }, [correctGuess, maxVisible])
 
-  // Scroll to first picture on load
-  useEffect(() => {
-    if (cards?.[0]) scrollTo(correctGuess < 0 ? currentGuess ?? 0 : correctGuess)
-  // eslint-disable-next-line
-  }, [cards?.[0], scrollTo])
-  
-  // Simplify common logic
-  const maxVisible = correctGuess === -1 ? currentGuess : maxGuessCount - 1
+  // Props to pass to Carousel
+  const carouselProps = {
+    selectedItem: selectedIdx,
+    onChange: setSelectedIdx,
+    useKeyboardArrows: false,
+    swipeable: false,
+  }
 
-  return { images, cards, visibleIdx, setChildRef, scrollTo, maxVisible, loading, error }
+  return { images, cards, carouselProps, disableNext, maxVisible, loading, error }
 }

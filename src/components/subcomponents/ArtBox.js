@@ -2,13 +2,13 @@ import { ArtStyle, ArtCaptionStyle, ImageStyle } from "../styles/ArtStyles"
 import LoadingSpinner from "./LoadingSpinner"
 
 
-export default function ArtBox({ src, idx, info, hidden, divRef }) {
+export default function ArtBox({ src, idx, info, hidden }) {
   if (hidden) return false
 
-  if (!src) return (<ArtStyle divRef={divRef}><LoadingSpinner /></ArtStyle>)
+  if (!src) return (<ArtStyle><LoadingSpinner /></ArtStyle>)
 
   return (
-    <ArtStyle divRef={divRef}>
+    <ArtStyle>
       <ImageStyle src={src} alt={`Card Art #${idx}`} />
       <ArtCaptionStyle hidden={!info}><i>{info.name}</i> by {info.artist}</ArtCaptionStyle>
     </ArtStyle>
