@@ -29,4 +29,5 @@
 
     /* Float buttons for react-carousel */
     .carousel.carousel-slider { @apply pb-14 sm:pb-40 }
+    .carousel .slide img.w-max-h { @apply w-auto }
 }

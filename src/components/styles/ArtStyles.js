@@ -21,7 +21,7 @@ export const EmptyArtStyle = ({ children }) => (
 
 export const ImageStyle = (props) => (
   // eslint-disable-next-line
-  <img {...props} className="w-auto max-h-[45vh] rounded-lg overflow-hidden" />
+  <img {...props} className="max-h-[45vh] w-max-h rounded-lg overflow-hidden" />
 )
 
 export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
