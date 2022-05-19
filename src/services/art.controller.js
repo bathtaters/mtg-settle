@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { maxGuessCount } from "../assets/constants"
+import { useHotkeys } from "../components/subcomponents/SuggestText/services/suggestText.utils"
 
 export default function useArtController({ images, cards, loading, background, error }, currentGuess, correctGuess) {
   // Control carousel index
@@ -11,6 +12,12 @@ export default function useArtController({ images, cards, loading, background, e
 
   // Auto-set carousel image
   useEffect(() => { setSelectedIdx(correctGuess < 0 ? maxVisible : correctGuess) }, [correctGuess, maxVisible])
+
+  // Change art using Left/Right arrows
+  useHotkeys({
+    37: () => setSelectedIdx((idx) => idx > 0          ? idx - 1 : idx),
+    39: () => setSelectedIdx((idx) => idx < maxVisible ? idx + 1 : idx),
+  }, { deps: [maxVisible] })
 
   // Props to pass to Carousel
   const carouselProps = {
