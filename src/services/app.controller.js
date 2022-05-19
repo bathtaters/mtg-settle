@@ -34,7 +34,11 @@ export default function useAppController() {
   }, [])
 
   // Start new game
-  const newGame = () => { setGuesses([]); setCorrect(-1); getCards(newSet().code, maxGuessCount); }
+  const newGame = () => {
+    correctGuess === -1 && endGame(-2)
+    getCards(newSet().code, maxGuessCount)
+    setGuesses([]); setCorrect(-1)
+  }
 
   // Click guess controller
   const handleGuess = useCallback((text, picked) => {

@@ -21,7 +21,7 @@ function StatsBar({ label, value, maxValue, totalValue }) {
 
 export default function StatsContainer({ correctGuess, setCode, setAlert, newGame }) {
   const [ stats, setStats ] = useState(getStats())
-  useEffect(() => { setStats(getStats()) }, [setStats, correctGuess])
+  useEffect(() => { setStats(getStats()) }, [setStats, correctGuess, setCode])
 
   const maxValue = typeof stats?.guesses === 'object' ? Math.max(0, ...Object.values(stats.guesses)) : 0
   const totalGames = typeof stats?.guesses === 'object' ? Object.values(stats.guesses).reduce((sum,n) => sum + n, 0) : 0
@@ -31,7 +31,7 @@ export default function StatsContainer({ correctGuess, setCode, setAlert, newGam
   return (
     <StatsWrapperStyle>
       <InfoWrapperStyle>
-        <InfoItemStyle title="Total Played" value={totalGames} detail="Games" />
+        <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
         <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
       </InfoWrapperStyle>
 
