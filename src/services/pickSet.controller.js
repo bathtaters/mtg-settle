@@ -14,6 +14,7 @@ async function fetchSymbol(setCode, callback) {
 
   // Fetch symbol SVG
   const svgCode = await fetch(setData[setSymbolKey]).then((res) => res.text())
+    .then((text) => text.replace(/fill="[^"]*"/,'')) // clear pre-set fill
 
   // Forward to callback
   callback && callback(svgCode)
