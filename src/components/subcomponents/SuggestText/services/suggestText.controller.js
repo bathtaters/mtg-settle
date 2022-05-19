@@ -82,7 +82,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     /* Esc   */ 27: () => selected < 0 ? textbox.current.blur() : setSelected(-1),
     /* Up    */ 38: () => setSelected(getPrev(selected, suggestions?.length || 0)), 
     /* Down  */ 40: () => setSelected(getNext(selected, suggestions?.length || 0)),
-  }, { skip: !isFocused })
+  }, { skip: !isFocused, deps: [selected, value] })
 
 
   return {
