@@ -5,11 +5,23 @@ export const ArtWrapperStyle = ({ children }) => (
   </div>
 )
 
-export const ArtStyle = ({ children }) => <div className="h-full flex justify-center"><div className="relative">{children}</div></div>
+export const ArtStyle = ({ children }) => (
+  <div className="flex justify-center items-center"><div className="relative">
+    {children}
+  </div></div>
+)
+
+export const EmptyArtStyle = ({ children }) => (
+  <div className="w-full pb-[66%] relative">
+    <div className="flex absolute top-0 bottom-0 left-0 right-0">
+      {children}
+    </div>
+  </div>
+)
 
 export const ImageStyle = (props) => (
   // eslint-disable-next-line
-  <img {...props} className="w-auto rounded-lg overflow-hidden" />
+  <img {...props} className="w-auto max-h-[45vh] rounded-lg overflow-hidden" />
 )
 
 export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
@@ -44,8 +56,8 @@ export const IndicatorButton = ({ src, value, ...props }) => (
   <button
     type="button"
     className={
-      "relative inline-block mx-1 sm:mx-2 btn btn-sm btn-primary sm:btn-md btn-square "+
-      "md:mb-1 md:mx-3 md:h-24 md:w-24 disabled:bg-opacity-100 overflow-clip"+
+      "relative inline-block mx-1 btn btn-sm btn-primary btn-square "+
+      "sm:mb-12 sm:mx-3 sm:h-20 sm:w-20 disabled:bg-opacity-100 overflow-clip"+
       (props.selected ? ' scale-125' : '')
     }
     style={{ backgroundImage: props.disabled ? 'none' : `url(${src})`, backgroundSize: 'cover' }}

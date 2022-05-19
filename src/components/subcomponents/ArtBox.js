@@ -1,11 +1,11 @@
-import { ArtStyle, ArtCaptionStyle, ImageStyle } from "../styles/ArtStyles"
 import LoadingSpinner from "./LoadingSpinner"
+import { EmptyArtStyle, ArtStyle, ArtCaptionStyle, ImageStyle } from "../styles/ArtStyles"
 
 
 export default function ArtBox({ src, idx, info, hidden }) {
   if (hidden) return false
 
-  if (!src) return (<ArtStyle><LoadingSpinner /></ArtStyle>)
+  if (!src) return (<EmptyArtStyle><LoadingSpinner /></EmptyArtStyle>)
 
   return (
     <ArtStyle>
