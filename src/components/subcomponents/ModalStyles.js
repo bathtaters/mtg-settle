@@ -7,7 +7,10 @@ export function ModalStyle({ modalId, hideClose = false, force, children }) {
     <input type="checkbox" id={modalId} className="modal-toggle" onChange={toggleState} />
 
     <label htmlFor={modalId} className={`modal cursor-pointer${isOpen ? ' modal-open' : ' hidden'}`}>
-      <label className="modal-box bg-secondary-content text-secondary max-h-[85vh] px-4 pt-3 pb-2 pr-6 sm:pt-4" htmlFor="">
+      <label
+        className="modal-box bg-secondary-content text-secondary
+        max-w-sm sm:max-w-xl max-h-[85vh] m-6 px-4 pt-3 pb-2 pr-6 sm:pt-4"
+      >
         { hideClose || <ModalCloseButton modalId={modalId} /> }
         {children}
       </label>
