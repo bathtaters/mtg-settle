@@ -29,7 +29,7 @@ export const ModalOpenButton = ({ modalId, onClick, tip, children }) => (
   </div>
 )
 
-export const ModalCloseButton = ({ modalId }) => (
+const ModalCloseButton = ({ modalId }) => (
   <span className="modal-action absolute top-0 right-0 mt-1 mr-1">
     <label htmlFor={modalId} className="btn btn-circle btn-sm btn-ghost hover:bg-secondary hover:text-secondary-content">✕</label>
   </span>
