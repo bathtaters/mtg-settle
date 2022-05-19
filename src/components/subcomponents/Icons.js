@@ -3,7 +3,10 @@
 export function InfoIcon({ className = "stroke-current w-full h-auto" }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <path
+        aria-label="Info" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
     </svg>
   )
 }
@@ -12,7 +15,7 @@ export function WarningIcon({ className = "stroke-current w-full h-auto" }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
-        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+        aria-label="Warning" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
         d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
       />
     </svg>
@@ -22,7 +25,8 @@ export function WarningIcon({ className = "stroke-current w-full h-auto" }) {
 export function NewGameIcon({ className = "fill-current w-full h-auto" }) {
   return (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 752 752">
-      <path d="m522.81 281.29v-137.34h-374.13v449.9h374.13v-132.6h-37.887v94.715h-298.36v-374.13h298.36v99.453zm-165.75 94.715c0
+      <path aria-label="New Game"
+        d="m522.81 281.29v-137.34h-374.13v449.9h374.13v-132.6h-37.887v94.715h-298.36v-374.13h298.36v99.453zm-165.75 94.715c0
         15.691-12.727 28.414-28.414 28.414-15.691 0-28.414-12.727-28.414-28.414 0-15.691 12.727-28.414 28.414-28.414s28.414 12.727
         28.414 28.414zm85.246 0c0 15.691-12.727 28.414-28.414 28.414-15.691 0-28.414-12.727-28.414-28.414 0-15.691 12.727-28.414
         28.414-28.414s28.414 12.727 28.414 28.414zm80.508 0c0 15.691-12.727 28.414-28.414 28.414-15.691 0-28.414-12.727-28.414-28.414
@@ -35,7 +39,7 @@ export function NewGameIcon({ className = "fill-current w-full h-auto" }) {
 export function StatsIcon({ className = "fill-current w-full h-auto" }) {
   return (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 294 244">
-      <g>
+      <g aria-label="Stats">
         <path d="M30.5,228h47c5.247,0,9.5-4.253,9.5-9.5v-130c0-5.247-4.253-9.5-9.5-9.5h-47c-5.247,0-9.5,4.253-9.5,9.5v130
           C21,223.747,25.253,228,30.5,228z"/>
         <path d="M123.5,228h47c5.247,0,9.5-4.253,9.5-9.5v-195c0-5.247-4.253-9.5-9.5-9.5h-47c-5.247,0-9.5,4.253-9.5,9.5v195
@@ -51,6 +55,7 @@ export function ShareIcon({ className = "fill-current w-full h-auto" }) {
   return (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.216 227.216">
       <path
+        aria-label="Share"
         d="M175.897,141.476c-13.249,0-25.11,6.044-32.98,15.518l-51.194-29.066c1.592-4.48,2.467-9.297,2.467-14.317
         c0-5.019-0.875-9.836-2.467-14.316l51.19-29.073c7.869,9.477,19.732,15.523,32.982,15.523c23.634,0,42.862-19.235,42.862-42.879
         C218.759,19.229,199.531,0,175.897,0C152.26,0,133.03,19.229,133.03,42.865c0,5.02,0.874,9.838,2.467,14.319L84.304,86.258
