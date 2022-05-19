@@ -1,4 +1,3 @@
-import { forwardRef, useLayoutEffect } from "react"
 import { useLayoutListener } from "../services/suggestText.utils"
 import { listClassDef, layoutClasses } from "../services/suggestText.custom"
 
@@ -20,40 +19,27 @@ export function EntryStyle({ classes, isSelected, children }) {
 
 const Ab = () => <span className="hidden" /> // Absorb first/last child styling for input-group
 
-export const ListStyle = forwardRef(function ListStyle({ textbox, children, className = listClassDef.wrapper }, ref) {
-
-  // List position
-  useLayoutEffect(() => {
-    ref.current.style.marginTop = `${
-      (textbox.current?.offsetHeight ?? 0)
-      + layoutClasses.listVerticalOffset
-      // - window.document.firstElementChild.scrollTop // doesn't work on mobile
-    }px`
-  // eslint-disable-next-line
-  }, [textbox.current?.offsetHeight])
+export function ListStyle({ divRef, textbox, children, className = listClassDef.wrapper }) {
 
   // List width
-  useLayoutListener('resize', () => {
-    ref.current.style.width = !textbox.current ? 'inherit' :
+  useLayoutListener(['resize'], () => {
+    divRef.current.style.width = !textbox.current ? 'inherit' :
       `${textbox.current.offsetWidth - (layoutClasses.listSideInset * 2)}px`
 
-    ref.current.style.marginLeft = `${layoutClasses.listSideInset}px`
+    divRef.current.style.marginLeft = `${layoutClasses.listSideInset}px`
   }, [textbox.current?.offsetWidth])
 
   // List height
-  useLayoutListener('resize', () => {
-    ref.current.style.maxHeight = `${
-      window.document.firstElementChild.scrollHeight
-      - (ref.current?.offsetTop ?? 0)
-      - layoutClasses.listBottomMargin
-    }px`
-  }, [ref.current?.offsetTop])  
+  useLayoutListener(['resize','scroll'], () => {
+    if (divRef.current)
+      divRef.current.style.maxHeight = `${
+        divRef.current.getBoundingClientRect().bottom - layoutClasses.listTopMargin
+      }px`
+  }, [divRef.current?.getBoundingClientRect()?.bottom])  
   
   return (
-    <div className={layoutClasses.listWrapperOuter}><Ab /> 
-      <div className={`${layoutClasses.listWrapperInner} ${className}`} ref={ref}>
+    <div className={`${layoutClasses.listWrapper} ${className}`} ref={divRef}><Ab /> 
         <ul><Ab />{children}<Ab /></ul>
-      </div>
     <Ab /></div>
   )
-})
+}

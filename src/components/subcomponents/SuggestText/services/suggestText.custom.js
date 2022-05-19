@@ -37,9 +37,7 @@ export const listClassDef = {
 // Layout-based styling
 export const layoutClasses = {
   containerWrapper: "relative w-full",
-  listWrapperOuter: "absolute z-auto top-auto",
-  listWrapperInner: "fixed overflow-y-auto overflow-x-hidden",
-  listSideInset: 4, // for rounded edge (px)
-  listVerticalOffset: 2, // space away from input box (px)
-  listBottomMargin: 8, // space away from bottom of page (px)
+  listWrapper: "absolute z-10 bottom-12 mb-0.5 rounded-lg overflow-y-auto overflow-x-hidden",
+  listSideInset: 2, // for rounded edge (px)
+  listTopMargin: 8, // space away from top of page (px)
 }
