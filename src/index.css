@@ -26,4 +26,7 @@
     h4 { @apply font-medium  text-base sm:text-lg   print:text-base; }
 
     .btn { @apply font-sans; }
+
+    /* Float buttons for react-carousel */
+    .carousel.carousel-slider { @apply pb-14 sm:pb-20 md:pb-36 }
 }
