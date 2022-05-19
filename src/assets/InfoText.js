@@ -12,7 +12,7 @@ export default function InfoText() {
     </p>
 
     <div className="text-scale-md my-4 sm:my-6 text-secondary/70">
-      <p>All rights belong to the respective artists</p>
+      <p>All rights belong to <LinkStyle href="https://magic.wizards.com/">Wizards</LinkStyle> &amp; the artists</p>
 
       <p>
         Inspired by the <LinkStyle href="https://www.youtube.com/channel/UCx7-zijZRQsYuGYHai8FXOg">Lords of Luxury</LinkStyle>&nbsp;
