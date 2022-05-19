@@ -1,6 +1,5 @@
-import { forwardRef } from "react"
 
-function SuggestTextBox({ value, placeholder, className, isHidden, setListVisible, change }, ref) {
+export default function SuggestTextBox({ inputRef, value, placeholder, className, isHidden, setListVisible, change }) {
   return (
     <input
       type="text"
@@ -13,9 +12,7 @@ function SuggestTextBox({ value, placeholder, className, isHidden, setListVisibl
       onBlur={() => setListVisible(false)}
       onFocus={() => setListVisible(true)}
       onChange={change}
-      ref={ref}
+      ref={inputRef}
     />
   )
 }
-
-export default forwardRef(SuggestTextBox)

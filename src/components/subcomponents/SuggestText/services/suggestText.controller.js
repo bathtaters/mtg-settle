@@ -86,7 +86,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
 
 
   return {
-    boxProps:  { value, setListVisible, change, ref: textbox },
+    boxProps:  { value, setListVisible, change, inputRef: textbox },
     listProps: { suggestions, selected, pick, setSelected, textbox },
     showList:  listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions),
   }

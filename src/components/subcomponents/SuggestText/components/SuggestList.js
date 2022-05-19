@@ -19,7 +19,7 @@ function SuggestList({ suggestions, classes, selected, pick, setSelected, textbo
 
   // Render list
   return (
-    <ListStyle ref={listRef} textbox={textbox} className={classes?.wrapper}>
+    <ListStyle divRef={listRef} textbox={textbox} className={classes?.wrapper}>
       { suggestions.map((entry, idx) => (
         <EntryStyle classes={classes} isSelected={selected === idx} key={getId(entry)}>
 
