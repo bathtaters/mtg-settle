@@ -9,7 +9,7 @@ export default function useControlModal(force) {
   
   // Allow programmatic open/close
   useEffect(() => {
-    if (typeof force === 'boolean') setTimeout(() => setOpen(force), modalDelay)
+    if (typeof force === 'boolean') setTimeout(() => setOpen(force), force ? modalDelay.open : modalDelay.close)
   }, [force])
 
   // Exit on <Esc>
