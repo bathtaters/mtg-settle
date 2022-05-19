@@ -1,3 +1,4 @@
+import HeaderLogo from "../assets/Logo"
 import InfoText from "../assets/InfoText"
 import { InfoIcon, NewGameIcon, StatsIcon } from "./subcomponents/Icons"
 import { ModalStyle, ModalOpenButton } from "./subcomponents/ModalStyles"
@@ -27,7 +28,7 @@ export default function HeaderContainer({ newGame, correctGuess, setCode, setAle
         <ModalOpenButton modalId={modalIds.stats} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
-      <TitleStyle>Settle</TitleStyle>
+      <TitleStyle><HeaderLogo /></TitleStyle>
 
       <HeaderPartStyle isLeft={false}>
         <ModalOpenButton onClick={newGame} tip="New Game"><NewGameIcon /></ModalOpenButton>

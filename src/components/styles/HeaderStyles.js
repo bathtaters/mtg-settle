@@ -5,7 +5,7 @@ export const HeaderWrapperStyle = ({ children }) => (
   </div>
 )
 
-export const TitleStyle = ({ children }) => <h2 className="navbar-center">{children}</h2>
+export const TitleStyle = ({ children }) => <div className="navbar-center">{children}</div>
 
 export const HeaderPartStyle = ({ isLeft, children }) => <div className={isLeft ? "navbar-start" : "navbar-end"}>{children}</div>
 
