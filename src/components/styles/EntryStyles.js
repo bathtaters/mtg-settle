@@ -34,6 +34,6 @@ export const suggestClasses = {
   main: "input-group",
   textbox: "w-full h-full input input-bordered input-secondary bg-secondary text-secondary-content text-lg "+
     "placeholder:italic placeholder:text-center placeholder:text-secondary-content/70",
-  select: "bg-secondary text-secondary-content",
+  select: "bg-secondary-content text-secondary-focus",
   unselect: "bg-secondary-focus text-secondary-content",
 }
