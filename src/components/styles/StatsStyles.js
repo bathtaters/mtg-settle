@@ -62,7 +62,7 @@ export const ProgressWrapperStyle = ({ children }) => (
   </div>
 )
 export const TooltipStyle = ({ tip, children }) => (
-  <div className="tooltip tooltip-secondary self-stretch" data-tip={tip}>{children}</div>
+  <div className="tooltip tooltip-secondary self-stretch h-5 sm:h-6" data-tip={tip}>{children}</div>
 )
 export const ProgressStyle = (props) => (
   <progress className="progress progress-info border border-info h-full bg-secondary" {...props} />
