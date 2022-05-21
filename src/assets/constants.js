@@ -47,6 +47,11 @@ export const illegalGuessMsg = (guess) => ({
 export const showStackTrace = true
 export const errorFooter = "Try refreshing"
 
+// Movement options
+export const swipeOptions = {
+  enableMouse: false, animate: 'x', animateFactor: 0.5, maxOffset: 10, minDistance: 50, maxTime: 750
+}
+
 
 // Card database parameters
 export const ignoreCards = {

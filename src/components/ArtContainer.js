@@ -9,7 +9,7 @@ import useArtController from "../services/art.controller"
 export default function ArtContainer({ currentGuess, correctGuess, data }) {
   const {
     images, cards, loading, error,
-    carouselProps, disableNext, maxVisible
+    carouselProps, disableNext, maxVisible, onSwipe
   } = useArtController(data, currentGuess, correctGuess)
   
   if (error) return <ArtWrapperStyle>{error}</ArtWrapperStyle>
@@ -48,6 +48,7 @@ export default function ArtContainer({ currentGuess, correctGuess, data }) {
               src={images[idx]}
               info={correctGuess !== -1 && cards[idx]}
               hidden={maxVisible < idx}
+              onSwipe={onSwipe}
             />
           ))}
 

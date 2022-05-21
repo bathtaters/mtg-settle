@@ -5,15 +5,17 @@ export const ArtWrapperStyle = ({ children }) => (
   </div>
 )
 
-export const ArtStyle = ({ children }) => (
-  <div className="flex justify-center items-center"><div className="relative">
-    {children}
-  </div></div>
+export const ArtStyle = ({ swipeEvents, children }) => (
+  <div className="flex justify-center items-center transition-transform ease-linear duration-300" {...swipeEvents}>
+    <div className="relative">
+      {children}
+    </div>
+  </div>
 )
 
-export const EmptyArtStyle = ({ children }) => (
+export const EmptyArtStyle = ({ swipeEvents, children }) => (
   <div className="w-full pb-[66%] relative">
-    <div className="flex absolute top-0 bottom-0 left-0 right-0">
+    <div className="flex absolute top-0 bottom-0 left-0 right-0" {...swipeEvents}>
       {children}
     </div>
   </div>
