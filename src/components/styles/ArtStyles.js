@@ -58,11 +58,11 @@ export const IndicatorButton = ({ src, value, ...props }) => (
   <button
     type="button"
     className={
-      "relative inline-block mx-1 btn btn-sm btn-primary btn-square "+
+      "relative inline-block mx-1 btn btn-sm btn-primary btn-square bg-center bg-cover "+
       "sm:mb-12 sm:mx-3 sm:h-20 sm:w-20 disabled:bg-opacity-100 overflow-clip"+
       (props.selected ? ' scale-125' : '')
     }
-    style={{ backgroundImage: props.disabled ? 'none' : `url(${src})`, backgroundSize: 'cover' }}
+    style={{ backgroundImage: props.disabled ? 'none' : `url(${src})` }}
     {...props}
   >
     <span
