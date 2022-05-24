@@ -90,19 +90,27 @@ export default function useSwipeController(
 
   // Update animation (touchmove/drag), NON-PASSIVE listener
   const onTouchMove = useCallback((ev) => {
-    if (isMultitouch) return // Ignore multi-touch
-    ev.preventDefault()
+    // Ignore multi-touch
+    if (isMultitouch) return
 
-    // Check that move is still legal
-    const cancel = !animate || (maxTime >= 0 && (new Date().getTime()) - start.current[2] > maxTime)
+    // Ignore if touch is too long (Check maxTime)
+    if (maxTime >= 0 && (new Date().getTime()) - start.current[2] > maxTime) return
+
+    // Ignore opposite axis when animating along single-axis
+    const offset = [getX(ev) - start.current[0], getY(ev) - start.current[1]]
+    if (animate === 'y' && Math.abs(offset[0]) > Math.abs(offset[1])) return
+    if (animate === 'x' && Math.abs(offset[0]) < Math.abs(offset[1])) return
+        
+    // Disable swipe-to-scroll
+    if (ev.cancelable) ev.preventDefault()
 
     // Set X/Y positions to animate move
     element.current.style.transform = `translate(${
-      cancel || animate === 'y' ? 0 :
-        Math.max(Math.min(animateFactor * getX(ev) - start.current[0], maxOffset), -maxOffset)
+      !animate || animate === 'y' ? 0 :
+        Math.max(Math.min(offset[0] * animateFactor, maxOffset), -maxOffset)
     }px, ${
-      cancel || animate === 'x' ? 0 :
-        Math.max(Math.min(animateFactor * getY(ev) - start.current[1], maxOffset), -maxOffset)
+      !animate || animate === 'x' ? 0 :
+        Math.max(Math.min(offset[1] * animateFactor, maxOffset), -maxOffset)
     }px)`
   }, [animate, animateFactor, maxTime, maxOffset, isMultitouch])
 
