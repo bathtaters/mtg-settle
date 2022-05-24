@@ -2,7 +2,7 @@ import HeaderLogo from "../assets/Logo"
 import { InfoIcon, NewGameIcon, StatsIcon } from "./subcomponents/Icons"
 import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalOpenButton } from "./styles/HeaderStyles"
 import { modalIds } from "../assets/constants"
-import StatsModal from "./subcomponents/StatsContainer"
+import StatsModal from "./subcomponents/StatsModal"
 import { AboutModal, NewGameModal } from "./subcomponents/SimpleModals"
 
 
