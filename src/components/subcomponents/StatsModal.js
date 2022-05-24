@@ -4,7 +4,7 @@ import {
   StatsDivider, ShareButton, NewGameButton,
   ProgressWrapperStyle, TooltipStyle, ProgressStyle
 } from "../styles/StatsStyles"
-import { ModalStyle, ModalTitleStyle } from "./ModalStyles"
+import { ModalStyle, ModalTitleStyle } from "../styles/ModalStyles"
 import { blankArray } from "../../services/app.controller"
 import { getStats } from "../../services/subservices/storage.services"
 import shareScore from "../../services/subservices/share.services"
