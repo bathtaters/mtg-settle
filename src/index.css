@@ -33,5 +33,12 @@
     .carousel .slide img.w-max-h { @apply w-auto }
 
     /* Focus on Modal buttons */
-    input.modal-toggle:focus-visible + div > .modal-button { @apply outline outline-2 outline-offset-2 }
+    input.modal-toggle:focus-visible + div > .modal-button { @apply outline; }
+    
+    /* Show tooltips on focus */
+    .tooltip.tooltip-bottom { --tooltip-tail: 7px; }
+    input.modal-toggle:focus-visible + .tooltip:before,
+    input.modal-toggle:focus-visible + .tooltip:after {
+        @apply opacity-100 delay-75;
+    }
 }
