@@ -4,9 +4,11 @@ import {
   StatsDivider, ShareButton, NewGameButton,
   ProgressWrapperStyle, TooltipStyle, ProgressStyle
 } from "../styles/StatsStyles"
+import { ModalStyle, ModalTitleStyle } from "./ModalStyles"
 import { blankArray } from "../../services/app.controller"
 import { getStats } from "../../services/subservices/storage.services"
 import shareScore from "../../services/subservices/share.services"
+import { modalIds } from "../../assets/constants"
 
 
 function StatsBar({ label, value, maxValue, totalValue }) {
@@ -29,30 +31,34 @@ export default function StatsContainer({ correctGuess, setCode, setAlert, newGam
   const percentWins = totalGames ? Math.round(100 * totalWins / totalGames) : 0
 
   return (
-    <StatsWrapperStyle>
-      <InfoWrapperStyle>
-        <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
-        <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
-      </InfoWrapperStyle>
+    <ModalStyle modalId={modalIds.stats} force={correctGuess !== -1}>
+      <ModalTitleStyle>Stats</ModalTitleStyle>
 
-      <ProgressWrapperStyle>
-        <StatsBar label="M" value={stats?.guesses?.[-2] ?? 0} maxValue={maxValue} totalValue={totalGames} />
-        { blankArray.map((_,idx) =>
-          <StatsBar
-            key={idx} label={idx+1}
-            value={stats?.guesses?.[idx] ?? 0}
-            totalValue={totalGames} maxValue={maxValue}
-          />
-        ) }
-      </ProgressWrapperStyle>
-      
-      {correctGuess !== -1 && <>
-        <StatsDivider />
-        <StatsButtonWrapper>
-          <ShareButton onClick={() => shareScore(correctGuess, setCode, setAlert)} />
-          <NewGameButton onClick={newGame} />
-        </StatsButtonWrapper>
-      </>}
-    </StatsWrapperStyle>
+      <StatsWrapperStyle>
+        <InfoWrapperStyle>
+          <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
+          <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
+        </InfoWrapperStyle>
+
+        <ProgressWrapperStyle>
+          <StatsBar label="M" value={stats?.guesses?.[-2] ?? 0} maxValue={maxValue} totalValue={totalGames} />
+          { blankArray.map((_,idx) =>
+            <StatsBar
+              key={idx} label={idx+1}
+              value={stats?.guesses?.[idx] ?? 0}
+              totalValue={totalGames} maxValue={maxValue}
+            />
+          ) }
+        </ProgressWrapperStyle>
+        
+        {correctGuess !== -1 && <>
+          <StatsDivider />
+          <StatsButtonWrapper>
+            <ShareButton onClick={() => shareScore(correctGuess, setCode, setAlert)} />
+            <NewGameButton onClick={newGame} />
+          </StatsButtonWrapper>
+        </>}
+      </StatsWrapperStyle>
+    </ModalStyle>
   )
 }

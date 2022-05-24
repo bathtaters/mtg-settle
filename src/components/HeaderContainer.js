@@ -1,38 +1,30 @@
 import HeaderLogo from "../assets/Logo"
-import InfoText from "../assets/InfoText"
 import { InfoIcon, NewGameIcon, StatsIcon } from "./subcomponents/Icons"
-import { ModalStyle, ModalOpenButton } from "./subcomponents/ModalStyles"
-import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalTitleStyle, ModalBodyStyle } from "./styles/HeaderStyles"
+import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalOpenButton } from "./styles/HeaderStyles"
 import { modalIds } from "../assets/constants"
-import StatsContainer from "./subcomponents/StatsContainer"
+import StatsModal from "./subcomponents/StatsContainer"
+import { AboutModal, NewGameModal } from "./subcomponents/SimpleModals"
 
 
 export default function HeaderContainer({ newGame, correctGuess, setCode, setAlert }) {
+  const newGameProps = correctGuess === -1 ? {modalId: modalIds.newGame} : {onClick: newGame}
 
   return (<>
-    <ModalStyle modalId={modalIds.about}>
-      <ModalTitleStyle>About</ModalTitleStyle>
-      <ModalBodyStyle><InfoText /></ModalBodyStyle>
-    </ModalStyle>
-
-    <ModalStyle modalId={modalIds.stats} force={correctGuess !== -1}>
-      <ModalTitleStyle>Stats</ModalTitleStyle>
-      <ModalBodyStyle>
-        <StatsContainer correctGuess={correctGuess} setCode={setCode} setAlert={setAlert} newGame={newGame} />
-      </ModalBodyStyle>
-    </ModalStyle>
-
     <HeaderWrapperStyle>
       <HeaderPartStyle isLeft={true}>
         <ModalOpenButton modalId={modalIds.about} tip="About"><InfoIcon /></ModalOpenButton>
-        <ModalOpenButton modalId={modalIds.stats} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
       <TitleStyle><HeaderLogo /></TitleStyle>
 
       <HeaderPartStyle isLeft={false}>
-        <ModalOpenButton onClick={newGame} tip="New Game"><NewGameIcon /></ModalOpenButton>
+        <ModalOpenButton tip="New Game" {...newGameProps}><NewGameIcon /></ModalOpenButton>
+        <ModalOpenButton modalId={modalIds.stats} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
     </HeaderWrapperStyle>
+
+    <AboutModal />
+    <NewGameModal newGame={newGame} correctGuess={correctGuess} />
+    <StatsModal newGame={newGame} correctGuess={correctGuess} setCode={setCode} setAlert={setAlert} />
   </>)
 }

@@ -22,7 +22,7 @@ export const shareDefaults = {
 export const shareChars = { wrong: "🟥", right: "🟩", empty: "⬛" }
 
 // Modal options
-export const modalIds = { about: "about-modal", stats: "stats-modal" }
+export const modalIds = { about: "about-modal", stats: "stats-modal", newGame: "new-game" }
 export const modalDelay = { open: 3000, close: 5 }
 
 // Guess list options
@@ -37,6 +37,10 @@ export const skippedMessage = 'Skipped'
 // Alert options
 export const alertFadeDuration = "duration-500"
 export const alertHideDelay = 5000
+export const newGameConfirm = {
+  msg: 'Give up the current game?',
+  yes: 'New Game', no: 'Back',
+}
 export const illegalGuessMsg = (guess) => ({
   message: `"${guess}" isn't a remaining set.`,
   className: "alert-warning",

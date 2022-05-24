@@ -18,16 +18,15 @@ export function ModalStyle({ modalId, hideClose = false, force, children }) {
   </>)
 }
 
-export const ModalOpenButton = ({ modalId, onClick, tip, children }) => (
-  <div className="tooltip tooltip-bottom tooltip-secondary font-sans text-xl" data-tip={tip}>
-    <label
-      htmlFor={modalId} onClick={onClick}
-      className="btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1"
-    >
-      {children}
-    </label>
-  </div>
-)
+export const ModalTitleStyle = ({ children }) => <h3 className="opacity-75 font-sans">{children}</h3>
+
+export const ButtonContainerStyle = ({ children }) => <div className="modal-action text-center">{children}</div>
+
+export const ModalButton = (props) => <label className="btn btn-secondary" {...props} />
+
+export const AboutBodyStyle = ({ children }) => <div className="py-4 text-center">{children}</div>
+
+export const NewGameBodyStyle = ({ children }) => <div className="py-4 sm:pl-4 text-scale-xl">{children}</div>
 
 const ModalCloseButton = ({ modalId }) => (
   <span className="modal-action absolute top-0 right-0 mt-1 mr-1">

@@ -9,6 +9,16 @@ export const TitleStyle = ({ children }) => <div className="navbar-center">{chil
 
 export const HeaderPartStyle = ({ isLeft, children }) => <div className={isLeft ? "navbar-start" : "navbar-end"}>{children}</div>
 
-export const ModalTitleStyle = ({ children }) => <h3 className="opacity-75 font-sans">{children}</h3>
-
-export const ModalBodyStyle = ({ children }) => <div className="py-4 text-center">{children}</div>
+export const ModalOpenButton = ({ modalId, onClick, tip, children }) => {
+  const ButtonTag = modalId ? "label" : "div"
+  return (
+    <div className="tooltip tooltip-bottom tooltip-secondary font-sans text-xl" data-tip={tip}>
+      <ButtonTag
+        htmlFor={modalId} onClick={onClick}
+        className="btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1"
+      >
+        {children}
+      </ButtonTag>
+    </div>
+  )
+}
