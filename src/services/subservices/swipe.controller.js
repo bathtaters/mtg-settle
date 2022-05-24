@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react"
+import { useCallback, useRef, useState } from "react"
 
 export const directions = ['left', 'up', 'right', 'down']
 
@@ -11,23 +11,16 @@ const invisImg = new Image(0,0)
 invisImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
 
-// Setup default preventer
-const usePreventRef = (ref) => {
-  const preventer = useCallback((ev) => ev.preventDefault(), [])
-  
-  const setRef = useCallback((el) => {
-    // Cleanup
-    if (ref.current) {
-      ref.current.removeEventListener('touchmove', preventer)
-    }
-    // Prevent Defaults
-    ref.current = el
-    if (el) {
-      el.addEventListener('touchmove', preventer, { passive: false })
-    }
-  }, [preventer, ref])
-  
-  return setRef
+// Max MS between two touch-events that will make them a single multi-touch event
+const coincidentTouchThreshold = 500
+
+// Logic to determine multi-touch event
+const getMultitouch = (touchCount, currentTime, lastEventTime) => {
+  if (!touchCount) return false // Is not a touch event
+  if (touchCount > 1) return true // Is a simple multi-touch event
+  if (!lastEventTime) return false // Is single-touch event & no prior event
+  // Count two virtually coincident touches as a multi-touch
+  return lastEventTime + coincidentTouchThreshold > currentTime
 }
 
 
@@ -45,13 +38,21 @@ export default function useSwipeController(
   // Setup references
   const element = useRef(null)
   const start = useRef([0,0,0])
+  const [isMultitouch, setMultitouch] = useState(false)
   
 
   // Begin movement (touchstart/dragstart)
   const onTouchStart = useCallback((ev) => {
     element.current.style.transform = 'translate(0px,0px)' // Reset position
+    
+    // Detect multi-touch AKA pinch event
+    const timestamp = new Date().getTime()
+    if (getMultitouch(ev?.changedTouches?.length, timestamp, start.current[2]))
+      return setMultitouch(true)
+
     // Store start position/time
-    start.current = [getX(ev), getY(ev), new Date().getTime()]
+    start.current = [getX(ev), getY(ev), timestamp]
+    
     // Hide drag image 
     if (enableMouse && ev.dataTransfer) ev.dataTransfer.setDragImage(invisImg, 0, 0)
   }, [enableMouse])
@@ -61,6 +62,7 @@ export default function useSwipeController(
   // End movement (touchend/dragend)
   const onTouchEnd = useCallback((ev) => {
     element.current.style.transform = 'translate(0px,0px)' // Reset position
+    if (isMultitouch) return setMultitouch(false) // Ignore multi-touch
 
     // Check time difference
     const duration = (new Date().getTime()) - start.current[2]
@@ -83,11 +85,14 @@ export default function useSwipeController(
     if (typeof callback === 'function') callback(directionIdx, distance[isY], duration, ev)
 
     // console.debug(`TouchSwipe: ${directions[directionIdx]}, ${distance[isY]} px, ${duration} ms`)
-  }, [callback, minDistance, maxTime])
+  }, [callback, minDistance, maxTime, isMultitouch])
 
 
-  // Update animation (touchmove/drag)
+  // Update animation (touchmove/drag), NON-PASSIVE listener
   const onTouchMove = useCallback((ev) => {
+    if (isMultitouch) return // Ignore multi-touch
+    ev.preventDefault()
+
     // Check that move is still legal
     const cancel = !animate || (maxTime >= 0 && (new Date().getTime()) - start.current[2] > maxTime)
 
@@ -99,23 +104,39 @@ export default function useSwipeController(
       cancel || animate === 'x' ? 0 :
         Math.max(Math.min(animateFactor * getY(ev) - start.current[1], maxOffset), -maxOffset)
     }px)`
-  }, [animate, animateFactor, maxTime, maxOffset])
+  }, [animate, animateFactor, maxTime, maxOffset, isMultitouch])
 
 
 
   // Handle interupted touch
   const onTouchCancel = useCallback(() => { element.current.style.transform = 'translate(0px,0px)' }, [])
 
-  // Prevent defaults on (and get reference to) target
-  const ref = usePreventRef(element, enableMouse)
+
+  // Add non-passive listeners to element whenever REF is set
+  const ref = useCallback((el) => {
+    // Cleanup listeners
+    if (element.current) {
+      element.current.removeEventListener('touchmove', onTouchMove)
+      element.current.removeEventListener('drag', onTouchMove)
+    }
+    // Setup non-passive listeners
+    element.current = el
+    if (el) {
+      el.addEventListener('touchmove', onTouchMove, { passive: false })
+      if (enableMouse) {
+        el.addEventListener('drag', onTouchMove, { passive: false })
+      }
+    }
+  }, [onTouchMove, enableMouse])
+
 
   return !enableMouse ? {
       // Touch events only
-      onTouchStart, onTouchEnd, onTouchMove, onTouchCancel, ref,
+      onTouchStart, onTouchEnd, onTouchCancel, ref,
     } : {
-      onTouchStart, onTouchEnd, onTouchMove, onTouchCancel, ref,
+      onTouchStart, onTouchEnd, onTouchCancel, ref,
       // Include mouse events
-      onDragStart: onTouchStart, onDragEnd: onTouchEnd, onDrag: onTouchMove,
+      onDragStart: onTouchStart, onDragEnd: onTouchEnd,
       draggable: true, // enable dragging
     }
 }
