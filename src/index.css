@@ -8,6 +8,7 @@
 
 /* Base Styles */
 @layer base {
+    .text-scale-xl { @apply text-lg   sm:text-xl   print:text-lg;   }
     .text-scale-lg { @apply text-base sm:text-lg   print:text-base; }
     .text-scale-md { @apply text-sm   sm:text-base print:text-sm;   }
     .text-scale-sm { @apply text-xs   sm:text-sm   print:text-xs;   }
