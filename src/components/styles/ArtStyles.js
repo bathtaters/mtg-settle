@@ -48,6 +48,7 @@ export const ArrowButton = ({ isPrev, ...props }) => (
   <input
     type="button" {...props}
     value={isPrev ? "<" : ">"}
+    tabIndex="-1"
     className="btn btn-sm btn-ghost 
       hover:bg-base-300/30 disabled:bg-transparent
       rounded-none text-2xl h-auto"
