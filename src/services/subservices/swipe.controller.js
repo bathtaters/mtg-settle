@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react"
+import { useReducedMotion } from "./mediaQuery.controller"
 
 export const directions = ['left', 'up', 'right', 'down']
 
@@ -39,6 +40,7 @@ export default function useSwipeController(
   const element = useRef(null)
   const start = useRef([0,0,0])
   const [isMultitouch, setMultitouch] = useState(false)
+  const prefersReducedMotion = useReducedMotion()
   
 
   // Begin movement (touchstart/dragstart)
@@ -104,6 +106,9 @@ export default function useSwipeController(
     // Disable swipe-to-scroll
     if (ev.cancelable) ev.preventDefault()
 
+    // Ignore animation if requested
+    if (prefersReducedMotion) return
+
     // Set X/Y positions to animate move
     element.current.style.transform = `translate(${
       !animate || animate === 'y' ? 0 :
@@ -112,7 +117,7 @@ export default function useSwipeController(
       !animate || animate === 'x' ? 0 :
         Math.max(Math.min(offset[1] * animateFactor, maxOffset), -maxOffset)
     }px)`
-  }, [animate, animateFactor, maxTime, maxOffset, isMultitouch])
+  }, [animate, animateFactor, maxTime, maxOffset, isMultitouch, prefersReducedMotion])
 
 
 
