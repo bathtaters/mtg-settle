@@ -31,4 +31,7 @@
     /* Float buttons for react-carousel */
     .carousel.carousel-slider { @apply pb-14 sm:pb-40 }
     .carousel .slide img.w-max-h { @apply w-auto }
+
+    /* Focus on Modal buttons */
+    input.modal-toggle:focus-visible + div > .modal-button { @apply outline outline-2 outline-offset-2 }
 }

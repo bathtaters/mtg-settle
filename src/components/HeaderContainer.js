@@ -12,19 +12,20 @@ export default function HeaderContainer({ newGame, correctGuess, setCode, setAle
   return (<>
     <HeaderWrapperStyle>
       <HeaderPartStyle isLeft={true}>
+        <AboutModal />
         <ModalOpenButton modalId={modalIds.about} tip="About"><InfoIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
       <TitleStyle><HeaderLogo /></TitleStyle>
 
       <HeaderPartStyle isLeft={false}>
+        <NewGameModal newGame={newGame} correctGuess={correctGuess} />
         <ModalOpenButton tip="New Game" {...newGameProps}><NewGameIcon /></ModalOpenButton>
+        <StatsModal newGame={newGame} correctGuess={correctGuess} setCode={setCode} setAlert={setAlert} />
         <ModalOpenButton modalId={modalIds.stats} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
     </HeaderWrapperStyle>
 
-    <AboutModal />
-    <NewGameModal newGame={newGame} correctGuess={correctGuess} />
-    <StatsModal newGame={newGame} correctGuess={correctGuess} setCode={setCode} setAlert={setAlert} />
+    
   </>)
 }

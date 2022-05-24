@@ -15,7 +15,7 @@ export const ModalOpenButton = ({ modalId, onClick, tip, children }) => {
     <div className="tooltip tooltip-bottom tooltip-secondary font-sans text-xl" data-tip={tip}>
       <ButtonTag
         htmlFor={modalId} onClick={onClick}
-        className="btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1"
+        className="modal-button btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1"
       >
         {children}
       </ButtonTag>
