@@ -1,22 +1,23 @@
 import InfoText from "../../assets/InfoText"
+import ModalBase from "./ModalBase"
 import {
-  ModalStyle, ModalTitleStyle, ButtonContainerStyle, 
+  ModalTitleStyle, ButtonContainerStyle, 
   AboutBodyStyle, NewGameBodyStyle, ModalButton
 } from "../styles/ModalStyles"
 import { modalIds, newGameConfirm } from "../../assets/constants"
 
 export function AboutModal() {
   return (
-    <ModalStyle modalId={modalIds.about}>
+    <ModalBase modalId={modalIds.about}>
       <ModalTitleStyle>About</ModalTitleStyle>
       <AboutBodyStyle><InfoText /></AboutBodyStyle>
-    </ModalStyle>
+    </ModalBase>
   )
 }
 
 export function NewGameModal({ newGame, correctGuess }) {
   return (
-    <ModalStyle modalId={modalIds.newGame} force={correctGuess !== -1 && null} hideClose={true}>
+    <ModalBase modalId={modalIds.newGame} force={correctGuess !== -1 && null} hideClose={true}>
       <ModalTitleStyle>New Game</ModalTitleStyle>
       <NewGameBodyStyle>
         {newGameConfirm.msg}
@@ -25,6 +26,6 @@ export function NewGameModal({ newGame, correctGuess }) {
           <ModalButton htmlFor={modalIds.newGame}>{newGameConfirm.no}</ModalButton>
         </ButtonContainerStyle>
       </NewGameBodyStyle>
-    </ModalStyle>
+    </ModalBase>
   )
 }

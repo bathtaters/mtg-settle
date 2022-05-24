@@ -4,7 +4,8 @@ import {
   StatsDivider, ShareButton, NewGameButton,
   ProgressWrapperStyle, TooltipStyle, ProgressStyle
 } from "../styles/StatsStyles"
-import { ModalStyle, ModalTitleStyle } from "../styles/ModalStyles"
+import ModalBase from "./ModalBase"
+import { ModalTitleStyle } from "../styles/ModalStyles"
 import { blankArray } from "../../services/app.controller"
 import { getStats } from "../../services/subservices/storage.services"
 import shareScore from "../../services/subservices/share.services"
@@ -31,7 +32,7 @@ export default function StatsContainer({ correctGuess, setCode, setAlert, newGam
   const percentWins = totalGames ? Math.round(100 * totalWins / totalGames) : 0
 
   return (
-    <ModalStyle modalId={modalIds.stats} force={correctGuess !== -1}>
+    <ModalBase modalId={modalIds.stats} force={correctGuess !== -1}>
       <ModalTitleStyle>Stats</ModalTitleStyle>
 
       <StatsWrapperStyle>
@@ -59,6 +60,6 @@ export default function StatsContainer({ correctGuess, setCode, setAlert, newGam
           </StatsButtonWrapper>
         </>}
       </StatsWrapperStyle>
-    </ModalStyle>
+    </ModalBase>
   )
 }
