@@ -5,7 +5,7 @@ import { useHotkeys } from "../../components/subcomponents/SuggestText/services/
 export default function useControlModal(force) {
   // Track modal state
   const [ isOpen, setOpen ] = useState(force ?? false)
-  const toggleState = () => { setOpen((state) => !state) }
+  const toggleState = (ev) => { ev && ev.stopPropagation(); setOpen((state) => !state) }
   
   // Allow programmatic open/close
   useEffect(() => {
