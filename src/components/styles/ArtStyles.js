@@ -62,7 +62,7 @@ export const IndicatorButton = ({ src, value, ...props }) => (
       "sm:mb-12 sm:mx-3 sm:h-20 sm:w-20 disabled:bg-opacity-100 overflow-clip"+
       (props.selected ? ' scale-125' : '')
     }
-    style={{ backgroundImage: props.disabled ? 'none' : `url(${src})` }}
+    style={{ backgroundImage: props.disabled || !src ? 'none' : `url(${src})` }}
     {...props}
   >
     <span
