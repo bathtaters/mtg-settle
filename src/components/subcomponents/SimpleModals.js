@@ -2,7 +2,7 @@ import InfoText from "../../assets/InfoText"
 import {
   ModalStyle, ModalTitleStyle, ButtonContainerStyle, 
   AboutBodyStyle, NewGameBodyStyle, ModalButton
-} from "./ModalStyles"
+} from "../styles/ModalStyles"
 import { modalIds, newGameConfirm } from "../../assets/constants"
 
 export function AboutModal() {
