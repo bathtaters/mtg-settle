@@ -6,11 +6,11 @@ import { blankArray } from "../services/app.controller"
 import useArtController from "../services/art.controller"
 
 
-export default function ArtContainer({ currentGuess, correctGuess, data }) {
+export default function ArtContainer({ currentGuess, correctGuess, ignoreHotkeys, data }) {
   const {
     images, cards, loading, error,
     carouselProps, disableNext, maxVisible, onSwipe
-  } = useArtController(data, currentGuess, correctGuess)
+  } = useArtController(data, currentGuess, correctGuess, ignoreHotkeys)
   
   if (error) return <ArtWrapperStyle>{error}</ArtWrapperStyle>
   if (loading) return <ArtWrapperStyle><LoadingSpinner /></ArtWrapperStyle>

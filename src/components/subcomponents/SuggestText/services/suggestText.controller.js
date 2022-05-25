@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef, useImperativeHandle } from "react"
-import { getSuggestions, autoSelect, autoShow } from "./suggestText.services"
+import { getSuggestions, autoSelect } from "./suggestText.services"
 import { getSelected, getNext, getPrev, validList, getNonStaticSolo, useHotkeys } from "./suggestText.utils"
 import { displayEntry, enterBehavior, hideListWhenExact, getId } from "./suggestText.custom"
 
 
-function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
+function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, ref) {
   
   // --- Component State --- \\
 
@@ -18,7 +18,6 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
   const [listIsVisible, setListVisible] = useState(false)
   
   // Basic vars
-  const isFocused = document.activeElement === textbox.current
   const isEmpty = !value || !value.trim()
   const isExact = !isEmpty && exact //(!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
   const selectedValue = !isHidden && getSelected(selected, suggestions)
@@ -26,7 +25,6 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
 
   // Auto update state
   useEffect(() => autoSelect(selected, suggestions, setSelected), [selected, suggestions])
-  useEffect(() => autoShow(listIsVisible, isFocused, setListVisible), [listIsVisible, isFocused])
   // eslint-disable-next-line
   useEffect(() => { getSuggestions(list, value, setSuggestions, setExact) }, [list]) // Pass prop updates to state
 
@@ -43,6 +41,11 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     // Update list
     const [newSuggestions, newExact] = getSuggestions(list, e.target.value, setSuggestions, setExact)
     onChange && onChange(e.target.value, newPick, newExact, newSuggestions) // User onChange function
+  }
+
+  const handleFocus = (isFocused, e) => {
+    setListVisible(isFocused)
+    onFocus && onFocus(isFocused, e)
   }
 
   const submit = async (forcePick) => {
@@ -83,11 +86,11 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     Escape:    () => selected < 0 ? textbox.current.blur() : setSelected(-1),
     ArrowUp:   () => setSelected(getPrev(selected, suggestions?.length || 0)), 
     ArrowDown: () => setSelected(getNext(selected, suggestions?.length || 0)),
-  }, { skip: !isFocused, deps: [selected, value] })
+  }, { skip: !listIsVisible, deps: [selected, value] })
 
   const showList = listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions)
   return {
-    boxProps:  { value, setListVisible, change, showList, selected: listIsVisible && getId(selectedValue), inputRef: textbox },
+    boxProps:  { value, handleFocus, change, showList, selected: listIsVisible && getId(selectedValue), inputRef: textbox },
     listProps: { suggestions, selected, pick, setSelected, textbox },
     showList
   }

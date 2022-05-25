@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react"
 import { maxGuessCount } from "../assets/constants"
 import { useHotkeys } from "../components/subcomponents/SuggestText/services/suggestText.utils"
 
-export default function useArtController({ images, cards, loading, error }, currentGuess, correctGuess) {
+export default function useArtController({ images, cards, loading, error }, currentGuess, correctGuess, ignoreHotkeys) {
   // Control carousel index
   const [selectedIdx, setSelectedIdx] = useState(correctGuess < 0 ? currentGuess : correctGuess)
 
@@ -21,7 +21,7 @@ export default function useArtController({ images, cards, loading, error }, curr
   const onSwipe = useCallback((dir) => dir === 0 ? pageRight() : dir === 2 ? pageLeft() : null, [pageLeft, pageRight])
 
   // Change art using Left/Right arrows
-  useHotkeys({ ArrowLeft: pageLeft, ArrowRight: pageRight }, { deps: [pageLeft, pageRight] })
+  useHotkeys({ ArrowLeft: pageLeft, ArrowRight: pageRight }, { skip: ignoreHotkeys, deps: [pageLeft, pageRight] })
 
   // Props to pass to Carousel
   const carouselProps = {

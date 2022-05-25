@@ -10,20 +10,22 @@ import StatsModal from "./subcomponents/StatsModal"
 
 function App() {
   const {
-    setList, setInfo, artData,
+    entryProps, setInfo, artData,
     guesses, correctGuess,
-    handleGuess, newGame,
+    ignoreHotkeys, newGame,
     openModal, setModal,
     alertObj, setAlert,
   } = useAppController()  
+
+  
 
   return (
     <AppWrapperStyle>
       <HeaderContainer setModal={setModal} newGame={newGame} correctGuess={correctGuess} />
 
-      <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} data={artData} />
+      <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} data={artData} ignoreHotkeys={ignoreHotkeys} />
       
-      <EntryContainer list={setList} setInfo={setInfo} correctGuess={correctGuess} handleGuess={handleGuess} />
+      <EntryContainer correctGuess={correctGuess} {...entryProps} />
 
       <GuessContainer guesses={guesses} correctGuess={correctGuess} />
 

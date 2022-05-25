@@ -20,6 +20,7 @@ export default function useAppController() {
   const [correctGuess, setCorrect] = useState(-1)
   const [alertObj, setAlert] = useState({})
   const [openModal, setModal] = useState(null)
+  const [ignoreHotkeys, setIgnoreKeys] = useState(false)
 
   // Set/Load memory
   useEffect(() => {
@@ -59,5 +60,16 @@ export default function useAppController() {
   // eslint-disable-next-line
   const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length])
 
-  return { setList, setInfo, artData, guesses, correctGuess, handleGuess, newGame, alertObj, setAlert, openModal, setModal }
+  // Set if we should ignore ArtBox hotkeys (left/right arrow)
+  const handleSelect = (isFocused) => { setIgnoreKeys(isFocused || Boolean(openModal)) }
+  useEffect(() => { setIgnoreKeys(Boolean(openModal)) }, [openModal])
+
+  return {
+    setInfo, artData,
+    guesses, correctGuess,
+    newGame, ignoreHotkeys,
+    alertObj, setAlert,
+    openModal, setModal,
+    entryProps: { setList, setInfo, handleGuess, handleSelect }
+  }
 }

@@ -9,10 +9,11 @@ import useSuggestTextController from "./services/suggestText.controller";
 import { listClassDef } from "./services/suggestText.custom"
 
 const SuggestText = forwardRef(function SuggestText({
-  list = [], placeholder, className, listClasses = listClassDef, onChange, onSubmit, isHidden, children, label = "suggest-text"
+  list = [], placeholder, className, listClasses = listClassDef, label = "suggest-text",
+  onChange, onFocus, onSubmit, isHidden, children
 }, ref) {
 
-  const { boxProps, listProps, showList } = useSuggestTextController(list, isHidden, onChange, onSubmit, ref)
+  const { boxProps, listProps, showList } = useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, ref)
 
   return (
     <WrapperStyle className={listClasses.main ?? ""}>

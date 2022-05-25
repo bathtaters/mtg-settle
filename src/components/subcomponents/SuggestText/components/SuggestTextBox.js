@@ -1,6 +1,6 @@
 
 export default function SuggestTextBox({
-  inputRef, label, selected, value, placeholder, className, isHidden, setListVisible, change, showList
+  inputRef, label, selected, value, placeholder, className, isHidden, handleFocus, change, showList
 }) {
   return (
     <input
@@ -20,8 +20,8 @@ export default function SuggestTextBox({
       placeholder={placeholder ?? ""}
       value={value}
       className={`${className} ${isHidden ? 'hidden' : ''}`}
-      onBlur={() => setListVisible(false)}
-      onFocus={() => setListVisible(true)}
+      onBlur={(ev) => handleFocus(false, ev)}
+      onFocus={(ev) => handleFocus(true, ev)}
       onChange={change}
       ref={inputRef}
     />
