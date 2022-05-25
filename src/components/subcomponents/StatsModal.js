@@ -1,15 +1,13 @@
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import {
   StatsWrapperStyle, InfoWrapperStyle, InfoItemStyle, StatsButtonWrapper,
   StatsDivider, ShareButton, NewGameButton,
   ProgressWrapperStyle, TooltipStyle, ProgressStyle
 } from "../styles/StatsStyles"
-import ModalBase from "./ModalBase"
-import { ModalTitleStyle } from "../styles/ModalStyles"
+import ModalBase from "./Modal/ModalBase"
 import { blankArray } from "../../services/app.controller"
-import { getStats } from "../../services/subservices/storage.services"
-import shareScore from "../../services/subservices/share.services"
 import { modalIds } from "../../assets/constants"
+import useStatsController from "../../services/subservices/stats.controller"
 
 
 function StatsBar({ label, value, maxValue, totalValue }) {
@@ -22,44 +20,40 @@ function StatsBar({ label, value, maxValue, totalValue }) {
 }
 
 
-export default function StatsContainer({ correctGuess, setCode, setAlert, newGame }) {
-  const [ stats, setStats ] = useState(getStats())
-  useEffect(() => { setStats(getStats()) }, [setStats, correctGuess, setCode])
-
-  const maxValue = typeof stats?.guesses === 'object' ? Math.max(0, ...Object.values(stats.guesses)) : 0
-  const totalGames = typeof stats?.guesses === 'object' ? Object.values(stats.guesses).reduce((sum,n) => sum + n, 0) : 0
-  const totalWins = totalGames - (stats?.guesses?.[-2] ?? 0)
-  const percentWins = totalGames ? Math.round(100 * totalWins / totalGames) : 0
+export default function StatsModal({ correctGuess, setCode, setAlert, newGame, openModal, setModal }) {
+  const [
+    { guesses, maxValue, totalGames, totalWins, percentWins }, share
+  ] = useStatsController(correctGuess, setCode, setAlert, setModal)  
 
   return (
-    <ModalBase modalId={modalIds.stats} force={correctGuess !== -1}>
-      <ModalTitleStyle id={modalIds.stats}>Stats</ModalTitleStyle>
+    <ModalBase title="Stats" modalId={modalIds.stats} openModal={openModal} setModal={setModal}
+      renderBody={() => (
+        <StatsWrapperStyle>
+          <InfoWrapperStyle>
+            <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
+            <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
+          </InfoWrapperStyle>
 
-      <StatsWrapperStyle id={modalIds.stats}>
-        <InfoWrapperStyle>
-          <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
-          <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
-        </InfoWrapperStyle>
-
-        <ProgressWrapperStyle>
-          <StatsBar label="M" value={stats?.guesses?.[-2] ?? 0} maxValue={maxValue} totalValue={totalGames} />
-          { blankArray.map((_,idx) =>
-            <StatsBar
-              key={idx} label={idx+1}
-              value={stats?.guesses?.[idx] ?? 0}
-              totalValue={totalGames} maxValue={maxValue}
-            />
-          ) }
-        </ProgressWrapperStyle>
-        
-        {correctGuess !== -1 && <>
-          <StatsDivider />
-          <StatsButtonWrapper>
-            <ShareButton onClick={() => shareScore(correctGuess, setCode, setAlert)} />
-            <NewGameButton onClick={newGame} />
-          </StatsButtonWrapper>
-        </>}
-      </StatsWrapperStyle>
-    </ModalBase>
+          <ProgressWrapperStyle>
+            <StatsBar label="M" value={guesses[-2] ?? 0} maxValue={maxValue} totalValue={totalGames} />
+            { blankArray.map((_,idx) =>
+              <StatsBar
+                key={idx} label={idx+1}
+                value={guesses[idx] ?? 0}
+                totalValue={totalGames} maxValue={maxValue}
+              />
+            ) }
+          </ProgressWrapperStyle>
+          
+          {correctGuess !== -1 && <>
+            <StatsDivider />
+            <StatsButtonWrapper>
+              <ShareButton onClick={share} />
+              <NewGameButton onClick={newGame} />
+            </StatsButtonWrapper>
+          </>}
+        </StatsWrapperStyle>
+      )}
+    />
   )
 }
