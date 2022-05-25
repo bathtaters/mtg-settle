@@ -21,7 +21,7 @@ export default function useArtController({ images, cards, loading, error }, curr
   const onSwipe = useCallback((dir) => dir === 0 ? pageRight() : dir === 2 ? pageLeft() : null, [pageLeft, pageRight])
 
   // Change art using Left/Right arrows
-  useHotkeys({ 37: pageLeft, 39: pageRight }, { deps: [pageLeft, pageRight] })
+  useHotkeys({ ArrowLeft: pageLeft, ArrowRight: pageRight }, { deps: [pageLeft, pageRight] })
 
   // Props to pass to Carousel
   const carouselProps = {

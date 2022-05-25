@@ -18,8 +18,8 @@ export default function useControlModal(modalId, openModal, setModal) {
     return () => { clearTimeout(delayedState) }
   }, [isOpen])
 
-  // Exit on <Esc>
-  useHotkeys({ 27: () => setModal(null) }, { skip: !isOpen, deps: [] })
+  // Exit on <Escape>
+  useHotkeys({ Escape: () => setModal(null) }, { skip: !isOpen, deps: [] })
 
   return {
     isRendered: isOpenDelayed || isOpen,

@@ -79,10 +79,10 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
 
   // Setup Keyboard UI
   useHotkeys({
-    /* Enter */ 13: () => enterBehavior(pick, submit, picked, isExact, value),
-    /* Esc   */ 27: () => selected < 0 ? textbox.current.blur() : setSelected(-1),
-    /* Up    */ 38: () => setSelected(getPrev(selected, suggestions?.length || 0)), 
-    /* Down  */ 40: () => setSelected(getNext(selected, suggestions?.length || 0)),
+    Enter:     () => enterBehavior(pick, submit, picked, isExact, value),
+    Escape:    () => selected < 0 ? textbox.current.blur() : setSelected(-1),
+    ArrowUp:   () => setSelected(getPrev(selected, suggestions?.length || 0)), 
+    ArrowDown: () => setSelected(getNext(selected, suggestions?.length || 0)),
   }, { skip: !isFocused, deps: [selected, value] })
 
   const showList = listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions)
