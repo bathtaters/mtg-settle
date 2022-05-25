@@ -23,7 +23,7 @@ export const testEntry = (inputAdapt, entryAdapt, entryOrig) => (
 export const enterBehavior = (pick, submit, picked) => picked ? submit() : pick()
 
 // unique ID for each entry
-export const getId  = (entry) => entry?.code || '#' + (entry.name || 'NONE')
+export const getId  = (entry) => entry?.code || entry?.name || 'none'
 
 // Customized styling
 export const listClassDef = {
