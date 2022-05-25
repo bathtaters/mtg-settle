@@ -41,12 +41,6 @@ export const autoSelect = (selected, list, setSelected) => {
 }
 
 
-// Auto-select rules (Runs on list change)
-export const autoShow = (listIsVisible, isFocused, setListVisible) => {
-  if (!listIsVisible && isFocused) setListVisible(true)
-}
-
-
 // Auto-select list item on mouse hover 
 export const useSetOnHover = (setter) => {
   const [ lastCoords, setLastCoords ] = useState([])
