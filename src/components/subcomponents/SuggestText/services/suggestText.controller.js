@@ -16,6 +16,8 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
   const [picked, setPick] = useState(null)
   const [exact, setExact] = useState(null)
   const [listIsVisible, setListVisible] = useState(false)
+
+  useEffect(() => {console.log('LIST VIS', listIsVisible)}, [listIsVisible])
   
   // Basic vars
   const isEmpty = !value || !value.trim()
@@ -55,7 +57,6 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
     const result = await (onSubmit && onSubmit(value, newPick, exact, suggestions))
 
     // Reset form
-    setListVisible(false)
     setPick(null)
     change({ target: { value: '' } })
     return newPick && { ...newPick, result }
