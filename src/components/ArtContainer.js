@@ -16,7 +16,7 @@ export default function ArtContainer({ currentGuess, correctGuess, data }) {
   if (loading) return <ArtWrapperStyle><LoadingSpinner /></ArtWrapperStyle>
 
   return (
-    <ArtWrapperStyle>
+    <ArtWrapperStyle selected={carouselProps.selectedItem}>
       
         <Carousel
           {...carouselProps}
@@ -32,7 +32,7 @@ export default function ArtContainer({ currentGuess, correctGuess, data }) {
           
           renderIndicator={(onClick, selected, idx, label) => (
             <IndicatorButton
-              aria-label={label}
+              aria-label={label+(idx+1)}
               value={idx + 1}
               onClick={onClick}
               selected={selected}

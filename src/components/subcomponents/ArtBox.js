@@ -13,7 +13,7 @@ export default function ArtBox({ src, idx, info, hidden, onSwipe }) {
 
   return (
     <ArtStyle swipeEvents={swipeEvents}>
-      <ImageStyle src={src} alt={`Card Art #${idx}`} />
+      <ImageStyle src={src} alt={`Card ${idx}`} id={`card-${idx}`} />
       <ArtCaptionStyle hidden={!info}><i>{info.name}</i> by {info.artist}</ArtCaptionStyle>
     </ArtStyle>
   )

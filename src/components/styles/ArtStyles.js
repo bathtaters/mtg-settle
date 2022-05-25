@@ -1,15 +1,19 @@
 
-export const ArtWrapperStyle = ({ children }) => (
-  <div className="w-full max-w-3xl my-2 text-center flex flex-col justify-center">
+export const ArtWrapperStyle = ({ selected, children }) => (
+  <div
+    className="w-full max-w-3xl my-2 text-center flex flex-col justify-center focus-visible:outline-none group"
+    id="carousel-wrapper" role="listbox" tabIndex="0"
+    aria-orientation="horizontal" aria-activedescendant={`card-${selected+1}`} 
+  >
     {children}
   </div>
 )
 
 export const ArtStyle = ({ swipeEvents, children }) => (
   <div className="flex justify-center items-center transition-transform ease-linear duration-300" {...swipeEvents}>
-    <div className="relative">
+    <figure className="relative">
       {children}
-    </div>
+    </figure>
   </div>
 )
 
@@ -29,7 +33,7 @@ export const ImageStyle = (props) => (
 export const ArtCaptionStyle = ({ children, hidden }) => !hidden && (
   <div className="absolute top-0 bottom-0 left-0 right-0 rounded-lg overflow-hidden flex justify-start items-end">
     <div className="inline-block px-1.5 py-1 text-sm sm:text-base font-light text-primary-content bg-primary/80 rounded-t">
-      <span className="line-clamp-4 leading-tight break-words text-ellipsis">{children}</span>
+      <figcaption className="line-clamp-4 leading-tight break-words text-ellipsis">{children}</figcaption>
     </div>
   </div>
 )
@@ -39,6 +43,8 @@ export const carouselStyle = {
   dynamicHeight: true,
   showThumbs: false,
   showStatus: false,
+  ariaLabel: 'Card pictures',
+  labels: { leftArrow: 'Previous card', rightArrow: 'Next card', item: 'View card ' }
 }
 
 
@@ -50,8 +56,10 @@ export const ArrowButton = ({ isPrev, ...props }) => (
     value={isPrev ? "<" : ">"}
     tabIndex="-1"
     className="btn btn-sm btn-ghost 
+      group-focus-visible:border-primary border-2
+      group-focus-visible:bg-base-300/30
       hover:bg-base-300/30 disabled:bg-transparent
-      rounded-none text-2xl h-auto"
+      rounded text-2xl h-auto"
   />
 )
 

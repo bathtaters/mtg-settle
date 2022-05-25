@@ -1,9 +1,9 @@
 import FocusTrap from "focus-trap-react"
-import { ModalBgdStyle, ModalContainerStyle, ModalCloseButton } from "../styles/ModalStyles"
+import { ModalBgdStyle, ModalContainerStyle, ModalCloseButton, ModalController } from "../styles/ModalStyles"
 import useControlModal from "../../services/subservices/modal.controller"
 
 
-export default function ModalBase({ modalId, hideClose = false, force, children }) {
+export default function ModalBase({ modalId, hideClose = false, force, role = "dialog", children }) {
   const [ isOpen, toggleState ] = useControlModal(force)
   
   return (<>
@@ -11,7 +11,11 @@ export default function ModalBase({ modalId, hideClose = false, force, children 
 
       <FocusTrap active={isOpen}>
         
-        <ModalContainerStyle onMouseUp={(e) => e.stopPropagation()} onTouchEnd={(e) => e.stopPropagation()}>
+        <ModalContainerStyle
+          onMouseUp={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
+          role={role} modalId={modalId}
+        >
           
           {!hideClose &&
             <ModalCloseButton
@@ -26,6 +30,6 @@ export default function ModalBase({ modalId, hideClose = false, force, children 
       </FocusTrap>
     </ModalBgdStyle>
 
-    <input type="checkbox" id={modalId} className="modal-toggle" onChange={toggleState} />
+    <ModalController id={modalId} onChange={toggleState} isOpen={isOpen} />
   </>)
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useImperativeHandle } from "react"
 import { getSuggestions, autoSelect, autoShow } from "./suggestText.services"
 import { getSelected, getNext, getPrev, validList, getNonStaticSolo, useHotkeys } from "./suggestText.utils"
-import { displayEntry, enterBehavior, hideListWhenExact } from "./suggestText.custom"
+import { displayEntry, enterBehavior, hideListWhenExact, getId } from "./suggestText.custom"
 
 
 function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
@@ -21,11 +21,12 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
   const isFocused = document.activeElement === textbox.current
   const isEmpty = !value || !value.trim()
   const isExact = !isEmpty && exact //(!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
+  const selectedValue = !isHidden && getSelected(selected, suggestions)
   const getSubmitValue = () => !isHidden && (picked || isExact || (!isEmpty && getNonStaticSolo(suggestions)))
 
   // Auto update state
   useEffect(() => autoSelect(selected, suggestions, setSelected), [selected, suggestions])
-  useEffect(() => autoShow(listIsVisible, isFocused, setListVisible), [listIsVisible, isFocused, value])
+  useEffect(() => autoShow(listIsVisible, isFocused, setListVisible), [listIsVisible, isFocused])
   // eslint-disable-next-line
   useEffect(() => { getSuggestions(list, value, setSuggestions, setExact) }, [list]) // Pass prop updates to state
 
@@ -58,7 +59,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
   }
 
   const pick = (forcePick) => {
-    const newPick = forcePick || isExact || getSelected(selected, suggestions)
+    const newPick = forcePick || isExact || selectedValue
     
     if (!newPick) return false // Ignore missing pick
     if (newPick.isStatic) return submit(newPick) // Submit static pick
@@ -84,11 +85,11 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, ref) {
     /* Down  */ 40: () => setSelected(getNext(selected, suggestions?.length || 0)),
   }, { skip: !isFocused, deps: [selected, value] })
 
-
+  const showList = listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions)
   return {
-    boxProps:  { value, setListVisible, change, inputRef: textbox },
+    boxProps:  { value, setListVisible, change, showList, selected: listIsVisible && getId(selectedValue), inputRef: textbox },
     listProps: { suggestions, selected, pick, setSelected, textbox },
-    showList:  listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions),
+    showList
   }
 }
 

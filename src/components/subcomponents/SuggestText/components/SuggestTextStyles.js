@@ -6,9 +6,9 @@ export function WrapperStyle({ className, children }) {
   return (<span className={`${layoutClasses.containerWrapper} ${className}`}>{children}</span>)
 }
 
-export function EntryStyle({ classes, isSelected, children }) {
+export function EntryStyle({ classes, isSelected, children, id }) {
   return (
-  <li className={`${classes?.base ?? listClassDef.base} ${
+  <li id={id} className={`${classes?.base ?? listClassDef.base} ${
     isSelected ? classes?.select ?? listClassDef.select : classes?.unselect ?? listClassDef.unselect
   }`}>
     {children}
@@ -16,10 +16,13 @@ export function EntryStyle({ classes, isSelected, children }) {
   )
 }
 
+export const HiddenList = ({ label }) => (
+  <span className="hidden" aria-hidden="true" id={label+'-list'} />
+)
 
-const Ab = () => <span className="hidden" /> // Absorb first/last child styling for input-group
+const Ab = () => <span className="hidden" aria-hidden="true" /> // Absorb first/last child styling for input-group
 
-export function ListStyle({ divRef, textbox, children, className = listClassDef.wrapper }) {
+export function ListStyle({ divRef, textbox, children, label, className = listClassDef.wrapper }) {
 
   // List width
   useLayoutListener(['resize'], () => {
@@ -39,7 +42,7 @@ export function ListStyle({ divRef, textbox, children, className = listClassDef.
   
   return (
     <div className={`${layoutClasses.listWrapper} ${className}`} ref={divRef}><Ab /> 
-        <ul><Ab />{children}<Ab /></ul>
+        <ul id={label+'-list'}><Ab />{children}<Ab /></ul>
     <Ab /></div>
   )
 }

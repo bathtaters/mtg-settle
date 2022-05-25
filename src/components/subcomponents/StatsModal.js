@@ -17,7 +17,7 @@ function StatsBar({ label, value, maxValue, totalValue }) {
   const statsTip = useMemo(() => `${value} (${Math.round(100 * value / (totalValue || 1))}%)`, [value, totalValue])
   return (<>
     <TooltipStyle tip={labelTip}>{label}</TooltipStyle>
-    <TooltipStyle tip={statsTip}><ProgressStyle value={value} max={maxValue} /></TooltipStyle>
+    <TooltipStyle tip={statsTip}><ProgressStyle value={value} max={maxValue} aria-label={statsTip} /></TooltipStyle>
   </>)
 }
 
@@ -33,9 +33,9 @@ export default function StatsContainer({ correctGuess, setCode, setAlert, newGam
 
   return (
     <ModalBase modalId={modalIds.stats} force={correctGuess !== -1}>
-      <ModalTitleStyle>Stats</ModalTitleStyle>
+      <ModalTitleStyle id={modalIds.stats}>Stats</ModalTitleStyle>
 
-      <StatsWrapperStyle>
+      <StatsWrapperStyle id={modalIds.stats}>
         <InfoWrapperStyle>
           <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
           <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />

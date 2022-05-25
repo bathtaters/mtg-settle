@@ -7,7 +7,7 @@ import { AboutModal, NewGameModal } from "./subcomponents/SimpleModals"
 
 
 export default function HeaderContainer({ newGame, correctGuess, setCode, setAlert }) {
-  const newGameProps = correctGuess === -1 ? {modalId: modalIds.newGame} : {onClick: newGame}
+  const newGameProps = correctGuess === -1 ? {} : {onClick: newGame}
 
   return (<>
     <HeaderWrapperStyle>
@@ -16,11 +16,12 @@ export default function HeaderContainer({ newGame, correctGuess, setCode, setAle
         <ModalOpenButton modalId={modalIds.about} tip="About"><InfoIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
-      <TitleStyle><HeaderLogo /></TitleStyle>
+      <TitleStyle label="Settle"><HeaderLogo /></TitleStyle>
 
       <HeaderPartStyle isLeft={false}>
         <NewGameModal newGame={newGame} correctGuess={correctGuess} />
-        <ModalOpenButton tip="New Game" {...newGameProps}><NewGameIcon /></ModalOpenButton>
+        <ModalOpenButton modalId={modalIds.newGame} tip="New Game" {...newGameProps}><NewGameIcon /></ModalOpenButton>
+        
         <StatsModal newGame={newGame} correctGuess={correctGuess} setCode={setCode} setAlert={setAlert} />
         <ModalOpenButton modalId={modalIds.stats} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>

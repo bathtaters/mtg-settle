@@ -9,26 +9,26 @@ export const AnswerWrapperStyle = ({ children }) => (
 
 export const SetSymbolStyle = ({ label, svg }) => (
   <div
-    aria-label={label+' symbol'}
+    aria-label={label+' set symbol'} role="img"
     className="w-8 sm:w-10 fill-secondary-content shrink-0"
     dangerouslySetInnerHTML={{ __html: svg }}
   />
 )
 
 export const SetTextStyle = ({ children }) => (
-  <h3 className="p-0 sm:px-2 line-clamp-2 break-words leading-tight">
+  <h2 className="p-0 sm:px-2 line-clamp-2 break-words leading-tight">
     {children}
-  </h3>
+  </h2>
 )
 
 // Form Styles
-export const FormStyle = ({ children }) => (
-  <div className="w-full max-w-3xl h-16 sm:h-20 my-1 px-2 sm:px-8 form-control">
+export const FormStyle = ({ onSubmit, children }) => (
+  <form className="w-full max-w-3xl h-16 sm:h-20 my-1 px-2 sm:px-8 form-control" aria-label="Guess set name" onSubmit={onSubmit}>
     {children}
-  </div>
+  </form>
 )
 
-export const ButtonStyle = (props) => <input {...props} type="button" className="btn btn-secondary w-20 z-10" />
+export const ButtonStyle = (props) => <input {...props} type="submit" className="btn btn-secondary w-20 z-10" />
 
 export const suggestClasses = {
   main: "input-group",

@@ -20,21 +20,23 @@
         @apply text-scale-md  print:text-xs;
     }
     
-    h1 { @apply font-light   text-6xl  sm:text-7xl  print:text-6xl; }
-    h2 { @apply font-medium  text-4xl  sm:text-5xl  print:text-4xl; }
-    h3 { @apply font-bold    text-2xl  sm:text-3xl  print:text-2xl; }
-    h4 { @apply font-medium  text-base sm:text-lg   print:text-base; }
+    h1 { @apply font-medium  text-4xl  sm:text-5xl  print:text-4xl; }
+    h2 { @apply font-bold    text-2xl  sm:text-3xl  print:text-2xl; }
+    h3 { @apply font-medium  text-base sm:text-lg   print:text-base; }
 
     .btn { @apply font-sans; }
 
-    /* Float buttons for react-carousel */
-    .carousel.carousel-slider { @apply pb-14 sm:pb-40 }
-    .carousel .slide img.w-max-h { @apply w-auto }
+    /* Fix focus styling on ghost buttons */
+    .btn.btn-ghost:focus-visible { @apply outline-none bg-gray-900/40; }
 
-    /* Focus on Modal buttons */
+    /* Float buttons for react-carousel */
+    .carousel.carousel-slider { @apply pb-14 sm:pb-40; }
+    .carousel .slide img.w-max-h { @apply w-auto; }
+
+    /* Fix focus on Modal buttons */
     input.modal-toggle:focus-visible + div > .modal-button { @apply outline; }
     
-    /* Show tooltips on focus */
+    /* Show tooltips when focused on Modal buttons */
     .tooltip.tooltip-bottom { --tooltip-tail: 7px; }
     input.modal-toggle:focus-visible + .tooltip:before,
     input.modal-toggle:focus-visible + .tooltip:after {

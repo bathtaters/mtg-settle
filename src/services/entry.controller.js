@@ -13,10 +13,10 @@ export default function useEntryController(onSubmit) {
   }, [disable, hasText])
 
   // Button click
-  const handleClick = () => ref.current?.submit()
+  const handleSubmit = (ev) => { ev.preventDefault(); ref.current?.submit() }
 
   return {
-    hasText, handleClick, disabled: hasText && disable,
+    hasText, handleSubmit, disabled: hasText && disable,
     props: { ref, onChange, onSubmit, placeholder: helperText },
   }
 }

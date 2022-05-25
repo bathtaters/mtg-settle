@@ -1,7 +1,9 @@
 import { ShareIcon, NewGameIcon } from "../subcomponents/Icons"
 
 // Main Stats Modal styles
-export const StatsWrapperStyle = ({ children }) => <div className="flex flex-col items-center py-4">{children}</div>
+export const StatsWrapperStyle = ({ id, children }) => (
+  <div className="flex flex-col items-center py-4" id={id+'-body'}>{children}</div>
+)
 
 export const InfoWrapperStyle = ({ children }) => (
   <div
@@ -62,7 +64,7 @@ export const ProgressWrapperStyle = ({ children }) => (
   </div>
 )
 export const TooltipStyle = ({ tip, children }) => (
-  <div className="tooltip tooltip-secondary self-stretch h-5 sm:h-6" data-tip={tip}>{children}</div>
+  <div className="tooltip tooltip-secondary self-stretch h-5 sm:h-6" data-tip={tip} aria-label={tip}>{children}</div>
 )
 export const ProgressStyle = (props) => (
   <progress className="progress progress-info border border-info h-full bg-secondary" {...props} />

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import SuggestList from "./components/SuggestList";
 import SuggestTextBox from "./components/SuggestTextBox";
-import { WrapperStyle } from "./components/SuggestTextStyles";
+import { WrapperStyle, HiddenList } from "./components/SuggestTextStyles";
 
 import useSuggestTextController from "./services/suggestText.controller";
 import { listClassDef } from "./services/suggestText.custom"
 
 const SuggestText = forwardRef(function SuggestText({
-  list = [], placeholder, className, listClasses = listClassDef, onChange, onSubmit, isHidden, children
+  list = [], placeholder, className, listClasses = listClassDef, onChange, onSubmit, isHidden, children, label = "suggest-text"
 }, ref) {
 
   const { boxProps, listProps, showList } = useSuggestTextController(list, isHidden, onChange, onSubmit, ref)
@@ -18,10 +18,10 @@ const SuggestText = forwardRef(function SuggestText({
     <WrapperStyle className={listClasses.main ?? ""}>
       <SuggestTextBox
         className={className ?? listClasses.textbox ?? listClassDef.textbox}
-        isHidden={isHidden} placeholder={placeholder} {...boxProps}
+        isHidden={isHidden} placeholder={placeholder} label={label} {...boxProps}
       />
       
-      { showList && <SuggestList classes={listClasses} {...listProps} /> }
+      { showList ? <SuggestList classes={listClasses} label={label} {...listProps} /> : <HiddenList label={label} /> }
 
       { children }
 

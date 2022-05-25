@@ -12,7 +12,7 @@ export default function Alert({ message, className = 'alert-warning', Icon = War
     <AlertWrapperStyle onClick={handleClick} hidden={hidden} className={className}>
       {message && <>
         <Icon className="stroke-current flex-shrink-0 h-6 w-6" />
-        <span>{message}</span>
+        <span id="alert-message">{message}</span>
       </>}
     </AlertWrapperStyle>
   )
