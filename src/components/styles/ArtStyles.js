@@ -57,7 +57,6 @@ export const ArrowButton = ({ isPrev, ...props }) => (
     tabIndex="-1"
     className="btn btn-sm btn-ghost 
       group-focus-visible:border-primary border-2
-      group-focus-visible:bg-base-300/30
       hover:bg-base-300/30 disabled:bg-transparent
       rounded text-2xl h-auto"
   />
@@ -68,8 +67,9 @@ export const IndicatorButton = ({ src, value, ...props }) => (
     type="button"
     className={
       "relative inline-block mx-1 btn btn-sm btn-primary btn-square bg-center bg-cover "+
-      "sm:mb-12 sm:mx-3 sm:h-20 sm:w-20 disabled:bg-opacity-100 overflow-clip"+
-      (props.selected ? ' scale-125' : '')
+      "sm:mb-12 sm:mx-3 sm:h-20 sm:w-20 disabled:bg-opacity-100 overflow-clip "+
+      "hover:scale-110 duration-500"+
+      (props.selected ? ' scale-125 hover:scale-125' : '')
     }
     style={{ backgroundImage: props.disabled || !src ? 'none' : `url(${src})` }}
     {...props}
