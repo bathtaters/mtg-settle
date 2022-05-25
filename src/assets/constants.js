@@ -6,6 +6,7 @@ import { InfoIcon, WarningIcon } from "../components/subcomponents/Icons"
 export const maxGuessCount = 6
 export const order = ['order-1','order-2','order-3','order-4','order-5','order-6','order-7','order-8'] // Should go up to at least 'maxGuessCount'
 export const helperText = "Enter the set here"
+export const gitHubLink = "https://github.com/bathtaters/mtg-settle"
 
 // Image options
 export const imageURL = (uuid) => `https://api.scryfall.com/cards/${uuid}?format=image&version=art_crop`
