@@ -2,7 +2,7 @@ import { ShareIcon, NewGameIcon } from "../subcomponents/Icons"
 
 // Main Stats Modal styles
 export const StatsWrapperStyle = ({ id, children }) => (
-  <div className="flex flex-col items-center py-4" id={id+'-body'}>{children}</div>
+  <div className="flex flex-col items-center" id={id+'-body'}>{children}</div>
 )
 
 export const InfoWrapperStyle = ({ children }) => (

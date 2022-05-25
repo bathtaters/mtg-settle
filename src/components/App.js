@@ -5,18 +5,21 @@ import useAppController from "../services/app.controller"
 import EntryContainer from "./EntryContainer"
 import HeaderContainer from "./HeaderContainer"
 import Alert from "./subcomponents/Alert"
+import { AboutModal, NewGameModal } from "./subcomponents/SimpleModals"
+import StatsModal from "./subcomponents/StatsModal"
 
 function App() {
   const {
     setList, setInfo, artData,
     guesses, correctGuess,
     handleGuess, newGame,
-    alertObj, setAlert
+    openModal, setModal,
+    alertObj, setAlert,
   } = useAppController()  
 
   return (
     <AppWrapperStyle>
-      <HeaderContainer newGame={newGame} correctGuess={correctGuess} setCode={setInfo.code} setAlert={setAlert} />
+      <HeaderContainer setModal={setModal} newGame={newGame} correctGuess={correctGuess} />
 
       <ArtContainer currentGuess={guesses.length} correctGuess={correctGuess} data={artData} />
       
@@ -24,7 +27,16 @@ function App() {
 
       <GuessContainer guesses={guesses} correctGuess={correctGuess} />
 
-      <Alert {...alertObj} setAlert={setAlert} />
+      {/* Alerts/Modals */}
+        <Alert {...alertObj} setAlert={setAlert} />
+        <AboutModal openModal={openModal} setModal={setModal} />
+        <NewGameModal newGame={newGame} correctGuess={correctGuess} openModal={openModal} setModal={setModal} />
+        <StatsModal
+          newGame={newGame} correctGuess={correctGuess}
+          setCode={setInfo.code} setAlert={setAlert}
+          openModal={openModal} setModal={setModal}
+        />
+
     </AppWrapperStyle>
   )
 }

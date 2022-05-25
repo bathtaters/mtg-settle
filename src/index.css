@@ -26,20 +26,13 @@
 
     .btn { @apply font-sans; }
 
-    /* Fix focus styling on ghost buttons */
-    .btn.btn-ghost:focus-visible { @apply outline-none bg-gray-900/40; }
+    /* Fix focus styling on ghost buttons (Modal X button) */
+    .btn.btn-ghost:focus-visible { @apply outline-none bg-gray-500/40; }
 
     /* Float buttons for react-carousel */
     .carousel.carousel-slider { @apply pb-14 sm:pb-40; }
     .carousel .slide img.w-max-h { @apply w-auto; }
-
-    /* Fix focus on Modal buttons */
-    input.modal-toggle:focus-visible + div > .modal-button { @apply outline; }
     
-    /* Show tooltips when focused on Modal buttons */
-    .tooltip.tooltip-bottom { --tooltip-tail: 7px; }
-    input.modal-toggle:focus-visible + .tooltip:before,
-    input.modal-toggle:focus-visible + .tooltip:after {
-        @apply opacity-100 delay-75;
-    }
+    /* Lengthen tooltips for Modal buttons */
+    .tooltip.tooltip-bottom { --tooltip-tail: 6px; }
 }

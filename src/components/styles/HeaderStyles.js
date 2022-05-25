@@ -14,17 +14,20 @@ export const TitleStyle = ({ label, children }) => (
 
 export const HeaderPartStyle = ({ isLeft, children }) => <div className={isLeft ? "navbar-start" : "navbar-end"}>{children}</div>
 
-export const ModalOpenButton = ({ modalId, onClick, tip, children }) => {
+export const ModalOpenButton = ({ onClick, tip, children }) => {
   return (
-    <div className="tooltip tooltip-bottom tooltip-secondary font-sans text-xl" data-tip={tip} role="tooltip">
-      <label
-        htmlFor={onClick ? null : modalId} onClick={onClick} role="button"
-        className="modal-button btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1
-        outline-2 outline-offset-2 outline-secondary z-30"
+    <div data-tip={tip} role="tooltip"
+      className="tooltip tooltip-bottom tooltip-secondary font-sans text-xl
+      before:content-[attr(data-tip)] before:delay-75 after:delay-75
+      focus-within:before:opacity-100 focus-within:after:opacity-100"
+    >
+      <button
+        type="button" onClick={onClick} aria-label={tip}
+        className="modal-button btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1 z-30"
       >
-        <span className="hidden" id={modalId+'-label'}>{tip}</span>
+        {/* <span className="hidden">{tip}</span> */}
         {children}
-      </label>
+      </button>
     </div>
   )
 }

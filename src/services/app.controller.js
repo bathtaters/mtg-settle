@@ -19,6 +19,7 @@ export default function useAppController() {
   const [guesses, setGuesses] = useState([])
   const [correctGuess, setCorrect] = useState(-1)
   const [alertObj, setAlert] = useState({})
+  const [openModal, setModal] = useState(null)
 
   // Set/Load memory
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function useAppController() {
     correctGuess === -1 && endGame(-2)
     getCards(newSet().code, maxGuessCount)
     setGuesses([]); setCorrect(-1)
+    setModal(null)
   }
 
   // Click guess controller
@@ -57,5 +59,5 @@ export default function useAppController() {
   // eslint-disable-next-line
   const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length])
 
-  return { setList, setInfo, guesses, correctGuess, handleGuess, newGame, alertObj, setAlert, artData }
+  return { setList, setInfo, artData, guesses, correctGuess, handleGuess, newGame, alertObj, setAlert, openModal, setModal }
 }
