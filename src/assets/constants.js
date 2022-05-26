@@ -1,6 +1,12 @@
-import credentials from "./credentials.json"
 import { gql } from "@apollo/client"
 import { InfoIcon, WarningIcon } from "../components/subcomponents/Icons"
+
+// Credentials should be JSON of the form { gqlKey: 'Bearer <KEY>' } replacing <KEY> with your API key
+import credentials from "./credentials.json"
+if (!credentials?.gqlKey) throw new Error(
+  "Error, missing MTGJSON GraphQL key. Add gqlKey to ./src/assets/credentials.json: { gqlKey: 'Bearer <API-KEY>' }"
+)
+
 
 // App options
 export const maxGuessCount = 6
@@ -79,7 +85,7 @@ export const ignoreCards = {
 
 export const databaseParams = {
   uri: 'https://graphql.mtgjson.com/',
-  headers: { authorization: `Bearer ${credentials.gqlKey}` },
+  headers: { authorization: credentials.gqlKey },
 
   query: gql`
     query Cards($setCode: String!) {
