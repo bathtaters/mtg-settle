@@ -1,5 +1,5 @@
 {
-  "name": "mtg-settle",
+  "name": "mtg-settle-client",
   "homepage": "https://settle.gg",
   "repository": "github:bathtaters/mtg-settle",
   "bugs": {
@@ -52,7 +52,6 @@
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.7",
-    "mtggraphql": "^1.0.2",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24"
   }
