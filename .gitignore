@@ -22,6 +22,7 @@ credentials.json
 .env.test.local
 .env.production.local
 debug*.json
+package-lock.json
 
 npm-debug.log*
 yarn-debug.log*
