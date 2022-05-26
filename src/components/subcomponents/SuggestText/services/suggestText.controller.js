@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useImperativeHandle } from "react"
+import { useEffect, useState, useRef, useImperativeHandle, useTransition } from "react"
 import { getSuggestions, autoSelect } from "./suggestText.services"
 import { getSelected, getNext, getPrev, validList, getNonStaticSolo, useHotkeys } from "./suggestText.utils"
 import { displayEntry, enterBehavior, hideListWhenExact, getId } from "./suggestText.custom"
@@ -10,6 +10,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
 
   // Setup Local State
   const textbox = useRef(null)
+  const [, startTransition] = useTransition()
   const [suggestions, setSuggestions] = useState(list)
   const [value, setValue] = useState("")
   const [selected, setSelected] = useState(-1)
@@ -17,8 +18,6 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
   const [exact, setExact] = useState(null)
   const [listIsVisible, setListVisible] = useState(false)
 
-  useEffect(() => {console.log('LIST VIS', listIsVisible)}, [listIsVisible])
-  
   // Basic vars
   const isEmpty = !value || !value.trim()
   const isExact = !isEmpty && exact //(!Array.isArray(suggestions) ? suggestions : suggestions.length === 1 ? suggestions[0] : false)
@@ -28,7 +27,7 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
   // Auto update state
   useEffect(() => autoSelect(selected, suggestions, setSelected), [selected, suggestions])
   // eslint-disable-next-line
-  useEffect(() => { getSuggestions(list, value, setSuggestions, setExact) }, [list]) // Pass prop updates to state
+  useEffect(() => { startTransition(() => getSuggestions(list, value, setSuggestions, setExact)) }, [list]) // Pass prop updates to state
 
   // --- Action Handlers --- \\
 
@@ -41,8 +40,10 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
     if (picked && !newPick) setPick(null)
 
     // Update list
-    const [newSuggestions, newExact] = getSuggestions(list, e.target.value, setSuggestions, setExact)
-    onChange && onChange(e.target.value, newPick, newExact, newSuggestions) // User onChange function
+    startTransition(() => {
+      const [newSuggestions, newExact] = getSuggestions(list, e.target.value, setSuggestions, setExact)
+      onChange && onChange(e.target.value, newPick, newExact, newSuggestions) // User onChange function
+    })
   }
 
   const handleFocus = (isFocused, e) => {
@@ -91,7 +92,11 @@ function useSuggestTextController(list, isHidden, onChange, onSubmit, onFocus, r
 
   const showList = listIsVisible && (!hideListWhenExact || !exact) && validList(suggestions)
   return {
-    boxProps:  { value, handleFocus, change, showList, selected: listIsVisible && getId(selectedValue), inputRef: textbox },
+    boxProps:  {
+      value, handleFocus, change, showList,
+      selected: listIsVisible && getId(selectedValue),
+      inputRef: textbox
+    },
     listProps: { suggestions, selected, pick, setSelected, textbox },
     showList
   }
