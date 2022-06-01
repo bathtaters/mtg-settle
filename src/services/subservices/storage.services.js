@@ -1,4 +1,4 @@
-import { getLocalVar, setLocalVar, encryptData, decryptData } from "./storage.utils"
+import { getLocalVar, setLocalVar, rmvLocalVar, encryptData, decryptData } from "./storage.utils"
 
 // Constants
 const storageDefaults = {
@@ -39,6 +39,8 @@ export function newGame(cards) {
   ))
   return cards
 }
+
+export function clearGame() { return rmvLocalVar('current') }
 
 export function updateSolution(setInfo) {
   if (!setInfo) return

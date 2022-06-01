@@ -1,8 +1,9 @@
 import { useLazyQuery } from "@apollo/client"
 import { useCallback, useState } from "react"
 import { databaseParams, ignoreCards } from "../assets/constants"
-import { newGame, loadEncrypted } from "./subservices/storage.services"
+import { newGame, clearGame, loadEncrypted } from "./subservices/storage.services"
 import useFetchImages from "./subservices/images.controller"
+import getErrorMsg from "../assets/errors"
 
 
 // Rules for ignoring cards
@@ -67,7 +68,7 @@ export default function useGetCards() {
     // Load cards from GraphQL
     setCards([])
     fetchCards({ variables: { setCode } }).then(({ data, error }) => {
-      if (!data?.sets?.[0]?.cards || error) return
+      if (!data?.sets?.[0]?.cards || error) return clearGame()
       
       // Pick random cards
       const newCards = pickCards(data.sets[0].cards, cardCount)
@@ -85,6 +86,6 @@ export default function useGetCards() {
     images, cards,
     loading, background,
     error: !cardErr && !imgErr && (loading || cards?.length) ? undefined :
-      `Error picking cards: ${cardErr.message || imgErr.message || 'Cards not found!'}`
+      `Error picking cards: ${getErrorMsg(cardErr,imgErr) || 'Cards not found!'}`
   }, getCards]
 }
