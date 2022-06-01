@@ -56,7 +56,7 @@ export const illegalGuessMsg = (guess) => ({
 })
 
 // Error Boundary options
-export const showStackTrace = true
+export const showStackTrace = process.env.NODE_ENV !== 'production'
 export const errorFooter = "Try refreshing"
 
 // Movement options
