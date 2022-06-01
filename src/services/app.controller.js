@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { maxGuessCount, illegalGuessMsg } from "../assets/constants"
+import { FORCE_ERROR } from "../assets/errors"
 import usePickSet from "./pickSet.controller"
 import useGetCards from "./pickCards.controller"
 import allSets from "../assets/setList.json"
@@ -37,6 +38,7 @@ export default function useAppController() {
 
   // Start new game
   const newGame = () => {
+    if (FORCE_ERROR) return setAlert({ message: FORCE_ERROR })
     correctGuess === -1 && endGame(-2)
     getCards(newSet().code, maxGuessCount)
     setGuesses([]); setCorrect(-1)

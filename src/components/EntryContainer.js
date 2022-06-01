@@ -1,6 +1,7 @@
 import SuggestText from "./subcomponents/SuggestText/SuggestText"
 import { AnswerWrapperStyle, SetSymbolStyle, SetTextStyle, FormStyle, ButtonStyle, suggestClasses } from "./styles/EntryStyles"
 import useEntryController from "../services/entry.controller"
+import { FORCE_ERROR } from "../assets/errors"
 
 function AnswerContainer({ setInfo }) {
   return (
@@ -27,5 +28,7 @@ function InputContainer({ handleGuess, setList, handleSelect }) {
 }
 
 export default function EntryContainer(props) {
-  return props.correctGuess === -1 ? <InputContainer {...props} /> : <AnswerContainer {...props} />
+  if (props.correctGuess !== -1) return <AnswerContainer {...props} />
+  if (FORCE_ERROR) return <AnswerWrapperStyle />
+  return <InputContainer {...props} />
 }

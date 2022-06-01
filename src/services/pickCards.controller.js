@@ -3,7 +3,7 @@ import { useCallback, useState } from "react"
 import { databaseParams, ignoreCards } from "../assets/constants"
 import { newGame, clearGame, loadEncrypted } from "./subservices/storage.services"
 import useFetchImages from "./subservices/images.controller"
-import getErrorMsg from "../assets/errors"
+import getErrorMsg, { FORCE_ERROR } from "../assets/errors"
 
 
 // Rules for ignoring cards
@@ -49,7 +49,7 @@ export default function useGetCards() {
   const [ fetchCards, { error: cardErr } ] = useLazyQuery(databaseParams.query, { onError: console.error })
   
   const getCards = useCallback((setCode, cardCount, forceRefetch = true) => {
-    if (!setCode) return
+    if (!setCode || FORCE_ERROR) return
     setLoading(true)
     
     if (!forceRefetch) {
@@ -85,7 +85,7 @@ export default function useGetCards() {
   return [{
     images, cards,
     loading, background,
-    error: !cardErr && !imgErr && (loading || cards?.length) ? undefined :
+    error: !FORCE_ERROR && !cardErr && !imgErr && (loading || cards?.length) ? undefined : FORCE_ERROR ||
       `Error picking cards: ${getErrorMsg(cardErr,imgErr) || 'Cards not found!'}`
   }, getCards]
 }

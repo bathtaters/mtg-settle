@@ -2,12 +2,15 @@ import { useCallback, useEffect, useState } from "react"
 import setList from "../assets/setList.json"
 import { setInfoURL, setSymbolKey } from "../assets/constants"
 import { loadEncrypted, updateSolution } from "./subservices/storage.services"
+import { FORCE_ERROR } from "../assets/errors"
 
 // Get random set
 const getRandomEntry = (array) => updateSolution(array[Math.floor(Math.random() * array.length)])
 
 // Fetch set symbol
 async function fetchSymbol(setCode, callback) {
+  if (FORCE_ERROR) return null
+
   // Get setData
   const setData = await fetch(setInfoURL(setCode)).then((res) => res.json())
   if (!setData?.[setSymbolKey]) return console.warn("Set unable to be downloaded")
@@ -28,6 +31,7 @@ export default function usePickSet() {
   
   // Pick random set
   const pickNewSet = useCallback(() => {
+    if (FORCE_ERROR) throw new Error(FORCE_ERROR)
     const newSet = getRandomEntry(setList)
     updateSetData(newSet)
     return newSet
