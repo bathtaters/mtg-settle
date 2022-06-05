@@ -55,11 +55,13 @@ export const NewGameButton = ({ onClick }) => (
 )
 
 // Stats Bar styles
-export const ProgressWrapperStyle = ({ children }) => (
+export const ProgressWrapperStyle = ({ title, children }) => (
   <div className="
-    grid grid-cols-stats gap-2 p-4 sm:p-6 my-2 w-64 sm:w-80 max-w-[85vw] text-secondary-content font-sans 
-    artboard-demo bg-secondary-focus shadow shadow-black
+    grid grid-cols-stats gap-2 font-sans w-64 sm:w-80 max-w-full my-2
+    px-4 pt-2 pb-4 sm:px-6 sm:pb-6 sm:pt-3
+    artboard-demo text-secondary-content bg-secondary-focus shadow shadow-black
   ">
+    <h4 className="col-span-2 text-center sm:mb-1 opacity-70">{title}</h4>
     {children}
   </div>
 )
