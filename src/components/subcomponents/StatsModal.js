@@ -34,13 +34,12 @@ export default function StatsModal({ correctGuess, setCode, setAlert, newGame, o
             <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
           </InfoWrapperStyle>
 
-          <ProgressWrapperStyle>
-            <StatsBar label="M" value={guesses[-2] ?? 0} maxValue={maxValue} totalValue={totalGames} />
+          <ProgressWrapperStyle title="Guess Distribution">
             { blankArray.map((_,idx) =>
               <StatsBar
                 key={idx} label={idx+1}
                 value={guesses[idx] ?? 0}
-                totalValue={totalGames} maxValue={maxValue}
+                totalValue={totalWins} maxValue={maxValue}
               />
             ) }
           </ProgressWrapperStyle>
