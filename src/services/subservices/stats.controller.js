@@ -3,14 +3,17 @@ import { getStats } from "./storage.services"
 import shareScore from "./share.services"
 import { modalIds, autoShowStatsDelay } from "../../assets/constants"
 
+const MISSED = "-2"
 
 function calculateStats() {
   const stats = getStats() || {}
 
   // Calculate display stats
-  const maxValue = typeof stats?.guesses === 'object' ? Math.max(0, ...Object.values(stats.guesses)) : 0
+  const maxValue = typeof stats?.guesses === 'object' ? Math.max(
+    0, ...Object.entries(stats.guesses).map(([key,val]) => key === MISSED ? 0 : val)
+  ) : 0
   const totalGames = typeof stats?.guesses === 'object' ? Object.values(stats.guesses).reduce((sum,n) => sum + n, 0) : 0
-  const totalWins = totalGames - (stats?.guesses?.[-2] ?? 0)
+  const totalWins = totalGames - (stats?.guesses?.[MISSED] ?? 0)
   const percentWins = totalGames ? Math.round(100 * totalWins / totalGames) : 0
   return { guesses: stats.guesses || {}, maxValue, totalGames, totalWins, percentWins }
 }
