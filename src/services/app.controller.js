@@ -26,7 +26,7 @@ export default function useAppController() {
   const getGame = () => {
     if (FORCE_ERROR) return setAlert({ message: FORCE_ERROR })
     
-    return fetchAPI('solution', () => newGame(), setAlert).then((data) => {
+    return fetchAPI('solution', () => { newGame(); setModal(null) }, setAlert).then((data) => {
       if (!data) return
       setSolution(data)
       setNextGame(nextGameTime())
