@@ -5,13 +5,11 @@ const storageDefaults = {
   visited: false,
   current: {
     guesses: [],
-    setInfo: null,
-    cards: null,
     correctGuess: -1
   },
   stats: {
     guesses: {}
-  }
+  },
 }
 
 // Exposed services for local storage
@@ -31,32 +29,37 @@ export function isFirstVisit() {
   return !visited
 }
 
-export function newGame(cards) {
-  setLocalVar('current', Object.assign({},
-    storageDefaults.current,
-    { cards: encryptData(cards) },
-    { setInfo: getLocalVar('current')?.setInfo }
-  ))
-  return cards
+export function getCache(key) {
+  const data = getLocalVar(key)
+  if (!data) return
+  if (data.expires && data.expires < Date.now()) return rmvLocalVar(key)
+  if (typeof data.data === 'string') return decryptData(data.data)
+  return data.data
 }
 
-export function clearGame() { return rmvLocalVar('current') }
+export function setCache(key, payload) {
+  if (payload.expiresIn)
+    payload.expires = Date.now() + payload.expiresIn
+  if (payload.secret)
+    payload.data = encryptData(decryptData(payload.data, payload.secret))
+  delete payload.expiresIn
+  delete payload.secret
 
-export function updateSolution(setInfo) {
-  if (!setInfo) return
-  setLocalVar('current', Object.assign({},
-    getLocalVar('current') ?? storageDefaults.current,
-    { setInfo: encryptData(setInfo) }
-  ))
-  return setInfo
+  setLocalVar(key, payload, true)
+}
+
+export function newGame() {
+  setLocalVar('current', storageDefaults.current, true)
 }
 
 export function loadGame() {
   let currentGame = getLocalVar('current')
-  if (!currentGame?.setInfo) return null
-  delete currentGame.setInfo
-  delete currentGame.cards
   return currentGame
+}
+
+export function nextGameTime() {
+  const solution = getLocalVar('solution')
+  return solution?.expires
 }
 
 export function loadEncrypted(key) {
