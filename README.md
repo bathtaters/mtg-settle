@@ -9,11 +9,10 @@ Uses MTGJSON for card & set data, and Scryfall for Artwork
 ---
 
 ### Dev Note
-You must create ./src/assets/credentials.json with your MTGJSON API key[^1].
+You must create ./src/assets/credentials.json with your MTGJSON API key.
 ```json
 {
-  "gqlKey": "Bearer <MTGJSON GraphQL API Key>"
+  "apiKey": "Bearer <API user token>",
+  "apiUrl": "https://<API domain>/api/client/"
 }
 ```
-
-[^1]: See https://mtgjson.com/mtggraphql/ to obtain a key.
