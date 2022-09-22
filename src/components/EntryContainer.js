@@ -6,7 +6,7 @@ import { FORCE_ERROR } from "../assets/errors"
 function AnswerContainer({ setInfo }) {
   return (
     <AnswerWrapperStyle>
-      { setInfo.symbol && <SetSymbolStyle label={setInfo.name} svg={setInfo.symbol} /> }
+      { setInfo.art && <SetSymbolStyle label={setInfo.name} svg={setInfo.art} /> }
       <SetTextStyle>{setInfo.name} [{setInfo.code}]</SetTextStyle>
     </AnswerWrapperStyle>
   )
@@ -29,6 +29,6 @@ function InputContainer({ handleGuess, setList, handleSelect }) {
 
 export default function EntryContainer(props) {
   if (props.correctGuess !== -1) return <AnswerContainer {...props} />
-  if (FORCE_ERROR) return <AnswerWrapperStyle />
+  if (FORCE_ERROR || !props.setInfo?.code) return <AnswerWrapperStyle />
   return <InputContainer {...props} />
 }

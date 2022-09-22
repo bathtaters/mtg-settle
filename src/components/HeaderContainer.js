@@ -1,26 +1,23 @@
+import { useMemo } from "react"
 import HeaderLogo from "../assets/Logo"
-import { InfoIcon, NewGameIcon, StatsIcon } from "./subcomponents/Icons"
+import { InfoIcon, StatsIcon } from "./subcomponents/Icons"
 import { HeaderWrapperStyle, TitleStyle, HeaderPartStyle, ModalOpenButton } from "./styles/HeaderStyles"
-import { modalIds } from "../assets/constants"
+import { modalIds, formatGameDate } from "../assets/constants"
 
-
-export default function HeaderContainer({ newGame, correctGuess, setModal }) {
-  const handleNewGame = () => correctGuess === -1 ? setModal(modalIds.newGame) : newGame()
-
+export default function HeaderContainer({ gameDate, setModal }) {
+  const date = useMemo(() => formatGameDate(gameDate), [gameDate])
+  
   return (<>
     <HeaderWrapperStyle>
       <HeaderPartStyle isLeft={true}>
         <ModalOpenButton onClick={() => setModal(modalIds.about)} tip="About"><InfoIcon /></ModalOpenButton>
       </HeaderPartStyle>
 
-      <TitleStyle label="Settle"><HeaderLogo /></TitleStyle>
+      <TitleStyle label="Settle" date={date}><HeaderLogo /></TitleStyle>
 
       <HeaderPartStyle isLeft={false}>
-        <ModalOpenButton onClick={handleNewGame} tip="New Game"><NewGameIcon /></ModalOpenButton>
         <ModalOpenButton onClick={() => setModal(modalIds.stats)} tip="Stats"><StatsIcon /></ModalOpenButton>
       </HeaderPartStyle>
     </HeaderWrapperStyle>
-
-    
   </>)
 }

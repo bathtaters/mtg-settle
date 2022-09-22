@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react"
 import { maxGuessCount } from "../assets/constants"
 import { useHotkeys } from "../components/subcomponents/SuggestText/services/suggestText.utils"
 
-export default function useArtController({ images, cards, loading, error }, currentGuess, correctGuess, ignoreHotkeys) {
+export default function useArtController(cards, currentGuess, correctGuess, ignoreHotkeys) {
   // Control carousel index
   const [selectedIdx, setSelectedIdx] = useState(correctGuess < 0 ? currentGuess : correctGuess)
 
@@ -31,5 +31,5 @@ export default function useArtController({ images, cards, loading, error }, curr
     swipeable: false,
   }
 
-  return { images, cards, carouselProps, disableNext, maxVisible, onSwipe, loading, error }
+  return { carouselProps, disableNext, maxVisible, onSwipe, loading: !cards || !cards.length }
 }
