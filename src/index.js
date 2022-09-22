@@ -5,15 +5,12 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import App from './components/App';
 import reportWebVitals from './services/subservices/reportWebVitals';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
-import CardProvider from './services/subservices/dbQuery.services';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <CardProvider>
         <App />
-      </CardProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );
@@ -21,4 +18,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// reportWebVitals();
