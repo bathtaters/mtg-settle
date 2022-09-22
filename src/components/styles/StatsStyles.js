@@ -1,4 +1,4 @@
-import { ShareIcon, NewGameIcon } from "../subcomponents/Icons"
+import { ShareIcon } from "../subcomponents/Icons"
 
 // Main Stats Modal styles
 export const StatsWrapperStyle = ({ id, children }) => (
@@ -48,10 +48,13 @@ export const ShareButton = ({ onClick }) => (
   </StatsButton>
 )
 
-export const NewGameButton = ({ onClick }) => (
-  <StatsButton onClick={onClick} label="New Game">
-    <NewGameIcon className="fill-current w-auto h-full py-2 pl-1 sm:pl-0 sm:py-3" />
-  </StatsButton>
+export const StatsTimerStyle = ({ label, children }) => (
+  <div className="card bg-secondary text-secondary-content font-sans w-full sm:w-auto opacity-80">
+    <div className="card-body p-4 gap-2 justify-center flex-row items-baseline sm:flex-col sm:gap-1 sm:items-center">
+      <div className="card-title justify-center">{label}</div>
+      <div className="text-base sm:text-xl w-auto sm:w-full">{children}</div>
+    </div>
+  </div>
 )
 
 // Stats Bar styles
