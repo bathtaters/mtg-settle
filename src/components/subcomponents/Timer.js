@@ -12,7 +12,7 @@ export function Timer({ deadline }) {
     const [time, setTime] = useState(deadline - Date.now())
 
     useEffect(() => {
-      const interval = setInterval(() => setTime(deadline - Date.now()), 1000)
+      const interval = setInterval(() => setTime(Math.max(0, deadline - Date.now())), 1000)
       return () => clearInterval(interval)
     }, [deadline])
 
