@@ -48,7 +48,7 @@ export default function useSwipeController(
     element.current.style.transform = 'translate(0px,0px)' // Reset position
     
     // Detect multi-touch AKA pinch event
-    const timestamp = new Date().getTime()
+    const timestamp = Date.now()
     if (getMultitouch(ev?.changedTouches?.length, timestamp, start.current[2]))
       return setMultitouch(true)
 
@@ -67,7 +67,7 @@ export default function useSwipeController(
     if (isMultitouch) return setMultitouch(false) // Ignore multi-touch
 
     // Check time difference
-    const duration = (new Date().getTime()) - start.current[2]
+    const duration = Date.now() - start.current[2]
     if (maxTime >= 0 && duration > maxTime) return
 
     // Get movement vectors
@@ -96,7 +96,7 @@ export default function useSwipeController(
     if (isMultitouch) return
 
     // Ignore if touch is too long (Check maxTime)
-    if (maxTime >= 0 && (new Date().getTime()) - start.current[2] > maxTime) return
+    if (maxTime >= 0 && Date.now() - start.current[2] > maxTime) return
 
     // Ignore opposite axis when animating along single-axis
     const offset = [getX(ev) - start.current[0], getY(ev) - start.current[1]]

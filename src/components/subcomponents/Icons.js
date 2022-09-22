@@ -42,20 +42,6 @@ export function NewWindowIcon({ className = "fill-current w-full h-auto" }) {
   )
 }
 
-export function NewGameIcon({ className = "fill-current w-full h-auto" }) {
-  return (
-    <svg className={className} aria-label="New Game" viewBox="0 0 752 752" role="img" xmlns="http://www.w3.org/2000/svg" >
-      <path
-        d="m522.81 281.29v-137.34h-374.13v449.9h374.13v-132.6h-37.887v94.715h-298.36v-374.13h298.36v99.453zm-165.75 94.715c0
-        15.691-12.727 28.414-28.414 28.414-15.691 0-28.414-12.727-28.414-28.414 0-15.691 12.727-28.414 28.414-28.414s28.414 12.727
-        28.414 28.414zm85.246 0c0 15.691-12.727 28.414-28.414 28.414-15.691 0-28.414-12.727-28.414-28.414 0-15.691 12.727-28.414
-        28.414-28.414s28.414 12.727 28.414 28.414zm80.508 0c0 15.691-12.727 28.414-28.414 28.414-15.691 0-28.414-12.727-28.414-28.414
-        0-15.691 12.727-28.414 28.414-28.414s28.414 12.727 28.414 28.414z"
-      />
-    </svg>
-  )
-}
-
 export function StatsIcon({ className = "fill-current w-full h-auto" }) {
   return (
     <svg className={className} aria-label="Stats" viewBox="0 0 294 244" role="img" xmlns="http://www.w3.org/2000/svg" >
