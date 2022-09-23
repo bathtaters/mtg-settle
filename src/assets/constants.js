@@ -22,6 +22,7 @@ export const shareDefaults = {
   url: "https://settle.gg",
   text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
   copyMsg: { message: "Copied link to clipboard", className: "alert-info", Icon: InfoIcon },
+  failMsg: { message: "Clipboard access disabled by browser", className: "alert-warning", Icon: WarningIcon },
 }
 export const shareChars = { wrong: "🟥", right: "🟩", empty: "⬛" }
 
