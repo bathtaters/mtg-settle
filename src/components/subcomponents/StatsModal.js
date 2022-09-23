@@ -21,11 +21,11 @@ function StatsBar({ label, value, maxValue, totalValue }) {
 }
 
 
-export default function StatsModal({ correctGuess, setCode, setAlert, nextGame, openModal, setModal, getNextGame }) {
+export default function StatsModal({ correctGuess, currentGuesses, date, setAlert, nextGame, getNextGame, openModal, setModal }) {
 
   const [
     { guesses, maxValue, totalGames, totalWins, percentWins }, share
-  ] = useStatsController(correctGuess, setCode, setAlert, setModal)  
+  ] = useStatsController(currentGuesses, correctGuess, date, setAlert, setModal)  
 
   return (
     <ModalBase title="Stats" modalId={modalIds.stats} openModal={openModal} setModal={setModal}

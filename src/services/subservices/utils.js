@@ -5,3 +5,8 @@ export const reorderArray = (array, colCount) => {
     return result
   }, [])
 }
+
+export const adaptGuess = (guess, correctBlock) => ({
+  text: guess && guess.name.trim(),
+  partial: correctBlock && guess?.block ? guess.block === correctBlock : false
+})

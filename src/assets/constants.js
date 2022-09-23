@@ -20,11 +20,11 @@ export const formatGameDate = (date) => date && new Date(date+'T00:00:00').toLoc
 export const shareDefaults = {
   title: "MtG Settle share",
   url: "https://settle.gg",
-  text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
+  text: (date) => `MtG Settle ${date || new Date().toJSON().slice(5,10)}:`,
   copyMsg: { message: "Copied link to clipboard", className: "alert-info", Icon: InfoIcon },
   failMsg: { message: "Clipboard access disabled by browser", className: "alert-warning", Icon: WarningIcon },
 }
-export const shareChars = { wrong: "🟥", right: "🟩", empty: "⬛" }
+export const shareChars = { wrong: "🟥", skip: "🟥", right: "🟩", partial: "🟨", empty: "⬛" }
 
 // Modal options
 export const modalIds = { about: "about-modal", stats: "stats-modal" }
@@ -37,6 +37,7 @@ export const guessOptions = [
   { mark: null, color: "" },
   { mark: "✓",  color: "badge-success" },
   { mark: "✕",  color: "badge-error" },
+  { mark: "–",  color: "badge-warning" },
 ]
 export const skippedMessage = 'Skipped'
 

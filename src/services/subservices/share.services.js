@@ -1,4 +1,5 @@
-import { shareDefaults, shareChars, maxGuessCount } from "../../assets/constants"
+import { shareDefaults, shareChars } from "../../assets/constants"
+import { blankArray }  from "../app.controller"
 
 async function shareData(text, title = shareDefaults.title, url = shareDefaults.url) {
   const canShare = Boolean(window.navigator.share)
@@ -10,14 +11,14 @@ async function shareData(text, title = shareDefaults.title, url = shareDefaults.
   return !canShare && shareDefaults.copyMsg
 }
 
-const repeatChar = (char, count) => [...Array(count)].map(() => char).join('')
-
-const shareScore = (guessCount, setCode, setAlert) => shareData(
-  `${shareDefaults.text(setCode)}\n${
-    guessCount < 0 ?
-      repeatChar(shareChars.wrong, maxGuessCount) :
-      repeatChar(shareChars.wrong, guessCount) + shareChars.right + repeatChar(shareChars.empty, maxGuessCount - guessCount - 1)
-  }\n`
+const shareScore = (guesses, guessCount, date, setAlert) => shareData(
+  `${shareDefaults.text(date)}\n${blankArray.map((_,idx) =>
+      guessCount === idx ? shareChars.right :
+      !guesses[idx] ? shareChars.empty :
+      !guesses[idx].text ? shareChars.skip :
+      guesses[idx].partial ? shareChars.partial :
+      shareChars.wrong
+  ).join('')}\n`
 ).then((feedback) => feedback && setAlert && setAlert(feedback))
 
 export default shareScore

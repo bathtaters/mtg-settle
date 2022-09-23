@@ -32,8 +32,9 @@ function App() {
         <Alert {...alertObj} setAlert={setAlert} />
         <AboutModal openModal={openModal} setModal={setModal} />
         <StatsModal
-          correctGuess={correctGuess} nextGame={nextGame} getNextGame={getGame}
-          setCode={solution.setInfo.code} setAlert={setAlert}
+          correctGuess={correctGuess} currentGuesses={guesses}
+          nextGame={nextGame} getNextGame={getGame}
+          date={solution.date} setAlert={setAlert}
           openModal={openModal} setModal={setModal}
         />
 

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
+import { adaptGuess } from './subservices/utils'
 import { maxGuessCount, illegalGuessMsg } from "../assets/constants"
 import { FORCE_ERROR } from "../assets/errors"
 import fetchAPI from "./subservices/fetch.service"
@@ -54,13 +55,13 @@ export default function useAppController() {
     // Game is over
     else if (guesses.length + 1 === maxGuessCount) setCorrect(endGame(-2))
     // Update guess list
-    setGuesses((state) => updateGuesses(state.concat(picked && picked.name.trim())))
+    setGuesses((state) => updateGuesses(state.concat(adaptGuess(picked, solution.setInfo.block))))
     
-  }, [solution.setInfo.code, guesses.length])
+  }, [solution.setInfo.code, solution.setInfo.block, guesses.length])
 
   // Create list for auto-complete
   // eslint-disable-next-line
-  const setList = useMemo(() => allSets.filter(({ name }) => !guesses.includes(name)), [guesses.length, allSets.length])
+  const setList = useMemo(() => allSets.filter(({ name }) => !guesses.some(({ text }) => text === name)), [guesses.length, allSets.length])
 
   // Set if we should ignore ArtBox hotkeys (left/right arrow)
   const handleSelect = (isFocused) => { setIgnoreKeys(isFocused || Boolean(openModal)) }

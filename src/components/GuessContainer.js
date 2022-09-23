@@ -4,13 +4,13 @@ import { blankArray } from "../services/app.controller"
 
 
 function GuessEntry({ guess, isCorrect, idx }) {
-  const optionIdx = guess == null ? 0 : isCorrect ? 1 : 2
+  const optionIdx = !guess ? 0 : isCorrect ? 1 : guess.partial ? 3 : 2
 
-  if (guess == null) return <GuessStyle {...guessOptions[optionIdx]} idx={idx} />
+  if (!guess) return <GuessStyle {...guessOptions[optionIdx]} idx={idx} />
 
   return (
     <GuessStyle {...guessOptions[optionIdx]} idx={idx}>
-      {guess ? guess : <SkippedGuessStyle>{skippedMessage}</SkippedGuessStyle>}
+      {guess.text ? guess.text : <SkippedGuessStyle>{skippedMessage}</SkippedGuessStyle>}
     </GuessStyle>
   )
 }
@@ -20,7 +20,7 @@ export default function GuessContainer({ guesses, correctGuess }) {
   return (
     <GuessWrapperStyle>
       { blankArray.map((_,idx) => (
-        <GuessEntry guess={guesses[idx]} isCorrect={correctGuess === idx} idx={idx} key={guesses[idx] || idx} />
+        <GuessEntry guess={guesses[idx]} isCorrect={correctGuess === idx} idx={idx} key={idx} />
       )) }
     </GuessWrapperStyle>
   )
