@@ -26,6 +26,8 @@
 
     .btn { @apply font-sans; }
 
+    .btn-inactive { @apply opacity-80 pointer-events-none cursor-default; }
+
     /* Fix focus styling on ghost buttons (Modal X button) */
     .btn.btn-ghost:focus-visible { @apply outline-none bg-gray-500/40; }
 

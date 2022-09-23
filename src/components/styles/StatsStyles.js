@@ -1,4 +1,4 @@
-import { ShareIcon } from "../subcomponents/Icons"
+import { ShareIcon, NewGameIcon } from "../subcomponents/Icons"
 
 // Main Stats Modal styles
 export const StatsWrapperStyle = ({ id, children }) => (
@@ -28,11 +28,12 @@ export const StatsButtonWrapper = ({ children }) => (
 )
 
 const StatsButton = ({ onClick, label, children }) => (
-  <button type="button" onClick={onClick} className="
-    btn btn-secondary w-full sm:w-auto btn-md sm:btn-lg
-    flex flex-wrap-reverse gap-0 sm:gap-4 place-content-start justify-center
-  ">
-    <span className="text-lg sm:text-2xl">{label}</span>
+  <button type="button" onClick={onClick} className={` 
+    btn btn-secondary w-full sm:w-auto btn-md sm:btn-lg 
+    flex flex-wrap-reverse gap-0 sm:gap-4 place-content-start justify-center 
+    ${!onClick ? 'btn-inactive' : ''}
+  `}>
+    {!!label && <span className="text-lg sm:text-2xl">{label}</span>}
     {children}
   </button>
 )
@@ -48,13 +49,20 @@ export const ShareButton = ({ onClick }) => (
   </StatsButton>
 )
 
+export const NewGameButton = ({ onClick }) => (
+  <StatsButton onClick={onClick} label="New Game">
+    <NewGameIcon className="fill-current w-auto h-full py-2 pl-1 sm:pl-0 sm:py-3" />
+  </StatsButton>
+)
+
 export const StatsTimerStyle = ({ label, children }) => (
-  <div className="card bg-secondary text-secondary-content font-sans w-full sm:w-auto opacity-80">
-    <div className="card-body p-4 gap-2 justify-center flex-row items-baseline sm:flex-col sm:gap-1 sm:items-center">
-      <div className="card-title justify-center">{label}</div>
-      <div className="text-base sm:text-xl w-auto sm:w-full">{children}</div>
+  <StatsButton>
+    <div className="flex flex-row sm:flex-col justify-center items-center gap-2 sm:gap-1">
+      <div className="font-sans uppercase">{label}</div>
+      <div className="font-mono font-light">{children}</div>
     </div>
-  </div>
+    <NewGameIcon className="fill-current w-auto h-full py-2 pl-1 sm:pl-0 sm:py-3" />
+  </StatsButton>
 )
 
 // Stats Bar styles
