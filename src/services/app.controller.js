@@ -68,7 +68,7 @@ export default function useAppController() {
 
   return {
     solution, guesses, correctGuess,
-    nextGame, ignoreHotkeys,
+    nextGame, ignoreHotkeys, getGame,
     alertObj, setAlert,
     openModal, setModal,
     entryProps: { setList, setInfo: solution.setInfo, handleGuess, handleSelect }

@@ -13,6 +13,7 @@ function App() {
     entryProps, solution,
     guesses, correctGuess,
     nextGame, ignoreHotkeys,
+    getGame,
     openModal, setModal,
     alertObj, setAlert,
   } = useAppController()  
@@ -31,7 +32,7 @@ function App() {
         <Alert {...alertObj} setAlert={setAlert} />
         <AboutModal openModal={openModal} setModal={setModal} />
         <StatsModal
-          correctGuess={correctGuess} nextGame={nextGame}
+          correctGuess={correctGuess} nextGame={nextGame} getNextGame={getGame}
           setCode={solution.setInfo.code} setAlert={setAlert}
           openModal={openModal} setModal={setModal}
         />

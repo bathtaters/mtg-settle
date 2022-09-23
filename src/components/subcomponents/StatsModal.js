@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import {
   StatsWrapperStyle, InfoWrapperStyle, InfoItemStyle, StatsButtonWrapper,
-  StatsDivider, ShareButton, StatsTimerStyle,
+  StatsDivider, ShareButton, NewGameButton, StatsTimerStyle,
   ProgressWrapperStyle, TooltipStyle, ProgressStyle
 } from "../styles/StatsStyles"
 import ModalBase from "./Modal/ModalBase"
@@ -21,7 +21,7 @@ function StatsBar({ label, value, maxValue, totalValue }) {
 }
 
 
-export default function StatsModal({ correctGuess, setCode, setAlert, nextGame, openModal, setModal }) {
+export default function StatsModal({ correctGuess, setCode, setAlert, nextGame, openModal, setModal, getNextGame }) {
 
   const [
     { guesses, maxValue, totalGames, totalWins, percentWins }, share
@@ -50,7 +50,11 @@ export default function StatsModal({ correctGuess, setCode, setAlert, nextGame, 
             <StatsDivider />
             <StatsButtonWrapper>
               <ShareButton onClick={share} />
-              <StatsTimerStyle label="Next Game"><Timer deadline={nextGame} /></StatsTimerStyle>
+              {nextGame < Date.now() ?
+                <NewGameButton onClick={getNextGame} />
+                :
+                <StatsTimerStyle label="Next Game"><Timer deadline={nextGame} /></StatsTimerStyle>
+              }
             </StatsButtonWrapper>
           </>}
         </StatsWrapperStyle>
