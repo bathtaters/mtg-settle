@@ -23,7 +23,7 @@ export const ModalOpenButton = ({ onClick, tip, children }) => {
     >
       <button
         type="button" onClick={onClick} aria-label={tip}
-        className="modal-button btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1 z-30"
+        className="modal-button btn btn-circle btn-secondary btn-sm sm:btn-md mx-1 p-1 sm:p-1 sm:w-12 z-30"
       >
         {/* <span className="hidden">{tip}</span> */}
         {children}
