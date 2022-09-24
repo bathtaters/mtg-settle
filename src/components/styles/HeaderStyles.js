@@ -1,15 +1,15 @@
 
 export const HeaderWrapperStyle = ({ children }) => (
-  <div className="p-1 sm:p-3 bg-base-200 w-full">
+  <div className="p-0 sm:p-1 mb-1 sm:mb-2 bg-base-200 w-full">
     <nav className="navbar justify-center w-full max-w-4xl m-auto">{children}</nav>
   </div>
 )
 
 export const TitleStyle = ({ label, date, children }) => (
-  <header className="navbar-center flex flex-col">
+  <header className="navbar-center flex flex-col gap-1">
     <h1 className="hidden">{label}</h1>
     <div>{children}</div>
-    <div className="mt-1 text-lg sm:text-2xl">{date}</div>
+    <div className="text-lg sm:text-2xl">{date}</div>
   </header>
 )
 
