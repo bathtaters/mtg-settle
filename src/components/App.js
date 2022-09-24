@@ -34,7 +34,8 @@ function App() {
         <AboutModal openModal={openModal} setModal={setModal} />
         <NewGameModal newGame={newGame} correctGuess={correctGuess} openModal={openModal} setModal={setModal} />
         <StatsModal
-          newGame={newGame} correctGuess={correctGuess}
+          newGame={newGame}
+          correctGuess={correctGuess} currentGuesses={guesses}
           setCode={setInfo.code} setAlert={setAlert}
           openModal={openModal} setModal={setModal}
         />

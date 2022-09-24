@@ -1,279 +1,457 @@
 [
   {
     "code": "AFR",
-    "name": "Adventures in the Forgotten Realms"
-  },{
+    "name": "Adventures in the Forgotten Realms",
+    "block": null
+  },
+  {
     "code": "AER",
-    "name": "Aether Revolt"
-  },{
+    "name": "Aether Revolt",
+    "block": "Kaladesh"
+  },
+  {
     "code": "ARB",
-    "name": "Alara Reborn"
-  },{
+    "name": "Alara Reborn",
+    "block": "Alara"
+  },
+  {
     "code": "ALL",
-    "name": "Alliances"
-  },{
+    "name": "Alliances",
+    "block": "Ice Age"
+  },
+  {
     "code": "AKH",
-    "name": "Amonkhet"
-  },{
+    "name": "Amonkhet",
+    "block": "Amonkhet"
+  },
+  {
     "code": "ATQ",
-    "name": "Antiquities"
-  },{
+    "name": "Antiquities",
+    "block": null
+  },
+  {
     "code": "APC",
-    "name": "Apocalypse"
-  },{
+    "name": "Apocalypse",
+    "block": "Invasion"
+  },
+  {
     "code": "ARN",
-    "name": "Arabian Nights"
-  },{
+    "name": "Arabian Nights",
+    "block": null
+  },
+  {
     "code": "AVR",
-    "name": "Avacyn Restored"
-  },{
+    "name": "Avacyn Restored",
+    "block": "Innistrad"
+  },
+  {
     "code": "BFZ",
-    "name": "Battle for Zendikar"
-  },{
+    "name": "Battle for Zendikar",
+    "block": "Battle for Zendikar"
+  },
+  {
     "code": "BOK",
-    "name": "Betrayers of Kamigawa"
-  },{
+    "name": "Betrayers of Kamigawa",
+    "block": "Kamigawa"
+  },
+  {
     "code": "BNG",
-    "name": "Born of the Gods"
-  },{
+    "name": "Born of the Gods",
+    "block": "Theros"
+  },
+  {
     "code": "CHK",
-    "name": "Champions of Kamigawa"
-  },{
+    "name": "Champions of Kamigawa",
+    "block": "Kamigawa"
+  },
+  {
     "code": "CSP",
-    "name": "Coldsnap"
-  },{
+    "name": "Coldsnap",
+    "block": "Ice Age"
+  },
+  {
     "code": "CON",
-    "name": "Conflux"
-  },{
+    "name": "Conflux",
+    "block": "Alara"
+  },
+  {
     "code": "DKA",
-    "name": "Dark Ascension"
-  },{
+    "name": "Dark Ascension",
+    "block": "Innistrad"
+  },
+  {
     "code": "DST",
-    "name": "Darksteel"
-  },{
+    "name": "Darksteel",
+    "block": "Mirrodin"
+  },
+  {
     "code": "DIS",
-    "name": "Dissension"
-  },{
+    "name": "Dissension",
+    "block": "Ravnica"
+  },
+  {
     "code": "DOM",
-    "name": "Dominaria"
-  },{
+    "name": "Dominaria",
+    "block": null
+  },
+  {
     "code": "DGM",
-    "name": "Dragon's Maze"
-  },{
+    "name": "Dragon's Maze",
+    "block": "Return to Ravnica"
+  },
+  {
     "code": "DTK",
-    "name": "Dragons of Tarkir"
-  },{
+    "name": "Dragons of Tarkir",
+    "block": "Khans of Tarkir"
+  },
+  {
     "code": "EMN",
-    "name": "Eldritch Moon"
-  },{
+    "name": "Eldritch Moon",
+    "block": "Shadows over Innistrad"
+  },
+  {
     "code": "EVE",
-    "name": "Eventide"
-  },{
+    "name": "Eventide",
+    "block": "Shadowmoor"
+  },
+  {
     "code": "EXO",
-    "name": "Exodus"
-  },{
+    "name": "Exodus",
+    "block": "Tempest"
+  },
+  {
     "code": "FEM",
-    "name": "Fallen Empires"
-  },{
+    "name": "Fallen Empires",
+    "block": null
+  },
+  {
     "code": "FRF",
-    "name": "Fate Reforged"
-  },{
+    "name": "Fate Reforged",
+    "block": "Khans of Tarkir"
+  },
+  {
     "code": "5DN",
-    "name": "Fifth Dawn"
-  },{
+    "name": "Fifth Dawn",
+    "block": "Mirrodin"
+  },
+  {
     "code": "FUT",
-    "name": "Future Sight"
-  },{
+    "name": "Future Sight",
+    "block": "Time Spiral"
+  },
+  {
     "code": "GTC",
-    "name": "Gatecrash"
-  },{
+    "name": "Gatecrash",
+    "block": "Return to Ravnica"
+  },
+  {
     "code": "GPT",
-    "name": "Guildpact"
-  },{
+    "name": "Guildpact",
+    "block": "Ravnica"
+  },
+  {
     "code": "GRN",
-    "name": "Guilds of Ravnica"
-  },{
+    "name": "Guilds of Ravnica",
+    "block": "Guilds of Ravnica"
+  },
+  {
     "code": "HML",
-    "name": "Homelands"
-  },{
+    "name": "Homelands",
+    "block": null
+  },
+  {
     "code": "HOU",
-    "name": "Hour of Devastation"
-  },{
+    "name": "Hour of Devastation",
+    "block": "Amonkhet"
+  },
+  {
     "code": "ICE",
-    "name": "Ice Age"
-  },{
+    "name": "Ice Age",
+    "block": "Ice Age"
+  },
+  {
     "code": "IKO",
-    "name": "Ikoria: Lair of Behemoths"
-  },{
+    "name": "Ikoria: Lair of Behemoths",
+    "block": null
+  },
+  {
     "code": "ISD",
-    "name": "Innistrad"
-  },{
+    "name": "Innistrad",
+    "block": "Innistrad"
+  },
+  {
     "code": "VOW",
-    "name": "Innistrad: Crimson Vow"
-  },{
+    "name": "Innistrad: Crimson Vow",
+    "block": "Innistrad: Double Feature"
+  },
+  {
     "code": "MID",
-    "name": "Innistrad: Midnight Hunt"
-  },{
+    "name": "Innistrad: Midnight Hunt",
+    "block": "Innistrad: Double Feature"
+  },
+  {
     "code": "INV",
-    "name": "Invasion"
-  },{
+    "name": "Invasion",
+    "block": "Invasion"
+  },
+  {
     "code": "XLN",
-    "name": "Ixalan"
-  },{
+    "name": "Ixalan",
+    "block": "Ixalan"
+  },
+  {
     "code": "JOU",
-    "name": "Journey into Nyx"
-  },{
+    "name": "Journey into Nyx",
+    "block": "Theros"
+  },
+  {
     "code": "JUD",
-    "name": "Judgment"
-  },{
+    "name": "Judgment",
+    "block": "Odyssey"
+  },
+  {
     "code": "KLD",
-    "name": "Kaladesh"
-  },{
+    "name": "Kaladesh",
+    "block": "Kaladesh"
+  },
+  {
     "code": "KHM",
-    "name": "Kaldheim"
-  },{
-    "code": "NEO",
-    "name": "Kamigawa: Neon Dynasty"
-  },{
+    "name": "Kaldheim",
+    "block": null
+  },
+  {
     "code": "KTK",
-    "name": "Khans of Tarkir"
-  },{
+    "name": "Khans of Tarkir",
+    "block": "Khans of Tarkir"
+  },
+  {
     "code": "LEG",
-    "name": "Legends"
-  },{
+    "name": "Legends",
+    "block": null
+  },
+  {
     "code": "LGN",
-    "name": "Legions"
-  },{
+    "name": "Legions",
+    "block": "Onslaught"
+  },
+  {
     "code": "LRW",
-    "name": "Lorwyn"
-  },{
+    "name": "Lorwyn",
+    "block": "Lorwyn"
+  },
+  {
     "code": "MMQ",
-    "name": "Mercadian Masques"
-  },{
+    "name": "Mercadian Masques",
+    "block": "Masques"
+  },
+  {
     "code": "MIR",
-    "name": "Mirage"
-  },{
+    "name": "Mirage",
+    "block": "Mirage"
+  },
+  {
     "code": "MRD",
-    "name": "Mirrodin"
-  },{
+    "name": "Mirrodin",
+    "block": "Mirrodin"
+  },
+  {
     "code": "MBS",
-    "name": "Mirrodin Besieged"
-  },{
+    "name": "Mirrodin Besieged",
+    "block": "Scars of Mirrodin"
+  },
+  {
     "code": "MOR",
-    "name": "Morningtide"
-  },{
+    "name": "Morningtide",
+    "block": "Lorwyn"
+  },
+  {
     "code": "NEM",
-    "name": "Nemesis"
-  },{
+    "name": "Nemesis",
+    "block": "Masques"
+  },
+  {
     "code": "NPH",
-    "name": "New Phyrexia"
-  },{
+    "name": "New Phyrexia",
+    "block": "Scars of Mirrodin"
+  },
+  {
     "code": "OGW",
-    "name": "Oath of the Gatewatch"
-  },{
+    "name": "Oath of the Gatewatch",
+    "block": "Battle for Zendikar"
+  },
+  {
     "code": "ODY",
-    "name": "Odyssey"
-  },{
+    "name": "Odyssey",
+    "block": "Odyssey"
+  },
+  {
     "code": "ONS",
-    "name": "Onslaught"
-  },{
+    "name": "Onslaught",
+    "block": "Onslaught"
+  },
+  {
     "code": "PLC",
-    "name": "Planar Chaos"
-  },{
+    "name": "Planar Chaos",
+    "block": "Time Spiral"
+  },
+  {
     "code": "PLS",
-    "name": "Planeshift"
-  },{
+    "name": "Planeshift",
+    "block": "Invasion"
+  },
+  {
     "code": "PCY",
-    "name": "Prophecy"
-  },{
+    "name": "Prophecy",
+    "block": "Masques"
+  },
+  {
     "code": "RNA",
-    "name": "Ravnica Allegiance"
-  },{
+    "name": "Ravnica Allegiance",
+    "block": "Guilds of Ravnica"
+  },
+  {
     "code": "RAV",
-    "name": "Ravnica: City of Guilds"
-  },{
+    "name": "Ravnica: City of Guilds",
+    "block": "Ravnica"
+  },
+  {
     "code": "RTR",
-    "name": "Return to Ravnica"
-  },{
+    "name": "Return to Ravnica",
+    "block": "Return to Ravnica"
+  },
+  {
     "code": "ROE",
-    "name": "Rise of the Eldrazi"
-  },{
+    "name": "Rise of the Eldrazi",
+    "block": "Zendikar"
+  },
+  {
     "code": "RIX",
-    "name": "Rivals of Ixalan"
-  },{
+    "name": "Rivals of Ixalan",
+    "block": "Ixalan"
+  },
+  {
     "code": "SOK",
-    "name": "Saviors of Kamigawa"
-  },{
+    "name": "Saviors of Kamigawa",
+    "block": "Kamigawa"
+  },
+  {
     "code": "SOM",
-    "name": "Scars of Mirrodin"
-  },{
+    "name": "Scars of Mirrodin",
+    "block": "Scars of Mirrodin"
+  },
+  {
     "code": "SCG",
-    "name": "Scourge"
-  },{
+    "name": "Scourge",
+    "block": "Onslaught"
+  },
+  {
     "code": "SHM",
-    "name": "Shadowmoor"
-  },{
+    "name": "Shadowmoor",
+    "block": "Shadowmoor"
+  },
+  {
     "code": "SOI",
-    "name": "Shadows over Innistrad"
-  },{
+    "name": "Shadows over Innistrad",
+    "block": "Shadows over Innistrad"
+  },
+  {
     "code": "ALA",
-    "name": "Shards of Alara"
-  },{
+    "name": "Shards of Alara",
+    "block": "Alara"
+  },
+  {
     "code": "STX",
-    "name": "Strixhaven: School of Mages"
-  },{
+    "name": "Strixhaven: School of Mages",
+    "block": null
+  },
+  {
     "code": "STH",
-    "name": "Stronghold"
-  },{
+    "name": "Stronghold",
+    "block": "Tempest"
+  },
+  {
     "code": "TMP",
-    "name": "Tempest"
-  },{
+    "name": "Tempest",
+    "block": "Tempest"
+  },
+  {
     "code": "DRK",
-    "name": "The Dark"
-  },{
+    "name": "The Dark",
+    "block": null
+  },
+  {
     "code": "THS",
-    "name": "Theros"
-  },{
+    "name": "Theros",
+    "block": "Theros"
+  },
+  {
     "code": "THB",
-    "name": "Theros Beyond Death"
-  },{
+    "name": "Theros Beyond Death",
+    "block": null
+  },
+  {
     "code": "ELD",
-    "name": "Throne of Eldraine"
-  },{
+    "name": "Throne of Eldraine",
+    "block": null
+  },
+  {
     "code": "TSP",
-    "name": "Time Spiral"
-  },{
+    "name": "Time Spiral",
+    "block": "Time Spiral"
+  },
+  {
     "code": "TSB",
-    "name": "Time Spiral Timeshifted"
-  },{
+    "name": "Time Spiral Timeshifted",
+    "block": "Time Spiral"
+  },
+  {
     "code": "TOR",
-    "name": "Torment"
-  },{
+    "name": "Torment",
+    "block": "Odyssey"
+  },
+  {
     "code": "UDS",
-    "name": "Urza's Destiny"
-  },{
+    "name": "Urza's Destiny",
+    "block": "Urza"
+  },
+  {
     "code": "ULG",
-    "name": "Urza's Legacy"
-  },{
+    "name": "Urza's Legacy",
+    "block": "Urza"
+  },
+  {
     "code": "USG",
-    "name": "Urza's Saga"
-  },{
+    "name": "Urza's Saga",
+    "block": "Urza"
+  },
+  {
     "code": "VIS",
-    "name": "Visions"
-  },{
+    "name": "Visions",
+    "block": "Mirage"
+  },
+  {
     "code": "WAR",
-    "name": "War of the Spark"
-  },{
+    "name": "War of the Spark",
+    "block": "Guilds of Ravnica"
+  },
+  {
     "code": "WTH",
-    "name": "Weatherlight"
-  },{
+    "name": "Weatherlight",
+    "block": "Mirage"
+  },
+  {
     "code": "WWK",
-    "name": "Worldwake"
-  },{
+    "name": "Worldwake",
+    "block": "Zendikar"
+  },
+  {
     "code": "ZEN",
-    "name": "Zendikar"
-  },{
+    "name": "Zendikar",
+    "block": "Zendikar"
+  },
+  {
     "code": "ZNR",
-    "name": "Zendikar Rising"
+    "name": "Zendikar Rising",
+    "block": null
   }
 ]

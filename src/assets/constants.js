@@ -25,8 +25,9 @@ export const shareDefaults = {
   url: "https://settle.gg",
   text: (setCode) => `MtG Settle [${setCode || 'score'}]:`,
   copyMsg: { message: "Copied link to clipboard", className: "alert-info", Icon: InfoIcon },
+  failMsg: { message: "Clipboard access disabled by browser", className: "alert-warning", Icon: WarningIcon },
 }
-export const shareChars = { wrong: "🟥", right: "🟩", empty: "⬛" }
+export const shareChars = { wrong: "🟥", skip: "🟥", right: "🟩", partial: "🟨", empty: "⬛" }
 
 // Modal options
 export const modalIds = { about: "about-modal", stats: "stats-modal", newGame: "new-game" }
@@ -39,6 +40,7 @@ export const guessOptions = [
   { mark: null, color: "" },
   { mark: "✓",  color: "badge-success" },
   { mark: "✕",  color: "badge-error" },
+  { mark: "–",  color: "badge-warning" },
 ]
 export const skippedMessage = 'Skipped'
 

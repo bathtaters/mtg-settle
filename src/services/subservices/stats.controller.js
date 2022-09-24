@@ -18,7 +18,7 @@ function calculateStats() {
   return { guesses: stats.guesses || {}, maxValue, totalGames, totalWins, percentWins }
 }
 
-export default function useStatsController(correctGuess, setCode, setAlert, setModal) {
+export default function useStatsController(currentGuesses, correctGuess, setCode, setAlert, setModal) {
   // Auto-show Modal when game ends
   useEffect(() => {
     const autoShow = correctGuess !== -1 && setTimeout(() => { setModal(modalIds.stats) }, autoShowStatsDelay)
@@ -30,7 +30,7 @@ export default function useStatsController(correctGuess, setCode, setAlert, setM
   useEffect(() => { setStats(calculateStats()) }, [correctGuess, setCode])
 
   // Share score
-  const share = () => shareScore(correctGuess, setCode, setAlert)
+  const share = () => shareScore(currentGuesses, correctGuess, setCode, setAlert)
 
   return [ stats, share ]
 }
