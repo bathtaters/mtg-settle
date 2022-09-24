@@ -9,7 +9,7 @@ Uses MTGJSON for card & set data, and Scryfall for Artwork
 ---
 
 ### Dev Note
-You must create ./src/assets/credentials.json with your MTGJSON API key.
+You must create ./src/assets/credentials.json with an API key from [the server](https://github.com/bathtaters/mtg-settle-server).
 ```json
 {
   "apiKey": "Bearer <API user token>",
