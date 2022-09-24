@@ -1,6 +1,6 @@
 // Constants
-const storagePrefix = 'mtg-settle-'
-const encryptionSecret = 'GontiIsOurLordAndSavior'
+const storagePrefix = 'mtg-settle-ul-'
+const encryptionSecret = 'GontiIsOurUnlimitedLord'
 const maxCharRange = 0xFF // Latin-1
 
 // Main accessors
