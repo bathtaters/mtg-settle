@@ -37,4 +37,17 @@
     
     /* Lengthen tooltips for Modal buttons */
     .tooltip.tooltip-bottom { --tooltip-tail: 6px; }
+
+    /* Fix Stat colors */
+    .stats.text-primary-content .stat-title,
+    .stats.text-primary-content .stat-desc   { color: hsl(var(--pc) / 0.6); }
+    .stats.text-secondary-content .stat-title,
+    .stats.text-secondary-content .stat-desc { color: hsl(var(--sc) / 0.6); }
+    .stats.text-accent-content .stat-title,
+    .stats.text-accent-content .stat-desc    { color: hsl(var(--ac) / 0.6); }
+
+    /* Colorize imported SVGs */
+    .fill-primary-content path   { fill: var(--pc); }
+    .fill-secondary-content path { fill: var(--sc); }
+    .fill-accent-content path    { fill: var(--ac); }
 }

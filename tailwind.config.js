@@ -4,6 +4,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        '2xs': '0.625rem',
+      },
       fontFamily: {
         serif: [ 'Sorts Mill Goudy', 'serif' ],
         sans: [ 'Poppins', 'sans-serif' ],

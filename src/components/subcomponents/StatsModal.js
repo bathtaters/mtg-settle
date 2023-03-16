@@ -28,37 +28,35 @@ export default function StatsModal({ correctGuess, currentGuesses, date, setAler
   ] = useStatsController(currentGuesses, correctGuess, date, setAlert, setModal)  
 
   return (
-    <ModalBase title="Stats" modalId={modalIds.stats} openModal={openModal} setModal={setModal}
-      renderBody={() => (
-        <StatsWrapperStyle>
-          <InfoWrapperStyle>
-            <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
-            <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
-          </InfoWrapperStyle>
+    <ModalBase title="Stats" modalId={modalIds.stats} openModal={openModal} setModal={setModal}>
+      <StatsWrapperStyle>
+        <InfoWrapperStyle>
+          <InfoItemStyle title="Total Played" value={totalGames} detail="games" />
+          <InfoItemStyle title="Total Solved" value={totalWins} detail={percentWins+'%'} />
+        </InfoWrapperStyle>
 
-          <ProgressWrapperStyle title="Guess Distribution">
-            { blankArray.map((_,idx) =>
-              <StatsBar
-                key={idx} label={idx+1}
-                value={guesses[idx] ?? 0}
-                totalValue={totalWins} maxValue={maxValue}
-              />
-            ) }
-          </ProgressWrapperStyle>
-          
-          {correctGuess !== -1 && <>
-            <StatsDivider />
-            <StatsButtonWrapper>
-              <ShareButton onClick={share} />
-              {nextGame < Date.now() ?
-                <NewGameButton onClick={getNextGame} />
-                :
-                <StatsTimerStyle label="Next Game"><Timer deadline={nextGame} /></StatsTimerStyle>
-              }
-            </StatsButtonWrapper>
-          </>}
-        </StatsWrapperStyle>
-      )}
-    />
+        <ProgressWrapperStyle title="Guess Distribution">
+          { blankArray.map((_,idx) =>
+            <StatsBar
+              key={idx} label={idx+1}
+              value={guesses[idx] ?? 0}
+              totalValue={totalWins} maxValue={maxValue}
+            />
+          ) }
+        </ProgressWrapperStyle>
+        
+        {correctGuess !== -1 && <>
+          <StatsDivider />
+          <StatsButtonWrapper>
+            <ShareButton onClick={share} />
+            {nextGame < Date.now() ?
+              <NewGameButton onClick={getNextGame} />
+              :
+              <StatsTimerStyle label="Next Game"><Timer deadline={nextGame} /></StatsTimerStyle>
+            }
+          </StatsButtonWrapper>
+        </>}
+      </StatsWrapperStyle>
+    </ModalBase>
   )
 }
