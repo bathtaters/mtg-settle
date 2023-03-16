@@ -27,3 +27,6 @@ export default function useControlModal(modalId, openModal, setModal) {
     toggleState,
   }
 }
+
+export const checkCanReturnFocus = () => new Promise((res) => 
+  setTimeout(res, modalFadeDelay[0] + modalFadeDelay[1] + 1000))

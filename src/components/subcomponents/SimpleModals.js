@@ -5,9 +5,8 @@ import { modalIds } from "../../assets/constants"
 
 export function AboutModal({ openModal, setModal }) {
   return (
-    <ModalBase
-      title="About" modalId={modalIds.about} openModal={openModal} setModal={setModal}
-      renderBody={() => (<AboutBodyStyle><InfoText /></AboutBodyStyle>)}
-    />
+    <ModalBase title="About" modalId={modalIds.about} openModal={openModal} setModal={setModal}>
+      <AboutBodyStyle><InfoText /></AboutBodyStyle>
+    </ModalBase>
   )
 }

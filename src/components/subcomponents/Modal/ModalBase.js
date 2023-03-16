@@ -1,15 +1,19 @@
 import FocusTrap from "focus-trap-react"
 import { ModalBgdStyle, ModalContainerStyle, ModalCloseButton, ModalTitleStyle, ModalBodyStyle } from "./ModalStyles"
-import useControlModal from "./modal.controller"
+import useControlModal, { checkCanReturnFocus } from "./modal.controller"
 
-export default function ModalBase({ modalId, title, openModal, setModal, hideX = false, role = "dialog", renderBody }) {
+export default function ModalBase({ modalId, title, openModal, setModal, hideX = false, role = "dialog", children }) {
   const { isRendered, isVisible, toggleState } = useControlModal(modalId, openModal, setModal)
   
   const focusOptions = {
-    initialFocus: false, returnFocusOnDeactivate: false, clickOutsideDeactivates: !hideX
+    initialFocus: false,
+    returnFocusOnDeactivate: false,
+    escapeDeactivates: false,
+    clickOutsideDeactivates: !hideX,
+    checkCanReturnFocus,
   }
   
-  return isRendered && (<>
+  return isRendered && isVisible && (
     <ModalBgdStyle onClick={toggleState} className={!isVisible ? '' : hideX ? 'modal-open' : 'modal-open cursor-pointer'}>
 
       <FocusTrap active={isVisible} focusTrapOptions={focusOptions}>
@@ -20,10 +24,10 @@ export default function ModalBase({ modalId, title, openModal, setModal, hideX =
 
           <ModalTitleStyle id={modalId}>{title}</ModalTitleStyle>
 
-          <ModalBodyStyle id={modalId}>{renderBody()}</ModalBodyStyle>
+          <ModalBodyStyle id={modalId}>{children}</ModalBodyStyle>
 
         </ModalContainerStyle>
       </FocusTrap>
     </ModalBgdStyle>
-  </>)
+  )
 }
