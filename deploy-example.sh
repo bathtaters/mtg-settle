@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Path to where this file resides (No trailing slash!)
+# Path to repo parent folder (No trailing slash!)
 repopath="$HOME/path/to/repo/mtg-settle"
 
 # Path to where the server serves built pages (No trailing slash!)
