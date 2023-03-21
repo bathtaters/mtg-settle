@@ -28,7 +28,7 @@ npm run build
 echo
 echo " *** DEPLOYING CLIENT *** "
 if [ -d "$livepath" ]; then
-    mv -f "$livepath" "$livepath-old"
+    mv -rf "$livepath" "$livepath-old"
     echo "> Old client backed up: $livepath-old"
 else
     echo "> Old client not found"
