@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -22,10 +22,18 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require("daisyui"),
+    require('daisyui'),
   ],
   daisyui: {
-    themes: ["fantasy", "luxury"],
-    darkTheme: "luxury",
+    themes: [
+      'fantasy',
+      {
+        luxuryFixed: {
+          ...require('daisyui/src/theming/themes')['[data-theme=luxury]'],
+          neutral: '#171618',
+        }
+      },
+    ],
+    darkTheme: 'luxuryFixed',
   },
 }
