@@ -34,7 +34,7 @@ export const autoShowStatsDelay = 3000
 // Guess list options
 export const guessColumns = 2
 export const guessOptions = [
-  { mark: null, color: "" },
+  { mark: null, color: "badge-neutral" },
   { mark: "✓",  color: "badge-success" },
   { mark: "✕",  color: "badge-error" },
   { mark: "–",  color: "badge-warning" },
