@@ -33,8 +33,8 @@ const StatsButton = ({ onClick, label, children }) => (
     flex flex-wrap-reverse gap-0 sm:gap-4 place-content-start justify-center 
     ${!onClick ? 'btn-inactive' : ''}
   `}>
-    {!!label && <span className="text-lg sm:text-2xl">{label}</span>}
-    {children}
+    {!!label && <div className="text-lg sm:text-2xl">{label}</div>}
+    <div className="py-2 pl-1 sm:pl-0 sm:py-3 h-full">{children}</div>
   </button>
 )
 
@@ -45,23 +45,25 @@ export const StatsDivider = () => (
 
 export const ShareButton = ({ onClick }) => (
   <StatsButton onClick={onClick} label="Share">
-    <ShareIcon className="fill-current w-auto h-full py-2 pl-1 sm:pl-0 sm:py-3" />
+    <ShareIcon className="fill-current w-auto h-full" />
   </StatsButton>
 )
 
 export const NewGameButton = ({ onClick }) => (
   <StatsButton onClick={onClick} label="New Game">
-    <NewGameIcon className="fill-current w-auto h-full py-2 pl-1 sm:pl-0 sm:py-3" />
+    <NewGameIcon className="fill-current w-auto h-full" />
   </StatsButton>
 )
 
 export const StatsTimerStyle = ({ label, children }) => (
-  <StatsButton>
-    <div className="flex flex-row sm:flex-col justify-center items-center gap-2 sm:gap-1">
+  <StatsButton label={
+    <div className="flex flex-row sm:flex-col justify-center items-center
+      gap-2 sm:gap-1 text-sm sm:text-lg sm:leading-4">
       <div className="font-sans uppercase">{label}</div>
       <div className="font-mono font-light">{children}</div>
     </div>
-    <NewGameIcon className="fill-current w-auto h-full py-2 pl-1 sm:pl-0 sm:py-3" />
+  }>
+    <NewGameIcon className="fill-current w-auto h-full" />
   </StatsButton>
 )
 

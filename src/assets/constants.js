@@ -29,7 +29,7 @@ export const shareChars = { wrong: "🟥", skip: "🟥", right: "🟩", partial:
 // Modal options
 export const modalIds = { about: "about-modal", stats: "stats-modal" }
 export const modalFadeDelay = [50, 100] // [OPEN ms, CLOSE ms]
-export const autoShowStatsDelay = 3000
+export const autoShowStatsDelay = 1500
 
 // Guess list options
 export const guessColumns = 2
