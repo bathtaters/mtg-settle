@@ -29,7 +29,7 @@ module.exports = {
       'fantasy',
       {
         luxuryFixed: {
-          ...require('daisyui/src/theming/themes')['[data-theme=luxury]'],
+          ...require('daisyui/src/theming/themes')['luxury'],
           neutral: '#171618',
         }
       },

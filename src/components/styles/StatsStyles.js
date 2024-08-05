@@ -8,7 +8,7 @@ export const StatsWrapperStyle = ({ id, children }) => (
 export const InfoWrapperStyle = ({ children }) => (
   <div
     className="stats stats-vertical xs:stats-horizontal shadow shadow-black 
-      bg-secondary-focus text-secondary-content font-sans 
+      bg-secondary text-secondary-content font-sans 
       mb-1 text-xs sm:text-lg"
   >
     {children}
@@ -72,7 +72,7 @@ export const ProgressWrapperStyle = ({ title, children }) => (
   <div className="
     grid grid-cols-stats gap-2 font-sans w-64 sm:w-80 max-w-full my-2
     px-4 pt-2 pb-4 sm:px-6 sm:pb-6 sm:pt-3
-    artboard-demo text-secondary-content bg-secondary-focus shadow shadow-black
+    artboard-demo text-secondary-content bg-secondary shadow shadow-black
   ">
     <h4 className="col-span-2 text-center sm:mb-1 opacity-70">{title}</h4>
     {children}

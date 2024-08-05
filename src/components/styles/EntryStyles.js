@@ -28,12 +28,12 @@ export const FormStyle = ({ onSubmit, children }) => (
   </form>
 )
 
-export const ButtonStyle = (props) => <input {...props} type="submit" className="btn btn-secondary w-20 z-10" />
+export const ButtonStyle = (props) => <input {...props} type="submit" className="btn btn-secondary w-20 z-10 uppercase join-item" />
 
 export const suggestClasses = {
-  main: "input-group",
-  textbox: "w-full h-full input input-bordered input-secondary bg-secondary text-secondary-content text-lg "+
-    "placeholder:italic placeholder:text-center placeholder:text-secondary-content/70",
-  select: "bg-secondary-content text-secondary-focus",
-  unselect: "bg-secondary-focus text-secondary-content",
+  main: "join",
+  textbox: "w-full h-full join-item input input-bordered input-secondary bg-secondary text-secondary-content "+
+    "text-lg placeholder:italic placeholder:text-center placeholder:text-secondary-content/70",
+  select: "bg-secondary-content text-secondary",
+  unselect: "bg-secondary text-secondary-content",
 }
