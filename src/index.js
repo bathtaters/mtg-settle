@@ -7,7 +7,7 @@ import App from './components/App';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
 import * as Sentry from "@sentry/react";
 
-if (process.env.SENTRY) Sentry.init({
+if (process.env.REACT_APP_SENTRY) Sentry.init({
   dsn: process.env.SENTRY,
   integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
   tracesSampleRate: 1.0,
