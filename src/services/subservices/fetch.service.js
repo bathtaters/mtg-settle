@@ -26,3 +26,21 @@ export default async function fetchAPI(key, noCacheCb, setError = console.error)
   setCache(key, data)
   return getCache(key)
 }
+
+
+export async function postAPI(key, data, setError = console.error) {
+  if (!(key in apiEndpoint)) throw new Error('Posting with invalid key: '+key)
+
+  try {
+    const res = await axios(credentials.apiUrl + apiEndpoint[key], {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': credentials.apiKey,
+      },
+      data: JSON.stringify(data),
+    })
+    return res
+
+  } catch (err) { return setError(getErrorMsg(err)) }
+}

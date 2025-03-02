@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import * as Sentry from "@sentry/react";
 import './index.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import App from './components/App';
 // import reportWebVitals from './services/subservices/reportWebVitals';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
-import * as Sentry from "@sentry/react";
+import initErrorReporter from './services/subservices/error.service';
 
 if (process.env.REACT_APP_SENTRY) Sentry.init({
   dsn: process.env.SENTRY,
@@ -15,6 +16,8 @@ if (process.env.REACT_APP_SENTRY) Sentry.init({
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
 });
+
+initErrorReporter()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

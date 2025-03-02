@@ -63,4 +63,5 @@ export const swipeOptions = {
 export const apiEndpoint = {
   setList: 'setlist',
   solution: 'today',
+  error: 'report',
 }
