@@ -7,6 +7,7 @@ import App from './components/App';
 // import reportWebVitals from './services/subservices/reportWebVitals';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
 import initErrorReporter from './services/subservices/error.service';
+import packageJson from '../package.json';
 
 if (process.env.REACT_APP_SENTRY) Sentry.init({
   dsn: process.env.REACT_APP_SENTRY,
@@ -14,6 +15,7 @@ if (process.env.REACT_APP_SENTRY) Sentry.init({
   tracesSampleRate: 1.0,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
+  release: packageJson.version,
 });
 
 initErrorReporter()
