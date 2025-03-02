@@ -5,6 +5,16 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import App from './components/App';
 // import reportWebVitals from './services/subservices/reportWebVitals';
 import ErrorBoundary from './components/subcomponents/ErrorBoundary';
+import * as Sentry from "@sentry/react";
+
+if (process.env.SENTRY) Sentry.init({
+  dsn: process.env.SENTRY,
+  integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
+  tracesSampleRate: 1.0,
+  tracePropagationTargets: [/^https:\/\/settle\.gg/],
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1.0,
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
