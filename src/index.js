@@ -9,10 +9,9 @@ import ErrorBoundary from './components/subcomponents/ErrorBoundary';
 import initErrorReporter from './services/subservices/error.service';
 
 if (process.env.REACT_APP_SENTRY) Sentry.init({
-  dsn: process.env.SENTRY,
+  dsn: process.env.REACT_APP_SENTRY,
   integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
   tracesSampleRate: 1.0,
-  tracePropagationTargets: [/^https:\/\/settle\.gg/],
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
 });
